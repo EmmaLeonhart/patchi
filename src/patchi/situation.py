@@ -32,7 +32,14 @@ from typing import List, Optional, Sequence, Tuple
 
 import numpy as np
 
+from .proof import Contribution, ProofWalk, Step
 from .wordclass import Lexicon, cosine
+
+
+def _fmt(infon: "Infon") -> str:
+    """Compact human label for an infon: ``relation(arg1, arg2)[+/-]``."""
+    sign = "+" if infon.polarity == 1 else "-"
+    return f"{infon.relation}({', '.join(infon.args)})[{sign}]"
 
 
 @dataclass(frozen=True)
@@ -79,11 +86,24 @@ class Situation:
         return list(self._asserted)
 
     def supports(self, query: Infon) -> float:
-        """Graded support ``∈ [0,1]`` for ``query`` given what this situation asserts."""
+        """Graded support ``∈ [0,1]``; delegates to :meth:`supports_explained`."""
+        return self.supports_explained(query)[0]
+
+    def supports_explained(self, query: Infon):
+        """``(score, ProofWalk)`` — the score plus which rule/infon produced it.
+
+        This is the single source of truth for support; :meth:`supports` returns
+        just its score, so the trace can never disagree with the value.
+        """
         if query in self._asserted:
-            return 1.0
+            proof = ProofWalk().add(Step("support", "exact match — asserted",
+                [Contribution(_fmt(query), 1.0, "asserted")], {"rule": "exact"}))
+            return 1.0, proof
         if query.negate() in self._asserted:
-            return 0.0
+            proof = ProofWalk().add(Step("support", "contradiction — opposite asserted",
+                [Contribution(_fmt(query.negate()), 0.0, "asserted opposite")],
+                {"rule": "contradiction"}))
+            return 0.0, proof
 
         same_pol = [a for a in self._asserted if a.polarity == query.polarity]
 
@@ -91,22 +111,36 @@ class Situation:
         if self.lex is not None:
             qv = infon_vector(self.lex, query)
             if qv is not None:
-                best = 0.0
+                best, best_a = 0.0, None
                 for a in same_pol:
                     av = infon_vector(self.lex, a)
                     if av is not None:
-                        best = max(best, max(0.0, cosine(qv, av)))
-                return best
+                        c = max(0.0, cosine(qv, av))
+                        if c >= best:
+                            best, best_a = c, a
+                contribs = [Contribution(_fmt(best_a), best, "max infon-vector cosine")] \
+                    if best_a is not None else []
+                proof = ProofWalk().add(Step("support",
+                    f"graded by infon-vector cosine = {best:.3f}", contribs,
+                    {"rule": "vector"}))
+                return best, proof
 
         # structural fallback: best argument-overlap (Jaccard) among
         # same-relation, same-polarity asserted infons
-        best = 0.0
+        best, best_a = 0.0, None
         for a in same_pol:
             if a.relation == query.relation:
                 qa, aa = set(query.args), set(a.args)
                 if qa or aa:
-                    best = max(best, len(qa & aa) / len(qa | aa))
-        return best
+                    j = len(qa & aa) / len(qa | aa)
+                    if j >= best:
+                        best, best_a = j, a
+        contribs = [Contribution(_fmt(best_a), best, "argument Jaccard")] \
+            if best_a is not None else []
+        proof = ProofWalk().add(Step("support",
+            f"structural argument overlap = {best:.3f}", contribs,
+            {"rule": "structural"}))
+        return best, proof
 
     def contextual_polarity(self, relation: str, args: Sequence[str]) -> float:
         """A signed, context-conditioned output in [-1, 1].

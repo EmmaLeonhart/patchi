@@ -32,7 +32,37 @@ from typing import List, Optional, Sequence, Tuple
 
 import numpy as np
 
+from .proof import Contribution, ProofWalk, Step
 from .wordclass import Lexicon
+
+
+def blend_weights(
+    similarities: Sequence[float],
+    *,
+    weighting: str = "similarity",
+    power: float = 1.0,
+) -> np.ndarray:
+    """Normalised (sum-to-1) blend weights — the single source of truth.
+
+    ``weighting="similarity"`` uses ``max(sim, 0)^power``; ``weighting="uniform"``
+    uses equal weights (the additive baseline). Falls back to uniform if every
+    weight is zero. Both :func:`blend_from_neighbors` and the explained variant
+    use this, so a Proof(walk) can never disagree with the computed vector.
+    """
+    sims = np.asarray(similarities, dtype=float)
+    n = len(sims)
+    if n == 0:
+        raise ValueError("need at least one neighbour to blend")
+    if weighting == "uniform":
+        raw = np.ones(n)
+    elif weighting == "similarity":
+        raw = np.maximum(sims, 0.0) ** power
+    else:
+        raise ValueError(f"unknown weighting {weighting!r}")
+    total = float(raw.sum())
+    if total == 0.0:
+        return np.ones(n) / n
+    return raw / total
 
 
 def blend_from_neighbors(
@@ -42,25 +72,10 @@ def blend_from_neighbors(
     weighting: str = "similarity",
     power: float = 1.0,
 ) -> np.ndarray:
-    """Core operator: weighted convex combination of neighbour vectors.
-
-    ``weighting="similarity"`` uses ``max(sim, 0)^power`` as weights (negative
-    similarities contribute nothing); ``weighting="uniform"`` uses equal weights
-    (the additive baseline). Falls back to a flat mean if all weights are zero.
-    """
-    if len(neighbor_vectors) == 0:
-        raise ValueError("need at least one neighbour to blend")
+    """Core operator: weighted convex combination of neighbour vectors."""
     vecs = np.asarray(neighbor_vectors, dtype=float)
-    if weighting == "uniform":
-        weights = np.ones(len(vecs))
-    elif weighting == "similarity":
-        weights = np.maximum(np.asarray(similarities, dtype=float), 0.0) ** power
-    else:
-        raise ValueError(f"unknown weighting {weighting!r}")
-    total = float(weights.sum())
-    if total == 0.0:
-        return vecs.mean(axis=0)
-    return (weights[:, None] * vecs).sum(axis=0) / total
+    w = blend_weights(similarities, weighting=weighting, power=power)
+    return (w[:, None] * vecs).sum(axis=0)
 
 
 def blend_word(
@@ -82,3 +97,38 @@ def blend_word(
     vecs = [lex[w].vector for w, _ in neighbors]
     sims = [s for _, s in neighbors]
     return blend_from_neighbors(vecs, sims, weighting=weighting, power=power)
+
+
+def blend_word_explained(
+    lex: Lexicon,
+    word: str,
+    *,
+    k: int = 5,
+    weighting: str = "similarity",
+    power: float = 1.0,
+):
+    """Like :func:`blend_word` but also returns a :class:`ProofWalk`.
+
+    The walk records each neighbour and the normalised weight it contributed, so
+    the reconstruction is fully traceable. The returned vector is identical to
+    ``blend_word`` (both go through :func:`blend_weights`).
+    """
+    neighbors = lex.nearest(word, k=k)
+    if not neighbors:
+        raise ValueError(f"{word!r} has no neighbours to blend from")
+    names = [w for w, _ in neighbors]
+    sims = [s for _, s in neighbors]
+    vecs = np.asarray([lex[w].vector for w in names], dtype=float)
+    w = blend_weights(sims, weighting=weighting, power=power)
+    vector = (w[:, None] * vecs).sum(axis=0)
+
+    proof = ProofWalk().add(Step(
+        op="blend",
+        result=f"reconstruct '{word}' from {len(names)} neighbours",
+        contributions=[
+            Contribution(name, float(wi), note=f"sim={s:.3f}")
+            for name, wi, s in zip(names, w, sims)
+        ],
+        detail={"weighting": weighting, "power": power, "k": k},
+    ))
+    return vector, proof
