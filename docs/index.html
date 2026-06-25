@@ -243,25 +243,28 @@
 
 <h2 id="findings">Findings</h2>
 <p>
-  <strong>First measured result is in</strong> (2026-06-25) — Pygmalion's
-  similarity-weighted blending operator, tested against a plain additive average and raw
-  vectors on a controlled synthetic denoising task (full write-up:
-  <code>FINDINGS.md</code>). The result is real and nuanced, not a victory lap:
+  <strong>First measured results are in — synthetic <em>and</em> real</strong> (2026-06-25).
+  Pygmalion's similarity-weighted blending operator was tested against a plain additive
+  average and the raw vectors, both on a controlled synthetic task and on
+  <strong>real GloVe-50 embeddings vs the human WordSim-353 judgements</strong> (all 353
+  pairs). The two runs point in opposite directions, and that contrast is the finding
+  (full write-up: <code>FINDINGS.md</code>):
 </p>
 <ul>
-  <li><strong>Reconstruction denoises strongly</strong> over raw vectors when the
-  neighbourhood carries signal — up to <strong>+0.14 Spearman</strong> over raw.</li>
-  <li><strong>The similarity weighting earns its keep mainly when neighbourhoods are
-  trustworthy</strong> (low noise, sharp weighting): +0.10 to +0.14 over a flat additive
-  average — a repeatable margin, locked in by a regression test.</li>
-  <li><strong>The advantage decays with noise, and over-sharpening can backfire</strong>
-  (slightly negative under heavy noise). At a middling setting it barely beats additive
-  (+0.0035): the operator is a trustworthy-neighbourhood denoiser, <em>not</em> a free win.</li>
+  <li><strong>On real, clean embeddings, reconstructing a word from its neighbourhood
+  <em>hurts</em>.</strong> Raw GloVe scores 0.50 Spearman (matching the literature); every
+  blend/additive setting lands 0.06–0.08 <em>below</em> it. Blending loses to doing nothing.</li>
+  <li><strong>On synthetic noisy vectors it <em>helps</em></strong> — blend denoises by up to
+  +0.14 over raw. The operator is a <em>denoiser</em>: it only wins when the input is noisy
+  enough that averaging trustworthy neighbours recovers signal.</li>
+  <li><strong>The similarity weighting (the distinctive ingredient) is real but small</strong>
+  — it beats a flat additive average consistently, but only by +0.001 to +0.14, never enough
+  to flip a loss into a win.</li>
 </ul>
 <p>
-  <em>Scope, stated plainly: synthetic data, not real embeddings. The real-embeddings run
-  (GloVe + WordSim-353) is the queued next step — it needs downloads unavailable in the
-  offline build, so it is named as a blocker, not faked.</em>
+  <em>Stated straight: Pygmalion's blending is a noise-conditional smoother, not a free
+  improvement over standard embeddings. That is the opposite of what the synthetic run alone
+  would have implied — which is exactly why the real run was worth actually running.</em>
 </p>
 
 <footer>

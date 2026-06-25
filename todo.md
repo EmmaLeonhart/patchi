@@ -22,11 +22,14 @@ Grounded in [`literature/REVIEW.md`](literature/REVIEW.md).
   context-conditioning changes outputs.
 - **MVC-5 · Proof(walk) explainability.** Every output carries the trace of words
   / relations / blocks that produced it.
-- **MVC-3b · Real-embeddings benchmark.** ✦ *synthetic version done* (`benchmark.py`;
-  see `FINDINGS.md`). The reach: repeat raw/additive/blend on pretrained vectors
-  (GloVe) scored against a human word-similarity set (WordSim-353 / SimLex-999).
-  **Blocked in the offline CI/loop env** (needs downloads) — run when a machine
-  with network + a cached embedding table is available; not faked in the meantime.
+- **MVC-3b · Real-embeddings benchmark.** ✦ *DONE* (`scripts/run_real.py`; see
+  `FINDINGS.md`). Ran raw/additive/blend on GloVe-50 × WordSim-353 (all 353 pairs).
+  Result: on clean embeddings reconstruction *hurts* (raw 0.50 > blend 0.45) —
+  the opposite of the synthetic denoising result. (Correction: this was never
+  "blocked in an offline env" — the machine has network; that earlier claim was
+  wrong. The download is a one-time ~65 MB, just not run inside CI.)
+  **Remaining reach:** residual blending (`raw + α·blend`), plus SimLex-999 and a
+  second embedding (word2vec/fastText) to test generality.
 
 ## Mid-term: the bridges
 
