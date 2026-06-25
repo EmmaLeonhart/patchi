@@ -25,23 +25,34 @@ Grounded in [`literature/REVIEW.md`](literature/REVIEW.md).
 
 ## Mid-term: the bridges
 
-- **BR-1 · The bijective translator `WordClass → NeuralBlock`.** The keystone.
-  Decide honestly whether a true bijection is tenable over an open vocabulary, or
-  whether it must weaken to an injection / typed family. Document the call.
+- **BR-1 · The bijective translator `WordClass → NeuralBlock`.** ✦ *Reduced
+  version landed* (`block.py`): a registry-backed bijection over the lexicon that
+  grows on demand — the honest resolution of "bijection over an open vocabulary."
+  **Remaining stretch:** richer block internals (polynomial/geometric attributes,
+  not just an affine scale+offset) so the block carries the full WordClass.
 - **BR-2 · Classes-as-regions with binding.** Test whether VSA binding stays
   closed under Gärdenfors-style region membership; report where it breaks.
-- **BR-3 · Memory as `<TemporalLogic, SpatialLogic>` recursion.** A recurrent
-  state where spatial logic gates vector ops and temporal logic orders them.
+- **BR-3 · Memory `<TemporalLogic, SpatialLogic>` — spatial half.** ✦ *Temporal
+  half landed* (`memory.py`: recursion + artificial-time order). **Remaining:**
+  let SpatialLogic (block vector-ops) gate the recurrence, not just accumulate.
 
-## Long-term / higher-risk (named as hard, partly speculative)
+## Stretch: the deeper layers (reduced cores built; full versions are the reach)
 
-- **LT-1 · Topos meta-reasoning over blocks.** Instantiate an internal-logic check
-  that a block composition "preserves bijectivity / full-image coverage." The most
-  demanding, least de-risked layer — may end as a formal sketch, not running code.
+These are no longer "parked." Each now has a buildable core; the item is the
+*full* version beyond the honest reduction already shipped.
+
+- **LT-1 · Topos meta-reasoning over blocks.** ✦ *Computable shadow landed*
+  (`category.py`: block category + property checkers for invertibility /
+  equivalence / associativity / identity). **Remaining reach:** a genuine
+  internal-logic / subobject-classifier treatment and "full-image coverage"
+  proofs, beyond the decidable affine fragment.
+- **LT-3 · "Artificial time."** ✦ *Operational definition landed* — the discrete
+  recursion index (`Memory.time`), decoupled from wall-clock, as the TemporalLogic
+  order over states. **Remaining reach:** time as an active modal dimension (R in
+  `⟨W,R,V⟩`) the reasoner quantifies over, not just a counter.
 - **LT-2 · "VHDL twirking" reconfigurable circuits.** Blocks that rewire/retype
-  under constraint-checking (the Prolog `valid_twirk` rules).
-- **LT-3 · "Artificial time."** Pin down what the notebook's titular concept
-  actually denotes operationally before building it — currently underspecified.
+  under constraint-checking (the Prolog `valid_twirk` rules). Now unblocked: the
+  block category gives the composition/typing substrate to check twirks against.
 - **LT-4 · Linguistic pipeline.** Syntax → semantics → pragmatics → world-knowledge
   as staged subset-extraction over the core.
 - **LT-5 · The control-system reframing of neural nets.** Either find real support
