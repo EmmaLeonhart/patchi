@@ -46,3 +46,8 @@ User directive: don't park the hard/speculative design items — find a way to b
 - **LT-3 · "Artificial time"** (`src/patchi/memory.py`). Gave the notebook's titular-but-undefined term an **operational definition**: artificial time = the discrete recursion index of the memory update (`Memory.time`), decoupled from wall-clock — the TemporalLogic order over states `m_0,m_1,…`. Memory itself is a leaky accumulator `m_{t+1}=decay·m_t+input` (reservoir-style).
 
 Tests: +30 (test_block 11, test_category 9, test_memory 10). **Full suite 42 passed.** Hard rails held — every "preserves invertibility"/"round-trips" claim is a measured assertion, and each reduction is labelled as such (no claim of a full topos or a closed-form infinite bijection). De-parked BR-1/LT-1/LT-3 in todo.md (reduced cores done; full versions are the remaining reach).
+
+## 2026-06-25 — MVC-2: signed relation graph with offset-based recovery (queue item)
+
+- Implemented `src/patchi/relations.py`: `SignedRelationGraph` over a `Lexicon`. Two threads of the framework meet: **relations as vector offsets** (TransE-style `offset(rel) = mean(tail-head)`, with `predict_tail` recovering a held-out edge's tail by arithmetic + nearest-neighbour) and the **signed stimulator/inhibitor spectrum** (synonyms +1, antonyms −1; `polarity_between`, `neighbors(polarity=…)`, `net_effect`).
+- Added `tests/test_relations.py` (10 tests): construction/guards, offset = mean difference, **held-out antonym recovery** (train hot/cold + fast/slow → predict up→down), **held-out synonym recovery** (train big→large → predict small→little), signed/symmetric polarity, sign-filtered neighbours, net-effect balance. Full suite: **52 passed**. Next: MVC-3 (the blending-operator benchmark — the headline empirical result).
