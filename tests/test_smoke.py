@@ -25,4 +25,4 @@ def test_run_entrypoint_exits_zero():
         text=True,
     )
     assert result.returncode == 0, result.stderr
-    assert "PATCHi v" in result.stdout
+    assert "Patchi v" in result.stdout

@@ -1,9 +1,9 @@
-# PATCHi
+# Patchi
 
 > A **research project** scaffolded with
 > [cleanvibe](https://github.com/Immanuelle/cleanvibe) `research`.
 
-**Research question:** Formalize and implement Pygmalion's relation/agreement-based theory of cognition (words as agreements on labels; context as the base relation; modal/Kripke 'spatial logic'; memory as recursion; 'artificial time') as a literature review plus a working reference implementation (PATCHi).
+**Research question:** Formalize and implement Pygmalion's relation/agreement-based theory of cognition (words as agreements on labels; context as the base relation; modal/Kripke 'spatial logic'; memory as recursion; 'artificial time') as a literature review plus a working reference implementation (Patchi).
 
 ## About
 
@@ -12,7 +12,7 @@ surveys the prior literature, runs experiments / builds something to answer it,
 and publishes the findings as a themed GitHub Pages report + a transportable PDF.
 
 The framework being formalized is the intellectual work of **Pygmalion** (see
-`data_lake/`), credited to him in the git history. The name **PATCHi** is after
+`data_lake/`), credited to him in the git history. The name **Patchi** is after
 **Patchouli Knowledge** — the librarian-magician — a fitting patron for an engine
 that hoards meaning and reasons over it. Live report:
 <https://emmaleonhart.github.io/patchi/>.
@@ -32,7 +32,7 @@ building — see `literature/`.
 ## Getting started
 
 ```
-cd PATCHi
+cd Patchi
 claude
 ```
 

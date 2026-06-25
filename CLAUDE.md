@@ -1,4 +1,4 @@
-# PATCHi — research project
+# Patchi — research project
 
 ## Project Description
 
@@ -7,7 +7,7 @@ This is a **research project** scaffolded by `cleanvibe research`. Unlike a
 investigation: you pose a question, survey the prior literature, run experiments
 or build something to answer it, and publish the findings.
 
-> **Research question:** Formalize and implement Pygmalion's relation/agreement-based theory of cognition (words as agreements on labels; context as the base relation; modal/Kripke 'spatial logic'; memory as recursion; 'artificial time') as a literature review plus a working reference implementation (PATCHi).
+> **Research question:** Formalize and implement Pygmalion's relation/agreement-based theory of cognition (words as agreements on labels; context as the base relation; modal/Kripke 'spatial logic'; memory as recursion; 'artificial time') as a literature review plus a working reference implementation (Patchi).
 
 Like a cleanvibe replication it produces a published, legible report — a themed
 **GitHub Pages site** (`docs/`) plus a transportable PDF — but the content is

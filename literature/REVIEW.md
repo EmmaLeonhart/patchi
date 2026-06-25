@@ -1,8 +1,8 @@
-# PATCHi — Literature Review
+# Patchi — Literature Review
 
 **What this is.** A survey grounding Pygmalion's relation/agreement-based theory
 of cognition in the established literature: for each major construct, the prior
-work it descends from, and the gap PATCHi must actually close. Full source notes
+work it descends from, and the gap Patchi must actually close. Full source notes
 (with verified identifiers) are in [`sources.md`](sources.md). Pygmalion's
 original framework is in [`../data_lake/artificialtime2.txt`](../data_lake/artificialtime2.txt)
 and is his intellectual work; this review is analysis built on top of it.
@@ -40,13 +40,13 @@ gateway to vector algebra"; "topos as VHDL category reasoning"; the bijective
 "translator: WordClass → NeuralCircuitBlock"). **The bridges are the research.**
 The layers themselves are well-trodden; what is unproven is that they compose.
 
-## 2. What is already known (so PATCHi should not re-derive it)
+## 2. What is already known (so Patchi should not re-derive it)
 
 - **Meaning from relations / distribution.** That a word's meaning is fixed by
   the company it keeps (Firth, Harris) and is representable as geometry where
   *relations are consistent vector offsets* (word2vec, GloVe, TransE) is settled.
   Pygmalion's "meaning as relations between sets of words" and "king−man+woman"
-  are this tradition; PATCHi should *use* it, not reinvent it.
+  are this tradition; Patchi should *use* it, not reinvent it.
 - **Information as infons-in-situations.** The `⟨relation, args, polarity⟩` infon
   and the `s ⊨ σ` support relation are Devlin's situation theory verbatim. The
   symbolic account is complete; what is missing is a *graded/learned* one.
@@ -63,7 +63,7 @@ The layers themselves are well-trodden; what is unproven is that they compose.
   Logics*, Pnueli's temporal logic, and topos internal logic each exist in mature
   form. Pygmalion adopts their notation directly.
 
-## 3. The gaps — where PATCHi's actual contribution lives
+## 3. The gaps — where Patchi's actual contribution lives
 
 Across every cluster the same shape of gap recurs: **the components are known in
 isolation; the bridges between them are not standard, and in several cases not
@@ -117,7 +117,7 @@ hard and partly speculative rather than papered over.
 
 ## 5. Relation to the wider research library
 
-PATCHi sits squarely next to existing topics in this library: **hyperdimensional
+Patchi sits squarely next to existing topics in this library: **hyperdimensional
 computing / VSA**, **neural architectures**, **reservoir computing**, and
 **neuromorphic hardware**. The VSA/HDC and conceptual-spaces cluster in
 particular overlaps the library's HDC work; the "neural blocks as control over

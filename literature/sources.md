@@ -1,4 +1,4 @@
-# PATCHi — literature sources
+# Patchi — literature sources
 
 Source notes for the literature review, organized by the cluster of Pygmalion's
 framework each body of work grounds. Identifiers (DOI / arXiv / ISBN / URL) are
@@ -8,7 +8,7 @@ these together is in [`REVIEW.md`](REVIEW.md).
 
 Pygmalion's original framework lives in [`../data_lake/artificialtime2.txt`](../data_lake/artificialtime2.txt)
 and the companion report; it is his intellectual work. The notes below map his
-constructs onto established theory — what they descend from, and where PATCHi
+constructs onto established theory — what they descend from, and where Patchi
 must do new work.
 
 ---
@@ -20,11 +20,11 @@ Grounds: **infons**, **situations**, **context-as-base-relation**, **words-as-ag
 - **Jon Barwise & John Perry, *Situations and Attitudes* (1983), MIT Press; reissued CSLI 1999** — ISBN 9781575861937 (CSLI ed.). Founded *situation semantics* as a realist, partial alternative to possible-worlds semantics: meaning arises from structured, *partial* situations (real bits of the world), and is the *relation* between an utterance-situation and a described situation. → Grounds Pygmalion's **situations** as partial, real context-bases that carry information.
 - **Keith Devlin, *Logic and Information*, Vol. 1: *Situation Theory* (1991), Cambridge University Press** — ISBN 9780521499712 (pbk). Formalizes the *infon* ⟨R, a₁…aₙ, i⟩ (relation, arguments, polarity i∈{0,1}, often a spatio-temporal location) and the *supports* relation `s ⊨ σ` ("situation s supports infon σ"); truth is the holding of an infon *relative to a situation*. → This is **verbatim Pygmalion's infon**, and `s ⊨ σ` makes the situation the base against which every relation acquires meaning. (Pygmalion cites "the book logic and information by Delvin".)
 - **Keith Devlin, *InfoSense: Turning Information into Knowledge* (1999), W. H. Freeman** — ISBN 9780716734840. Non-technical situation theory: same infons read against different situations yield different information. → Context-as-base-relation, intuitively.
-- **Jon Barwise & Jerry Seligman, *Information Flow: The Logic of Distributed Systems* (1997), Cambridge University Press** — ISBN 9780521583862. *Channel theory*: information flows along channels of *classifications* linked by *infomorphisms*, with *local logics* for fallibility. → A compositional account of how information moves *between* situations — relevant if PATCHi wires contexts together rather than supporting them individually.
+- **Jon Barwise & Jerry Seligman, *Information Flow: The Logic of Distributed Systems* (1997), Cambridge University Press** — ISBN 9780521583862. *Channel theory*: information flows along channels of *classifications* linked by *infomorphisms*, with *local logics* for fallibility. → A compositional account of how information moves *between* situations — relevant if Patchi wires contexts together rather than supporting them individually.
 - **David Lewis, *Convention: A Philosophical Study* (1969), Harvard University Press; Blackwell 2002** — ISBN 9780631232568 (Blackwell). Meaning as an *arbitrary, self-perpetuating solution to a recurring coordination problem*: a sound–meaning pairing is conventional, settled by mutual expectation. (Upstream: Saussure, *Course in General Linguistics* (1916), arbitrariness of the sign.) → Grounds Pygmalion's **"words are agreements on labels"** with a precise mechanism.
 
-### Gap / what PATCHi adds
-These theories are symbolic and set-theoretic; none give a *computational, learnable, sub-symbolic* realization. There is no native account of graded support, similarity between situations, or how the "base relation" of context could be *learned*. PATCHi's contribution: infons as embeddings, `s ⊨ σ` as a continuous support score, context as a learned conditioning signal.
+### Gap / what Patchi adds
+These theories are symbolic and set-theoretic; none give a *computational, learnable, sub-symbolic* realization. There is no native account of graded support, similarity between situations, or how the "base relation" of context could be *learned*. Patchi's contribution: infons as embeddings, `s ⊨ σ` as a continuous support score, context as a learned conditioning signal.
 
 ---
 
@@ -38,8 +38,8 @@ Grounds: **words-as-coordinates**, **relations-as-offsets**, **similarity-weight
 - **J. Pennington, R. Socher, C.D. Manning, "GloVe: Global Vectors for Word Representation" (2014), *EMNLP* 1532–1543** — DOI 10.3115/v1/D14-1162. Embeddings from global co-occurrence ratios; vector differences capture meaning ratios. → Reinforces relation-as-offset from a count-based route.
 - **B. Coecke, M. Sadrzadeh, S. Clark, "Mathematical Foundations for a Compositional Distributional Model of Meaning" (2010), *Linguistic Analysis* 36** — arXiv:1003.4394 (**DisCoCat**). Unifies Lambek pregroup grammar with distributional vector spaces in a compact closed category, so grammatical reductions become linear maps composing word vectors into sentence vectors. → **The closest analogue to Pygmalion's vision**: grammar + category theory + distributional vectors fused to compute phrase meaning geometrically.
 
-### Gap / what PATCHi adds
-The field gives words-as-coordinates, relations-as-offsets, and a grammar-driven (bilinear/tensorial) composition operator. None treats phrase meaning as Pygmalion's **similarity-weighted polynomial blending** over the lexicon. PATCHi formalizes that specific blending operator and ties it to the offset/geometry tradition.
+### Gap / what Patchi adds
+The field gives words-as-coordinates, relations-as-offsets, and a grammar-driven (bilinear/tensorial) composition operator. None treats phrase meaning as Pygmalion's **similarity-weighted polynomial blending** over the lexicon. Patchi formalizes that specific blending operator and ties it to the offset/geometry tradition.
 
 ---
 
@@ -53,8 +53,8 @@ Grounds: **word→block bijection**, **binding/blending composition**, **classes
 - **Peter Gärdenfors, *Conceptual Spaces: The Geometry of Thought* (2000), MIT Press** — ISBN 9780262071994 (also *The Geometry of Meaning*, 2014, ISBN 9780262026789). Concepts as **convex regions** in spaces of quality dimensions; similarity as distance; prototypes as centroids. → Maps almost exactly onto Pygmalion's **"classes as perimeters/regions delimited by parameters in Cartesian space."**
 - **Paul Smolensky, "Tensor product variable binding…" (1990), *Artificial Intelligence* 46(1–2):159–216** — DOI 10.1016/0004-3702(90)90007-M. Binds role/filler via the **tensor product** + superposition; the dimensionality growth HRR/HDC later compress. → The ancestor of binding-via-vector-product.
 
-### Gap / what PATCHi adds
-VSA/HDC supplies binding/blending but atomic vectors are opaque, with no class *boundary*; Conceptual Spaces supplies class-as-region geometry but no binding algebra over regions. PATCHi's move: a *bijective* word→block mapping whose blocks are simultaneously bindable VSA vectors **and** parameter-delimited regions — so set theory over class perimeters and vector composition act on the same objects. Whether binding stays closed under region membership is the open formal question.
+### Gap / what Patchi adds
+VSA/HDC supplies binding/blending but atomic vectors are opaque, with no class *boundary*; Conceptual Spaces supplies class-as-region geometry but no binding algebra over regions. Patchi's move: a *bijective* word→block mapping whose blocks are simultaneously bindable VSA vectors **and** parameter-delimited regions — so set theory over class perimeters and vector composition act on the same objects. Whether binding stays closed under region membership is the open formal question.
 
 ---
 
@@ -69,8 +69,8 @@ Grounds: **graph-of-deductions**, **Prolog⇄neural bridge**, **relations-as-off
 - **A. Vaswani et al., "Attention Is All You Need" (2017)** — arXiv:1706.03762. Self-attention = softmax-normalized weighted sums over tokens; routes information by learned relevance. → Grounds **"attention as gain + normalization"** and the routing/control reading. *(No verified source endorses the strong "NNs are control systems, not learners" claim — that is Pygmalion's framing to defend, not consensus.)*
 - **M. Richardson & P. Domingos, "Markov Logic Networks" (2006), *Machine Learning*** — DOI 10.1007/s10994-006-5833-1. Weighted first-order formulae define a Markov network over groundings. → A precedent for weighted/signed logic-as-graph (stimulator/inhibitor edges).
 
-### Gap / what PATCHi adds
-The pieces exist separately (relations-as-offsets, the logic⇄neural bridge, attention-as-gain, weighted logic-graphs). None unify them where nodes are *word sets*, edges are *logical deductions*, the graph is *signed* (synonyms-stimulate / antonyms-inhibit), and the net is reframed as an information-flow *controller*. That synthesis + the control reframing is PATCHi's claim to defend.
+### Gap / what Patchi adds
+The pieces exist separately (relations-as-offsets, the logic⇄neural bridge, attention-as-gain, weighted logic-graphs). None unify them where nodes are *word sets*, edges are *logical deductions*, the graph is *signed* (synonyms-stimulate / antonyms-inhibit), and the net is reframed as an information-flow *controller*. That synthesis + the control reframing is Patchi's claim to defend.
 
 ---
 
@@ -85,5 +85,5 @@ Grounds: **topos meta-reasoning over blocks**, **sheaf/local-to-global for situa
 - **M. Aiello, I. Pratt-Hartmann & J. van Benthem (eds.), *Handbook of Spatial Logics* (2007), Springer** — ISBN 9781402055867; DOI 10.1007/978-1-4020-5587-4. Logics whose models are spaces (S4 over topological spaces, mereotopology, region calculi). → Underwrites **"Spatial Logic"**; the topological-modal link bridges qualitative space toward vector representations. (Region Connection Calculus — Randell, Cui & Cohn, *KR'92* 165–176, no verified DOI — is the canonical region calculus.)
 - **Amir Pnueli, "The Temporal Logic of Programs" (1977), *18th IEEE FOCS* 46–57** — DOI 10.1109/SFCS.1977.32. Founds linear temporal logic (◻/◇/until over execution sequences). → The reference for the **TemporalLogic** half of Pygmalion's memory tuple.
 
-### Gap / what PATCHi adds
-Each ingredient exists in isolation; none is articulated as a substrate for *neural blocks*, and there is no standard `<TemporalLogic, SpatialLogic>` memory tuple. PATCHi's move: composable blocks as objects/morphisms in one topos so "this composition preserves bijectivity" is an internal-logic theorem, with modal/temporal/spatial logic bound into one memory model where "spatial logic is the gateway to vector algebra." That joint identification is the contribution to formalize and defend.
+### Gap / what Patchi adds
+Each ingredient exists in isolation; none is articulated as a substrate for *neural blocks*, and there is no standard `<TemporalLogic, SpatialLogic>` memory tuple. Patchi's move: composable blocks as objects/morphisms in one topos so "this composition preserves bijectivity" is an internal-logic theorem, with modal/temporal/spatial logic bound into one memory model where "spatial logic is the gateway to vector algebra." That joint identification is the contribution to formalize and defend.

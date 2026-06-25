@@ -1,4 +1,4 @@
-"""PATCHi — a reference implementation of Pygmalion's relation/agreement-based
+"""Patchi — a reference implementation of Pygmalion's relation/agreement-based
 theory of cognition.
 
 The package is built layer by layer following ``todo.md`` / ``queue.md``:

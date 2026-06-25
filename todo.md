@@ -1,4 +1,4 @@
-# PATCHi — long-horizon plan (todo)
+# Patchi — long-horizon plan (todo)
 
 The **abstract destinations**. Items here are pulled into `queue.md` and
 decomposed into concrete steps when work begins. Newest thinking at the bottom.
@@ -16,7 +16,7 @@ Grounded in [`literature/REVIEW.md`](literature/REVIEW.md).
   `Poly(w)=Σ sim(w,sᵢ)·Poly(sᵢ)`; this is the framework's distinctive composition
   primitive. **Benchmark it head-to-head** against additive and tensor/DisCoCat
   baselines on a concrete task (word/phrase similarity, analogy). This is the
-  single most defensible empirical result PATCHi can produce.
+  single most defensible empirical result Patchi can produce.
 - **MVC-4 · Infon/situation layer.** `⟨R, args, polarity⟩` records with a graded
   `support(s, σ) ∈ [0,1]`; make "context as base relation" testable by showing
   context-conditioning changes outputs.
@@ -61,7 +61,7 @@ These are no longer "parked." Each now has a buildable core; the item is the
 - **LT-4 · Linguistic pipeline.** Syntax → semantics → pragmatics → world-knowledge
   as staged subset-extraction over the core.
 - **LT-5 · The control-system reframing of neural nets.** Either find real support
-  or present it explicitly as PATCHi's own thesis, argued not asserted.
+  or present it explicitly as Patchi's own thesis, argued not asserted.
 
 ## Reporting
 

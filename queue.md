@@ -1,4 +1,4 @@
-# PATCHi — Work Queue (research)
+# Patchi — Work Queue (research)
 
 **Concrete, executable steps — not a state snapshot.** Finished work is deleted
 from here and appended to `devlog.md` in the same commit, then pushed. No
@@ -44,6 +44,6 @@ B. **Run the status-report action once more, independently** — an end-of-sessi
 ## Pointers
 - Long-horizon backlog: `todo.md`. Literature base: `literature/REVIEW.md`.
 - Completed work (chronological): `devlog.md`. Narrative: `git log`.
-- This is a **nested submodule** (`research_library/projects/PATCHi`). When
+- This is a **nested submodule** (`research_library/projects/Patchi`). When
   pushing here, bump the pointer in `research_library`, then the hub
   `central-command` — innermost first, walk outward.

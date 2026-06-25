@@ -1,4 +1,4 @@
-# PATCHi — Findings
+# Patchi — Findings
 
 > **Status: first measured result (synthetic).** This reports the MVC-3 benchmark
 > of Pygmalion's similarity-weighted blending operator. The task is a *controlled

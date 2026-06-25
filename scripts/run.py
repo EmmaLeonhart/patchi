@@ -1,4 +1,4 @@
-"""PATCHi entry point — runs the current headline experiment.
+"""Patchi entry point — runs the current headline experiment.
 
 Right now that is the MVC-3 benchmark: similarity-weighted blending vs an
 additive baseline vs raw vectors on a controlled synthetic denoising task. It
@@ -19,7 +19,7 @@ RESULTS = Path(__file__).resolve().parent.parent / "results"
 
 
 def main() -> int:
-    print(f"PATCHi v{patchi.__version__}")
+    print(f"Patchi v{patchi.__version__}")
     headline = run_benchmark()
     sweep = run_sweep()
     RESULTS.mkdir(exist_ok=True)
