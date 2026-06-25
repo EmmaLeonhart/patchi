@@ -16,9 +16,7 @@ Pulled from `todo.md` MVC-1…5. Build under `src/`, entry point `scripts/run.py
 metrics to `results/`. Write tests as soon as there is logic; wire `ci.yml` once
 tests exist. Keep `FINDINGS.md` + `docs/` current as results land.
 
-1. **MVC-4 · Infon/situation layer.** `⟨R, args, polarity⟩` + graded
-   `support(s, σ) ∈ [0,1]`; test that context-conditioning changes an output.
-2. **MVC-5 · Proof(walk) trace.** Thread an explainability trace through blend +
+1. **MVC-5 · Proof(walk) trace.** Thread an explainability trace through blend +
    support so every output records its contributing words/relations.
 
 (Findings publishing is now continuous — each MVC item updates `FINDINGS.md` +
