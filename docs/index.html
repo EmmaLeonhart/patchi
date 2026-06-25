@@ -140,143 +140,135 @@
 
 <h1>Patchi</h1>
 <p class="lede">
-  A <strong>live research project</strong> that is formalizing — and building a working
-  reference implementation of — <strong>Pygmalion's theory of cognition</strong>: the idea
-  that meaning is made of <em>relations between words</em>, that <em>words are agreements
-  on labels</em>, that <em>context is the base relation</em> everything else is built on, and
-  that memory, logic, and thought can be assembled from these pieces into a real machine.
+  Formalizing and stress-testing <strong>Pygmalion's relation-based theory of cognition</strong> —
+  meaning as relations between words, words as agreements on labels, context as the base relation,
+  infons in situations, memory as an "artificial-time" recursion — by grounding it in the prior
+  literature and building a runnable reference implementation that we then measure honestly.
 </p>
 
-<div class="status-badge in-progress">⚙ Active &middot; just getting started (2026-06-25)</div>
+<div class="status-badge replicated">Core implemented &middot; first results in &middot; report below</div>
+
+<div class="actions">
+  <a class="action" href="report.pdf">
+    <div class="kicker">Download</div>
+    <div class="title">The paper (PDF)</div>
+    <div class="desc">The full write-up, typeset. <span class="arrow">&darr;</span></div>
+  </a>
+  <a class="action" href="#results">
+    <div class="kicker">Read</div>
+    <div class="title">The results</div>
+    <div class="desc">What we built and what we found, on this page. <span class="arrow">&darr;</span></div>
+  </a>
+  <a class="action" href="https://github.com/EmmaLeonhart/patchi">
+    <div class="kicker">Source</div>
+    <div class="title">Code &amp; data on GitHub</div>
+    <div class="desc">The implementation, tests, and literature review. <span class="arrow">&nearr;</span></div>
+  </a>
+</div>
 
 <div class="callout">
   <h3>If you are Pygmalion — read this first</h3>
   <p>
-    <strong>This is your work.</strong> The framework being formalized here is yours: your
-    notebook (<code>artificialtime2.txt</code>) and the accompanying report are the foundation
-    of the entire project, and they are committed to this repository <strong>under your name</strong>
-    so the git history records you as the author of the ideas. Everything else in here — the
-    literature review, the formalization, the code — is analysis and engineering built <em>on top of</em>
-    your framework, not a replacement for it. You get the credit for the theory.
+    <strong>This is your work.</strong> The theory formalized here is yours; your notebook is
+    preserved verbatim and credited to you in the git history. Everything below — the literature
+    grounding, the implementation, the experiments — is analysis built <em>on top of</em> your
+    framework. You get the credit for the theory, including where our experiments came out negative.
   </p>
   <p>
-    If you did <em>not</em> expect to see this, or you want anything changed, removed, or
-    attributed differently — that is completely fine and takes priority. Reach out.
+    If you want anything changed, removed, or attributed differently, that takes priority — reach out.
   </p>
 </div>
 
-<div class="question">
-  <span class="kicker">What this project is trying to do</span>
-  Take Pygmalion's relation/agreement-based theory of cognition — words as agreements on labels;
-  context as the base relation; <em>infons</em> and <em>situations</em>; modal/Kripke "spatial logic";
-  memory as a recursion; reconfigurable "VHDL-style" neural blocks; "artificial time" — and turn it
-  into (1) a <strong>literature review</strong> that grounds each idea in established theory, and
-  (2) a <strong>working reference implementation</strong> that actually runs.
-</div>
-
-<h2>What is going on here, exactly</h2>
-<div class="pillars">
-  <div class="pillar">
-    <h3>1 &middot; The source</h3>
-    <p>
-      Pygmalion's original writing is preserved verbatim in <code>data_lake/</code> and credited to
-      him in the commit history. Nothing about the original is altered.
-    </p>
-  </div>
-  <div class="pillar">
-    <h3>2 &middot; The literature review (first pass published)</h3>
-    <p>
-      A first-pass survey is up: each construct — situation semantics (Barwise/Perry, Devlin's
-      infons), distributional &amp; compositional vector semantics (word2vec, DisCoCat),
-      vector-symbolic computing &amp; conceptual spaces (Plate, Kanerva, Gärdenfors), neuro-symbolic
-      AI &amp; knowledge-graph embeddings (TransE), and topos / modal / spatial / temporal logic
-      (Kripke, Mac Lane–Moerdijk) — is matched to the prior work it descends from, with ~26 cited
-      sources. It lives in <code>literature/REVIEW.md</code>.
-    </p>
-  </div>
-  <div class="pillar">
-    <h3>3 &middot; The implementation (next)</h3>
-    <p>
-      Once the review grounds the design, a runnable reference implementation gets built under
-      <code>src/</code>, with findings written up here and in a downloadable PDF report.
-    </p>
-  </div>
-</div>
-
-<div class="actions">
-  <a class="action" href="https://github.com/EmmaLeonhart/patchi">
-    <div class="kicker">Source</div>
-    <div class="title">The GitHub repository</div>
-    <div class="desc">
-      Pygmalion's original material, the literature review, and the code as it lands.
-      <span class="arrow">&nearr;</span>
-    </div>
-  </a>
-  <a class="action" href="https://github.com/EmmaLeonhart/patchi/tree/main/data_lake">
-    <div class="kicker">Read</div>
-    <div class="title">The original framework</div>
-    <div class="desc">
-      Pygmalion's notebook and report, preserved as-is. <span class="arrow">&nearr;</span>
-    </div>
-  </a>
-  <a class="action" href="https://github.com/EmmaLeonhart/patchi/tree/main/literature">
-    <div class="kicker">Follow</div>
-    <div class="title">The literature review</div>
-    <div class="desc">
-      The survey grounding each idea, updated as work proceeds. <span class="arrow">&nearr;</span>
-    </div>
-  </a>
-</div>
-
-<h2>How to use this page</h2>
+<h2>What this is</h2>
 <p>
-  This site <strong>rebuilds itself automatically</strong> every time work is committed, so it is
-  always the current state of the project — not a snapshot. Right now it is the very beginning:
-  the project has been set up, your source material is in, and the literature review is underway.
-</p>
-<p>
-  <strong>Come back in about 12 to 24 hours.</strong> By then this page should show a real
-  literature review and the first piece of the working implementation. If you check back in a day
-  or two, expect to see findings and a downloadable report taking shape. There is nothing you need
-  to do — just return and refresh.
+  Pygmalion's notebook sketches a unified theory of machine cognition built bottom-up from
+  relations between words, with a stack of increasingly abstract structures on top. We do two
+  things with it: <strong>(1)</strong> read it as a single layered stack and ground each layer in
+  established theory, and <strong>(2)</strong> build a working core and empirically test its most
+  distinctive component. The layers turn out to be well-trodden prior art; the <em>bridges between
+  them</em> are where the originality — and the risk — live.
 </p>
 
-<h2 id="findings">Findings</h2>
+<h2>What we built</h2>
 <p>
-  <strong>First measured results are in — synthetic <em>and</em> real</strong> (2026-06-25).
-  Pygmalion's similarity-weighted blending operator was tested against a plain additive
-  average and the raw vectors, both on a controlled synthetic task and on
-  <strong>real GloVe-50 embeddings vs the human WordSim-353 judgements</strong> (all 353
-  pairs). The two runs point in opposite directions, and that contrast is the finding
-  (full write-up: <code>FINDINGS.md</code>):
+  A runnable Python core (<code>patchi</code>), a vertical slice of the stack, each piece unit-tested:
 </p>
 <ul>
-  <li><strong>On real, clean embeddings, reconstructing a word from its neighbourhood
-  <em>hurts</em>.</strong> Raw GloVe scores 0.50 Spearman (matching the literature); every
-  blend/additive setting lands 0.06–0.08 <em>below</em> it. Blending loses to doing nothing.</li>
-  <li><strong>On synthetic noisy vectors it <em>helps</em></strong> — blend denoises by up to
-  +0.14 over raw. The operator is a <em>denoiser</em>: it only wins when the input is noisy
-  enough that averaging trustworthy neighbours recovers signal.</li>
-  <li><strong>The similarity weighting (the distinctive ingredient) is real but small</strong>
-  — it beats a flat additive average consistently, but only by +0.001 to +0.14, never enough
-  to flip a loss into a win.</li>
+  <li><strong>WordClass lexicon</strong> — words as vectors with cosine nearest-neighbour lookup.</li>
+  <li><strong>Signed relation graph</strong> — synonym(+)/antonym(−) edges with TransE-style
+    relation offsets; held-out edges recovered by offset arithmetic.</li>
+  <li><strong>Similarity-weighted blending operator</strong> — Pygmalion's composition primitive,
+    <code>blend(w) = Σ sim(w,sᵢ)<sup>p</sup>·vec(sᵢ) / Σ sim(w,sᵢ)<sup>p</sup></code>.</li>
+  <li><strong>Infon/situation layer</strong> — <code>⟨relation, args, polarity⟩</code> with a
+    <em>graded</em> <code>support(s,σ) ∈ [0,1]</code>, so context-conditioning measurably changes outputs.</li>
+  <li><strong>Proof(walk) trace</strong> — every output records the words/weights that produced it,
+    with a single-source-of-truth discipline so the trace cannot diverge from the computation.</li>
+  <li><strong>Reduced cores for the hard bridges</strong> — a registry-backed bijective translator,
+    a category of blocks with property checkers (the computable shadow of the topos layer), and
+    "artificial time" as the recursion index of a memory cell. Honest reductions; full versions are future work.</li>
 </ul>
+
+<h2 id="results">What we found</h2>
 <p>
-  <em>Stated straight: Pygmalion's blending is a noise-conditional smoother, not a free
-  improvement over standard embeddings. That is the opposite of what the synthetic run alone
-  would have implied — which is exactly why the real run was worth actually running.</em>
+  We tested the blending operator against two baselines (<strong>raw</strong> vectors;
+  <strong>additive</strong> = unweighted neighbour mean) on a synthetic denoising task and on
+  <strong>real GloVe-50 embeddings vs the human WordSim-353 judgements</strong> (all 353 pairs).
+  The two runs point in opposite directions — and the real one is the result that matters.
+</p>
+
+<h3>Real embeddings (GloVe-50 × WordSim-353)</h3>
+<p>
+  Raw GloVe scores Spearman <strong>0.5033</strong> — matching the known literature value (a check
+  that the harness is correct). Every reconstruction does <em>worse</em>:
+</p>
+<table>
+  <tr><th>k</th><th>power</th><th>additive</th><th>blend</th><th>blend − raw</th></tr>
+  <tr><td>3</td><td>6</td><td>0.4420</td><td>0.4470</td><td>−0.0564</td></tr>
+  <tr><td>5</td><td>2</td><td>0.4309</td><td>0.4336</td><td>−0.0697</td></tr>
+  <tr><td>10</td><td>2</td><td>0.4318</td><td>0.4347</td><td>−0.0686</td></tr>
+  <tr><td>25</td><td>2</td><td>0.4228</td><td>0.4256</td><td>−0.0777</td></tr>
+</table>
+<p>
+  On clean pretrained vectors, reconstructing a word from its neighbourhood <strong>loses to doing
+  nothing</strong> (best blend 0.447 vs raw 0.503). The similarity weighting beats the unweighted
+  average reliably but only by +0.001 to +0.009 — never enough to recover the loss.
+</p>
+
+<h3>Synthetic (controlled noise) — the contrast</h3>
+<p>When the vectors are <em>noisy</em>, reconstruction denoises and the operator wins:</p>
+<table>
+  <tr><th>noise</th><th>power</th><th>raw</th><th>additive</th><th>blend</th></tr>
+  <tr><td>0.4</td><td>4.0</td><td>0.892</td><td>0.829</td><td><strong>0.972</strong></td></tr>
+  <tr><td>0.8</td><td>4.0</td><td>0.689</td><td>0.751</td><td>0.866</td></tr>
+  <tr><td>1.6</td><td>4.0</td><td>0.363</td><td>0.352</td><td>0.349</td></tr>
+</table>
+
+<h2>The conclusion, stated straight</h2>
+<p>
+  Pygmalion's blending operator's value is <strong>entirely conditional on input noise</strong>. It
+  is a denoiser: it wins when averaging over trustworthy neighbours recovers signal (noisy vectors)
+  and loses when the base vectors are already clean (GloVe), where averaging washes out the
+  discriminative signal. The similarity weighting — the distinctive ingredient — is real but small
+  in both regimes; the decision <em>to reconstruct at all</em> dominates. This is the opposite of
+  what the synthetic run alone would have implied, which is exactly why running the real benchmark
+  mattered. We report the negative result in full.
+</p>
+
+<h2>Limitations</h2>
+<p>
+  One embedding model (GloVe-50) and one dataset (WordSim-353); SimLex-999 and word2vec/fastText
+  would qualify the result. A residual form (<code>raw + α·blend</code>) is untested. The harder
+  bridges — full topos internal logic, richer block internals, the control-system reframing of
+  neural nets — are implemented only as reduced cores or named as future work, not papered over.
 </p>
 
 <footer>
   <p>
-    Patchi &middot; a research project formalizing Pygmalion's theory of cognition. The original
-    framework is the intellectual work of <strong>Pygmalion</strong>; this repository adds the
-    literature review and implementation on top.
+    Patchi &middot; theory by <strong>Pygmalion</strong>; formalization, implementation, and
+    experiments by Emma Leonhart with an autonomous coding agent. Full literature review,
+    code, and reproducible benchmarks: <a href="https://github.com/EmmaLeonhart/patchi">github.com/EmmaLeonhart/patchi</a>.
   </p>
-  <p>
-    Scaffolded with <a href="https://github.com/Immanuelle/cleanvibe">cleanvibe</a>
-    <code>research</code> &middot; page auto-updates on every commit.
-  </p>
+  <p>Scaffolded with <a href="https://github.com/Immanuelle/cleanvibe">cleanvibe</a> &middot; this page rebuilds on every commit.</p>
 </footer>
 
 </body>

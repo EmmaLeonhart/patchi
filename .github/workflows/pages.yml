@@ -31,16 +31,18 @@ jobs:
         uses: actions/configure-pages@v5
         with:
           enablement: true
-      - name: Install pandoc
-        run: sudo apt-get update && sudo apt-get install -y pandoc
+      - name: Install pandoc + PDF engine
+        run: sudo apt-get update && sudo apt-get install -y pandoc wkhtmltopdf
       - name: Build report PDF into docs/
         run: |
           mkdir -p docs
-          if [ -f FINDINGS.md ]; then
-            pandoc FINDINGS.md -s -o docs/report.pdf || echo "PDF render skipped"
-          else
-            echo "No FINDINGS.md yet; skipping PDF build"
-          fi
+          SRC=PAPER.md
+          [ -f "$SRC" ] || SRC=FINDINGS.md
+          # Build the typeset paper. No error-swallow: if this fails the build
+          # fails loudly (a silently-missing report.pdf is the bug this prevents).
+          pandoc "$SRC" -o docs/report.pdf --pdf-engine=wkhtmltopdf \
+            -V margin-top=18 -V margin-bottom=18 -V margin-left=18 -V margin-right=18
+          test -s docs/report.pdf
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs
