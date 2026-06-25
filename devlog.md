@@ -20,3 +20,9 @@ See `CLAUDE.md` § "Workflow Rules" and `queue.md`'s preamble.
 
 Scaffolded with `cleanvibe new` (cleanvibe v1.13.1). Future entries
 land here as queue items get deleted.
+
+## 2026-06-25 — First-pass literature review published (agentic RAG)
+
+- Ran the agentic-RAG literature review across five clusters and wrote `literature/sources.md` (~26 cited sources, verified identifiers only) + `literature/REVIEW.md` (synthesis). Clusters: situation semantics & information (Barwise/Perry, Devlin's infons, Lewis convention); distributional & compositional semantics (Firth/Harris, word2vec, GloVe, **DisCoCat** — closest prior art); vector-symbolic computing & conceptual spaces (Plate HRR, Kanerva, Gayler, Gärdenfors, Smolensky); neuro-symbolic AI, KG embeddings & the control view (Garcez/Lamb, Besold, **TransE**, Vaswani attention, MLN); topos/categorical logic & modal/spatial/temporal logic (Mac Lane–Moerdijk, Goldblatt, Fong & Spivak, Kripke, Handbook of Spatial Logics, Pnueli).
+- Key reading: Pygmalion's notebook is a coherent layered stack (infons → WordClasses → neural "VHDL" blocks → spatial/temporal logic → objects/thought/idea → topos), recruiting one established tradition per layer. The layers are known; **the bridges between them are the research** — above all the bijective `WordClass→NeuralBlock` translator and the similarity-weighted polynomial blending operator. Flagged the "NNs are controllers not learners" claim as unsupported (Pygmalion's thesis to argue, not consensus).
+- Wrote `todo.md` (MVC core → bridges → higher-risk/speculative layers incl. topos meta-reasoning and the still-underspecified "artificial time") and replaced the bootstrap `queue.md` with the real MVC implementation queue. Published page updated to show the review is live; come-back-in-12-24h message retained.
