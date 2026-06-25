@@ -30,3 +30,9 @@ land here as queue items get deleted.
 ## 2026-06-25 — Scaffolded the Python package, tests, and CI (queue MVC item 1)
 
 - Added `pyproject.toml` (src layout, numpy dep, pytest config), `src/patchi/__init__.py` (version-only for now), `scripts/run.py` (CI entry point — reports version/stage until an experiment is wired), `tests/test_smoke.py` (import + entry-point run), and `.github/workflows/ci.yml` (pip install -e + pytest). Ran locally: **2 passed in 0.07s**. This gives CI something real to run from the first code commit, before any domain logic. Next: MVC-1 WordClass lexicon.
+
+## 2026-06-25 — MVC-1: WordClass lexicon (queue item)
+
+- Implemented `src/patchi/wordclass.py`: a frozen `WordClass` (word + read-only vector + optional gloss + param bag, with validation), a `cosine` helper (zero-norm guarded), and a `Lexicon` (dimension-checked construction, `from_embeddings`, `nearest`/`nearest_to_vector` by cosine, self-exclusion, k-limit). Vectors come from pretrained embeddings in real use; tests use a small offline 3-D fixture (two clear clusters) so the suite stays network-free. Dictionary-gloss *ingestion* (WordNet/Wiktionary parsing) is deferred — `gloss` is for now just an optional attached string.
+- Added `tests/test_wordclass.py` (10 tests: construction/access, dim-mismatch + validation guards, cosine edge cases, in-cluster nearest-neighbour, self-exclusion + k ordering, arbitrary-vector query, unknown-word KeyError). Full suite: **12 passed in 0.08s**.
+- Recorded the project name origin in README (PATCHi ← Patchouli Knowledge). Next: MVC-2 signed relation graph.

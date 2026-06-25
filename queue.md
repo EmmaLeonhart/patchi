@@ -16,23 +16,20 @@ Pulled from `todo.md` MVC-1…5. Build under `src/`, entry point `scripts/run.py
 metrics to `results/`. Write tests as soon as there is logic; wire `ci.yml` once
 tests exist. Keep `FINDINGS.md` + `docs/` current as results land.
 
-1. **MVC-1 · WordClass lexicon.** Implement `WordClass = (vector, params)` loaded
-   from a small set of pretrained embeddings (offline fixture for tests), seeded
-   with dictionary glosses. Unit-test construction + nearest-neighbour lookup.
-2. **MVC-2 · Signed relation graph.** Build a synonym(+)/antonym(−) graph with
+1. **MVC-2 · Signed relation graph.** Build a synonym(+)/antonym(−) graph with
    relations as offsets; test that offset arithmetic recovers held-out relations
    on a tiny fixture.
-3. **MVC-3 · Similarity-weighted blending operator + benchmark.** Implement
+2. **MVC-3 · Similarity-weighted blending operator + benchmark.** Implement
    `blend(w) = Σ sim(w,sᵢ)·poly(sᵢ)`. **Benchmark head-to-head** vs additive and
    tensor baselines on a concrete task (word/phrase similarity or analogy) with a
    small public dataset; write metrics to `results/` and the comparison into
    `FINDINGS.md`. This is the headline result — keep the rails: report real
    numbers, never claim "works" without a measured run.
-4. **MVC-4 · Infon/situation layer.** `⟨R, args, polarity⟩` + graded
+3. **MVC-4 · Infon/situation layer.** `⟨R, args, polarity⟩` + graded
    `support(s, σ) ∈ [0,1]`; test that context-conditioning changes an output.
-5. **MVC-5 · Proof(walk) trace.** Thread an explainability trace through blend +
+4. **MVC-5 · Proof(walk) trace.** Thread an explainability trace through blend +
    support so every output records its contributing words/relations.
-6. **Publish first findings.** Fill `FINDINGS.md` (question, method, the MVC-3
+5. **Publish first findings.** Fill `FINDINGS.md` (question, method, the MVC-3
    numbers, limitations) and update `docs/index.html` findings section + lede so
    the live page shows a real result. Confirm CI + Pages green.
 

@@ -11,6 +11,12 @@ This is an original research project (not a replication). It poses a question,
 surveys the prior literature, runs experiments / builds something to answer it,
 and publishes the findings as a themed GitHub Pages report + a transportable PDF.
 
+The framework being formalized is the intellectual work of **Pygmalion** (see
+`data_lake/`), credited to him in the git history. The name **PATCHi** is after
+**Patchouli Knowledge** — the librarian-magician — a fitting patron for an engine
+that hoards meaning and reasons over it. Live report:
+<https://emmaleonhart.github.io/patchi/>.
+
 The distinctive first move is a **literature review** (agentic RAG) *before* any
 building — see `literature/`.
 
