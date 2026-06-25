@@ -243,11 +243,25 @@
 
 <h2 id="findings">Findings</h2>
 <p>
-  <em>No experimental findings yet — the project started today (2026-06-25). The first
-  <strong>literature review</strong> is published (see <code>literature/REVIEW.md</code>), and the
-  next step is a working reference implementation whose headline test is Pygmalion's
-  similarity-weighted blending operator measured head-to-head against standard composition
-  baselines. This section fills in with real numbers as that lands. Check back soon.</em>
+  <strong>First measured result is in</strong> (2026-06-25) — Pygmalion's
+  similarity-weighted blending operator, tested against a plain additive average and raw
+  vectors on a controlled synthetic denoising task (full write-up:
+  <code>FINDINGS.md</code>). The result is real and nuanced, not a victory lap:
+</p>
+<ul>
+  <li><strong>Reconstruction denoises strongly</strong> over raw vectors when the
+  neighbourhood carries signal — up to <strong>+0.14 Spearman</strong> over raw.</li>
+  <li><strong>The similarity weighting earns its keep mainly when neighbourhoods are
+  trustworthy</strong> (low noise, sharp weighting): +0.10 to +0.14 over a flat additive
+  average — a repeatable margin, locked in by a regression test.</li>
+  <li><strong>The advantage decays with noise, and over-sharpening can backfire</strong>
+  (slightly negative under heavy noise). At a middling setting it barely beats additive
+  (+0.0035): the operator is a trustworthy-neighbourhood denoiser, <em>not</em> a free win.</li>
+</ul>
+<p>
+  <em>Scope, stated plainly: synthetic data, not real embeddings. The real-embeddings run
+  (GloVe + WordSim-353) is the queued next step — it needs downloads unavailable in the
+  offline build, so it is named as a blocker, not faked.</em>
 </p>
 
 <footer>

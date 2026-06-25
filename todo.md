@@ -22,6 +22,11 @@ Grounded in [`literature/REVIEW.md`](literature/REVIEW.md).
   context-conditioning changes outputs.
 - **MVC-5 · Proof(walk) explainability.** Every output carries the trace of words
   / relations / blocks that produced it.
+- **MVC-3b · Real-embeddings benchmark.** ✦ *synthetic version done* (`benchmark.py`;
+  see `FINDINGS.md`). The reach: repeat raw/additive/blend on pretrained vectors
+  (GloVe) scored against a human word-similarity set (WordSim-353 / SimLex-999).
+  **Blocked in the offline CI/loop env** (needs downloads) — run when a machine
+  with network + a cached embedding table is available; not faked in the meantime.
 
 ## Mid-term: the bridges
 

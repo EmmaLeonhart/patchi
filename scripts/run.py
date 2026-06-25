@@ -1,25 +1,43 @@
-"""PATCHi entry point.
+"""PATCHi entry point — runs the current headline experiment.
 
-CI invokes this; it is the single command that runs whatever the project's
-current headline experiment is. Right now the package is freshly scaffolded and
-there is no experiment yet, so it just reports the package version and the
-current build stage. As MVC items land (the WordClass lexicon, the
-similarity-weighted blending benchmark, ...), this grows into the runner that
-produces metrics into ``results/``.
+Right now that is the MVC-3 benchmark: similarity-weighted blending vs an
+additive baseline vs raw vectors on a controlled synthetic denoising task. It
+writes the measured scores to ``results/benchmark.json`` and prints a summary.
+The task is synthetic (not real embeddings) — see ``FINDINGS.md`` for scope.
 """
 
+import json
 import sys
 from pathlib import Path
 
-# Allow running directly (`python scripts/run.py`) without an install.
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
 import patchi  # noqa: E402
+from patchi.benchmark import run_benchmark, run_sweep  # noqa: E402
+
+RESULTS = Path(__file__).resolve().parent.parent / "results"
 
 
 def main() -> int:
     print(f"PATCHi v{patchi.__version__}")
-    print("stage: scaffolded — no experiment wired yet (see queue.md MVC-1..5)")
+    headline = run_benchmark()
+    sweep = run_sweep()
+    RESULTS.mkdir(exist_ok=True)
+    (RESULTS / "benchmark.json").write_text(
+        json.dumps({"headline": headline, "sweep": sweep}, indent=2)
+    )
+
+    s = headline["scores"]
+    print(f"task: {headline['task']}")
+    print(f"metric: {headline['metric']}")
+    print(f"headline (noise={headline['params']['noise']}, power={headline['params']['power']}):")
+    print(f"  raw {s['raw']:.4f} | additive {s['additive']:.4f} | blend {s['blend']:.4f}"
+          f" | blend-additive {headline['delta_blend_minus_additive']:+.4f}")
+    print("sweep (noise | power | raw | additive | blend | blend-additive):")
+    for r in sweep:
+        print(f"  {r['noise']:.1f} | {r['power']:.1f} | {r['raw']:.3f} | {r['additive']:.4f}"
+              f" | {r['blend']:.4f} | {r['blend_minus_additive']:+.4f}")
+    print("wrote results/benchmark.json")
     return 0
 
 

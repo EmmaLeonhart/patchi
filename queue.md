@@ -16,21 +16,16 @@ Pulled from `todo.md` MVC-1…5. Build under `src/`, entry point `scripts/run.py
 metrics to `results/`. Write tests as soon as there is logic; wire `ci.yml` once
 tests exist. Keep `FINDINGS.md` + `docs/` current as results land.
 
-1. **MVC-3 · Similarity-weighted blending operator + benchmark.** Implement
-   `blend(w) = Σ sim(w,sᵢ)·poly(sᵢ)`. **Benchmark head-to-head** vs additive and
-   tensor baselines on a concrete task (word/phrase similarity or analogy) with a
-   small public dataset; write metrics to `results/` and the comparison into
-   `FINDINGS.md`. This is the headline result — keep the rails: report real
-   numbers, never claim "works" without a measured run.
-2. **MVC-4 · Infon/situation layer.** `⟨R, args, polarity⟩` + graded
+1. **MVC-4 · Infon/situation layer.** `⟨R, args, polarity⟩` + graded
    `support(s, σ) ∈ [0,1]`; test that context-conditioning changes an output.
-3. **MVC-5 · Proof(walk) trace.** Thread an explainability trace through blend +
+2. **MVC-5 · Proof(walk) trace.** Thread an explainability trace through blend +
    support so every output records its contributing words/relations.
-4. **Publish first findings.** Fill `FINDINGS.md` (question, method, the MVC-3
-   numbers, limitations) and update `docs/index.html` findings section + lede so
-   the live page shows a real result. Confirm CI + Pages green.
 
-When this drains, refill from `todo.md` (the bridges: BR-1 translator, etc.).
+(Findings publishing is now continuous — each MVC item updates `FINDINGS.md` +
+`docs/`. The MVC-3 headline result is already live.)
+
+When this drains, refill from `todo.md` (the bridges: BR-2, BR-3, and the
+real-embeddings benchmark run named in `FINDINGS.md`).
 
 ---
 
