@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PATCHi</title>
-<meta name="description" content="A cleanvibe research project: Formalize and implement Pygmalion's relation/agreement-based theory of cognition (words as agreements on labels; context as the base relation; modal/Kripke 'spatial logic'; memory as recursion; 'artificial time') as a literature review plus a working reference implementation (PATCHi).">
+<title>PATCHi — formalizing Pygmalion's theory of cognition</title>
+<meta name="description" content="A live research project formalizing and building a working reference implementation of Pygmalion's relation/agreement-based theory of cognition. The original framework is the work of Pygmalion; this repository builds a literature review and implementation on top of it.">
 <style>
   :root {
     --bg: #f6f2ec;
@@ -50,7 +50,6 @@
   th { background: var(--surface); font-weight: 600; }
   img { max-width: 100%; height: auto; border-radius: 6px; }
   .lede { color: var(--dim); font-size: 1.1rem; margin-top: 0.8rem; line-height: 1.65; }
-  /* Replication verdict banner (driven by paper.json `status`). */
   .status-badge {
     display: block; text-align: center; font-weight: 700; font-size: 1.15rem;
     color: #fff; padding: 0.9rem 1.2rem; border-radius: 8px; margin: 1.5rem 0;
@@ -94,6 +93,13 @@
   }
   .pillar h3 { color: var(--blue); font-size: 1.05rem; font-weight: 600; margin-bottom: 0.3rem; }
   .pillar p { color: var(--dim); font-size: 0.95rem; margin: 0; }
+  .callout {
+    background: var(--accent-soft); border: 1px solid var(--accent);
+    border-radius: 8px; padding: 1.2rem 1.4rem; margin: 1.8rem 0;
+  }
+  .callout h3 { color: var(--accent); margin-top: 0; }
+  .callout p { margin-bottom: 0.6rem; }
+  .callout p:last-child { margin-bottom: 0; }
   code {
     background: var(--surface); padding: 0.1rem 0.35rem; border-radius: 3px;
     font-family: 'Cascadia Code', 'Fira Code', Consolas, monospace; font-size: 0.86em;
@@ -132,75 +138,122 @@
 </head>
 <body>
 
-<!-- This is the published research report (GitHub Pages serves docs/). Edit the
-     CONTENT as the project progresses; keep the theme/chrome. The build step in
-     .github/workflows/pages.yml also drops a transportable report.pdf alongside. -->
-
 <h1>PATCHi</h1>
 <p class="lede">
-  A <strong>cleanvibe research project</strong>. <em>TODO: replace this lede with a
-  one-paragraph plain-language summary of what this project investigates and what
-  it found.</em>
+  A <strong>live research project</strong> that is formalizing — and building a working
+  reference implementation of — <strong>Pygmalion's theory of cognition</strong>: the idea
+  that meaning is made of <em>relations between words</em>, that <em>words are agreements
+  on labels</em>, that <em>context is the base relation</em> everything else is built on, and
+  that memory, logic, and thought can be assembled from these pieces into a real machine.
 </p>
 
+<div class="status-badge in-progress">⚙ Active &middot; just getting started (2026-06-25)</div>
+
+<div class="callout">
+  <h3>If you are Pygmalion — read this first</h3>
+  <p>
+    <strong>This is your work.</strong> The framework being formalized here is yours: your
+    notebook (<code>artificialtime2.txt</code>) and the accompanying report are the foundation
+    of the entire project, and they are committed to this repository <strong>under your name</strong>
+    so the git history records you as the author of the ideas. Everything else in here — the
+    literature review, the formalization, the code — is analysis and engineering built <em>on top of</em>
+    your framework, not a replacement for it. You get the credit for the theory.
+  </p>
+  <p>
+    If you did <em>not</em> expect to see this, or you want anything changed, removed, or
+    attributed differently — that is completely fine and takes priority. Reach out.
+  </p>
+</div>
+
 <div class="question">
-  <span class="kicker">Research question</span>
-  Formalize and implement Pygmalion's relation/agreement-based theory of cognition (words as agreements on labels; context as the base relation; modal/Kripke 'spatial logic'; memory as recursion; 'artificial time') as a literature review plus a working reference implementation (PATCHi).
+  <span class="kicker">What this project is trying to do</span>
+  Take Pygmalion's relation/agreement-based theory of cognition — words as agreements on labels;
+  context as the base relation; <em>infons</em> and <em>situations</em>; modal/Kripke "spatial logic";
+  memory as a recursion; reconfigurable "VHDL-style" neural blocks; "artificial time" — and turn it
+  into (1) a <strong>literature review</strong> that grounds each idea in established theory, and
+  (2) a <strong>working reference implementation</strong> that actually runs.
 </div>
 
-<div class="actions">
-  <a class="action" href="#findings">
-    <div class="kicker">Read</div>
-    <div class="title">The findings</div>
-    <div class="desc">
-      The results of the investigation. <span class="arrow">&darr;</span>
-    </div>
-  </a>
-  <a class="action" href="report.pdf">
-    <div class="kicker">Download</div>
-    <div class="title">The report (PDF)</div>
-    <div class="desc">
-      Full write-up, typeset. <span class="arrow">&darr;</span>
-    </div>
-  </a>
-  <a class="action" href="#">
-    <div class="kicker">Source</div>
-    <div class="title">GitHub repository</div>
-    <div class="desc">
-      Code, data, and the literature review. <span class="arrow">&nearr;</span>
-    </div>
-  </a>
-</div>
-
-<h2>What this project does</h2>
+<h2>What is going on here, exactly</h2>
 <div class="pillars">
   <div class="pillar">
-    <h3>1 &middot; The question</h3>
-    <p>Formalize and implement Pygmalion's relation/agreement-based theory of cognition (words as agreements on labels; context as the base relation; modal/Kripke 'spatial logic'; memory as recursion; 'artificial time') as a literature review plus a working reference implementation (PATCHi).</p>
-  </div>
-  <div class="pillar">
-    <h3>2 &middot; Grounded in the literature</h3>
+    <h3>1 &middot; The source</h3>
     <p>
-      TODO: one line on the prior work this builds on (the full survey lives in
-      <code>literature/REVIEW.md</code>) and the gap this project addresses.
+      Pygmalion's original writing is preserved verbatim in <code>data_lake/</code> and credited to
+      him in the commit history. Nothing about the original is altered.
     </p>
   </div>
   <div class="pillar">
-    <h3>3 &middot; The finding</h3>
-    <p>TODO: one line on the headline result, once there is one.</p>
+    <h3>2 &middot; The literature review (happening now)</h3>
+    <p>
+      Each construct — situation semantics (Barwise/Perry, Devlin's infons), distributional &amp;
+      compositional vector semantics (word2vec, DisCoCat), modal/spatial logic, conceptual spaces,
+      vector-symbolic / neuro-symbolic AI, topos theory — is being matched to the prior work it
+      connects to. The growing survey lives in <code>literature/</code>.
+    </p>
+  </div>
+  <div class="pillar">
+    <h3>3 &middot; The implementation (next)</h3>
+    <p>
+      Once the review grounds the design, a runnable reference implementation gets built under
+      <code>src/</code>, with findings written up here and in a downloadable PDF report.
+    </p>
   </div>
 </div>
 
+<div class="actions">
+  <a class="action" href="https://github.com/EmmaLeonhart/patchi">
+    <div class="kicker">Source</div>
+    <div class="title">The GitHub repository</div>
+    <div class="desc">
+      Pygmalion's original material, the literature review, and the code as it lands.
+      <span class="arrow">&nearr;</span>
+    </div>
+  </a>
+  <a class="action" href="https://github.com/EmmaLeonhart/patchi/tree/main/data_lake">
+    <div class="kicker">Read</div>
+    <div class="title">The original framework</div>
+    <div class="desc">
+      Pygmalion's notebook and report, preserved as-is. <span class="arrow">&nearr;</span>
+    </div>
+  </a>
+  <a class="action" href="https://github.com/EmmaLeonhart/patchi/tree/main/literature">
+    <div class="kicker">Follow</div>
+    <div class="title">The literature review</div>
+    <div class="desc">
+      The survey grounding each idea, updated as work proceeds. <span class="arrow">&nearr;</span>
+    </div>
+  </a>
+</div>
+
+<h2>How to use this page</h2>
+<p>
+  This site <strong>rebuilds itself automatically</strong> every time work is committed, so it is
+  always the current state of the project — not a snapshot. Right now it is the very beginning:
+  the project has been set up, your source material is in, and the literature review is underway.
+</p>
+<p>
+  <strong>Come back in about 12 to 24 hours.</strong> By then this page should show a real
+  literature review and the first piece of the working implementation. If you check back in a day
+  or two, expect to see findings and a downloadable report taking shape. There is nothing you need
+  to do — just return and refresh.
+</p>
+
 <h2 id="findings">Findings</h2>
 <p>
-  <em>TODO: write the findings here (or render them from <code>FINDINGS.md</code>).
-  Until results exist, this project is <strong>in progress</strong>.</em>
+  <em>No findings yet — the project just started today (2026-06-25). This section fills in as the
+  literature review completes and the implementation produces results. Check back soon.</em>
 </p>
 
 <footer>
   <p>
+    PATCHi &middot; a research project formalizing Pygmalion's theory of cognition. The original
+    framework is the intellectual work of <strong>Pygmalion</strong>; this repository adds the
+    literature review and implementation on top.
+  </p>
+  <p>
     Scaffolded with <a href="https://github.com/Immanuelle/cleanvibe">cleanvibe</a>
-    <code>research</code> &middot; generated 2026-06-25
+    <code>research</code> &middot; page auto-updates on every commit.
   </p>
 </footer>
 
