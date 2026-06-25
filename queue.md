@@ -16,26 +16,23 @@ Pulled from `todo.md` MVC-1…5. Build under `src/`, entry point `scripts/run.py
 metrics to `results/`. Write tests as soon as there is logic; wire `ci.yml` once
 tests exist. Keep `FINDINGS.md` + `docs/` current as results land.
 
-1. **Scaffold the Python package + tests + CI.** `src/patchi/` package,
-   `scripts/run.py` entry point, `pytest` with a trivial first test, and
-   `.github/workflows/ci.yml` running the suite. Commit before any real logic.
-2. **MVC-1 · WordClass lexicon.** Implement `WordClass = (vector, params)` loaded
+1. **MVC-1 · WordClass lexicon.** Implement `WordClass = (vector, params)` loaded
    from a small set of pretrained embeddings (offline fixture for tests), seeded
    with dictionary glosses. Unit-test construction + nearest-neighbour lookup.
-3. **MVC-2 · Signed relation graph.** Build a synonym(+)/antonym(−) graph with
+2. **MVC-2 · Signed relation graph.** Build a synonym(+)/antonym(−) graph with
    relations as offsets; test that offset arithmetic recovers held-out relations
    on a tiny fixture.
-4. **MVC-3 · Similarity-weighted blending operator + benchmark.** Implement
+3. **MVC-3 · Similarity-weighted blending operator + benchmark.** Implement
    `blend(w) = Σ sim(w,sᵢ)·poly(sᵢ)`. **Benchmark head-to-head** vs additive and
    tensor baselines on a concrete task (word/phrase similarity or analogy) with a
    small public dataset; write metrics to `results/` and the comparison into
    `FINDINGS.md`. This is the headline result — keep the rails: report real
    numbers, never claim "works" without a measured run.
-5. **MVC-4 · Infon/situation layer.** `⟨R, args, polarity⟩` + graded
+4. **MVC-4 · Infon/situation layer.** `⟨R, args, polarity⟩` + graded
    `support(s, σ) ∈ [0,1]`; test that context-conditioning changes an output.
-6. **MVC-5 · Proof(walk) trace.** Thread an explainability trace through blend +
+5. **MVC-5 · Proof(walk) trace.** Thread an explainability trace through blend +
    support so every output records its contributing words/relations.
-7. **Publish first findings.** Fill `FINDINGS.md` (question, method, the MVC-3
+6. **Publish first findings.** Fill `FINDINGS.md` (question, method, the MVC-3
    numbers, limitations) and update `docs/index.html` findings section + lede so
    the live page shows a real result. Confirm CI + Pages green.
 
