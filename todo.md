@@ -40,8 +40,11 @@ Grounded in [`literature/REVIEW.md`](literature/REVIEW.md).
   grows on demand — the honest resolution of "bijection over an open vocabulary."
   **Remaining stretch:** richer block internals (polynomial/geometric attributes,
   not just an affine scale+offset) so the block carries the full WordClass.
-- **BR-2 · Classes-as-regions with binding.** Test whether VSA binding stays
-  closed under Gärdenfors-style region membership; report where it breaks.
+- **BR-2 · Classes-as-regions with binding.** ✦ *DONE (probe)* — `regions.py`:
+  VSA binding does **not** keep convex regions closed in general (off-origin ball
+  counterexample); fixed-key binding preserves convexity, origin unit ball is
+  closed. Negative structural result in `FINDINGS.md` Result 4. **Reach:** a
+  binding variant or region redefinition that restores closure.
 - **BR-3 · Memory `<TemporalLogic, SpatialLogic>`.** ✦ *DONE* — temporal half
   (recursion + artificial time) and now the spatial half: a `NeuralBlock` gates
   each input (`m_{t+1} = decay·m_t + gate(input_t)`), with `memory_tuple()`

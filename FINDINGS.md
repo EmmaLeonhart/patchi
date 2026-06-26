@@ -101,6 +101,30 @@ decimals; any meaningful smoothing is monotonically worse. So there is no
 hurts (or, in the limit, does nothing). This closes the rescue hypothesis: the
 negative real result is not an artifact of over-aggressive reconstruction.
 
+## Result 4 — regions vs. binding (BR-2 probe): they don't cohere for free
+
+Pygmalion's framework wants Gärdenfors **convex regions** and VSA **binding**
+(elementwise product) on the same objects. We probed whether a region stays
+**closed under binding** (if `a, b ∈ R`, is `a ⊙ b ∈ R`?). Measured facts
+(`regions.py`, tested):
+
+- **Binding by a fixed key preserves convexity** — it is a linear (diagonal) map,
+  so it commutes with convex combination and sends a convex region to a convex
+  region. ✓
+- **An origin-centred unit ball is closed under binding** — there, elementwise
+  products shrink toward 0, so they stay inside. ✓
+- **A region placed away from the origin is NOT closed.** Concretely, `a = [1.2,
+  1.0]` is in the ball centred at `[1,1]` with radius `0.3`, but `a ⊙ a = [1.44,
+  1.0]` escapes it. ✗
+
+**Conclusion:** the unification does *not* hold for free. Closure under binding
+depends on where the region sits relative to the binding algebra's fixed points
+(coordinates 0 and ±1) — but Gärdenfors regions are placed by *semantics*, not by
+that algebra, so a generic semantic region is not closed under binding. A faithful
+implementation must either restrict binding (e.g. to fixed-key/linear bindings,
+which do preserve convexity) or recompute the region after binding. This is a
+negative structural result, exactly what the probe was for.
+
 ## Limitations (named, not buried)
 
 - One embedding model (GloVe-50) and one dataset (WordSim-353). SimLex-999, larger

@@ -17,15 +17,22 @@ blending operator + benchmark, infon/situation layer, Proof(walk) trace). These
 next items are pulled from `todo.md`; same rails — tests as logic lands, real
 measured numbers, `FINDINGS.md`/`docs/` kept current.
 
-1. **BR-2 · regions-with-binding probe.** Test whether VSA-style binding
-   (elementwise/convolution) stays consistent with Gärdenfors-style region
-   membership on a small fixture; report plainly where it breaks (this is a
-   *probe*, an expected-to-be-partial result, not a guaranteed success).
+1. **Generality of the negative result (SimLex-999 + a 2nd embedding).** Repeat
+   raw/additive/blend on **SimLex-999** and/or **word2vec/fastText** vectors:
+   does "reconstruction hurts on clean embeddings" hold beyond GloVe-50 ×
+   WordSim-353? Download to `results/_cache/` (local, like `run_real.py`); write
+   the numbers into `FINDINGS.md` + the page. Reuse `blend_from_neighbors` so the
+   operator under test is unchanged.
+2. **LT-2 · "twirking" reconfigurable blocks.** A `twirk` op that rewires/retypes
+   a block, validated against the block category's checks (`preserves_invertibility`,
+   etc.) — reject a twirk that breaks invertibility. The category gives the
+   substrate; this is bounded and unit-testable (CI-safe).
 
 (Findings publishing is continuous — each item updates `FINDINGS.md` + `docs/`.)
 
-When this drains, refill from `todo.md` (SimLex-999 / word2vec generality of the
-"reconstruction hurts on clean vectors" result; then the LT reaches).
+When this drains, refill from `todo.md` (the LT reaches: full topos internal
+logic, richer polynomial/geometric block internals, learned memory gate,
+linguistic pipeline, the control-system reframing).
 
 ---
 
