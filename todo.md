@@ -65,9 +65,12 @@ These are no longer "parked." Each now has a buildable core; the item is the
   recursion index (`Memory.time`), decoupled from wall-clock, as the TemporalLogic
   order over states. **Remaining reach:** time as an active modal dimension (R in
   `⟨W,R,V⟩`) the reasoner quantifies over, not just a counter.
-- **LT-2 · "VHDL twirking" reconfigurable circuits.** Blocks that rewire/retype
-  under constraint-checking (the Prolog `valid_twirk` rules). Now unblocked: the
-  block category gives the composition/typing substrate to check twirks against.
+- **LT-2 · "VHDL twirking" reconfigurable circuits.** ✦ *DONE* — `twirk.py`:
+  `twirk_block` (re-implement params, rejected if it breaks invertibility) +
+  `rewire` (re-compose, gated by `category.preserves_invertibility`); the
+  topos-shadow checker now *gates* reconfiguration. **Reach:** cycle detection +
+  interface retyping once blocks live in a real wiring graph (the current
+  linear/affine model has no connection graph, so "no cycle introduced" is N/A).
 - **LT-4 · Linguistic pipeline.** Syntax → semantics → pragmatics → world-knowledge
   as staged subset-extraction over the core.
 - **LT-5 · The control-system reframing of neural nets.** Either find real support
