@@ -266,11 +266,13 @@
 
 <h2>Limitations</h2>
 <p>
-  One embedding model (GloVe-50) and one dataset (WordSim-353); SimLex-999 and word2vec/fastText
-  would qualify the result. A residual form (<code>(1−α)·raw + α·blend</code>) was tested too — the
-  best α is 0 (raw), so a little smoothing doesn't rescue it either. The harder bridges — full
-  topos internal logic, richer block internals, the control-system reframing of neural nets — are
-  implemented only as reduced cores or named as future work, not papered over.
+  The negative result now holds across <strong>{GloVe-50, GloVe-100} × {WordSim-353, SimLex-999}</strong>
+  — blend beats raw in 0 of 4 cells — though both embeddings are GloVe-family, so a different
+  architecture (word2vec/fastText) is still untested. A residual form
+  (<code>(1−α)·raw + α·blend</code>) was tested too — best α is 0 (raw), so a little smoothing
+  doesn't rescue it either. The harder bridges — full topos internal logic, richer block internals,
+  the control-system reframing of neural nets — are implemented only as reduced cores or named as
+  future work, not papered over.
 </p>
 
 <footer>

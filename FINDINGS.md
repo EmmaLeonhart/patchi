@@ -125,16 +125,39 @@ implementation must either restrict binding (e.g. to fixed-key/linear bindings,
 which do preserve convexity) or recompute the region after binding. This is a
 negative structural result, exactly what the probe was for.
 
+## Result 5 — generality: the negative result holds across embeddings & datasets
+
+Does "reconstruction hurts on clean vectors" survive beyond GloVe-50 ×
+WordSim-353? Ran the same operator (`run_generality.py`) across
+{GloVe-50, GloVe-100} × {WordSim-353, SimLex-999} — SimLex-999 scores
+*similarity*, not mere relatedness, a harder/cleaner test.
+
+| embedding | dataset | raw | additive | blend | blend − raw |
+|-----------|---------|----:|---------:|------:|------------:|
+| GloVe-50  | WordSim-353 | 0.503 | 0.432 | 0.435 | −0.069 |
+| GloVe-50  | SimLex-999  | 0.263 | 0.235 | 0.237 | −0.026 |
+| GloVe-100 | WordSim-353 | 0.533 | 0.445 | 0.451 | −0.081 |
+| GloVe-100 | SimLex-999  | 0.296 | 0.278 | 0.281 | −0.015 |
+
+**Blend beats raw in 0 of 4 cells.** Reconstruction is negative everywhere; blend
+edges additive by a hair everywhere but neither catches raw. The penalty is
+*smaller* on SimLex (−0.015…−0.026) than WordSim (−0.069…−0.081) — reconstruction
+costs less on the harder similarity task — but stays negative. **Caveat:** both
+embeddings are GloVe-family (different dimensions, *same* architecture); a
+genuinely different architecture (word2vec/fastText) is still untested here (large
+downloads), so the result generalises across embedding *size* and *dataset*, not
+yet across embedding *family*.
+
 ## Limitations (named, not buried)
 
-- One embedding model (GloVe-50) and one dataset (WordSim-353). SimLex-999, larger
-  GloVe dims, and word2vec/fastText would strengthen or qualify this.
-- `run_real.py` / `run_residual.py` are local scripts (they need the GloVe
-  download); they are **not** part of CI. The operators they exercise
-  (`blend_from_neighbors`, `residual_blend`) and Spearman are unit-tested; the
-  scripts' glue (parsing / neighbour search) is not CI-covered.
+- Two embeddings, both **GloVe-family** (50d, 100d), and two datasets (WordSim-353,
+  SimLex-999). A different *architecture* (word2vec/fastText) remains untested.
+- `run_real.py` / `run_residual.py` / `run_generality.py` are local scripts (they
+  need the embedding downloads); they are **not** part of CI. The operators they
+  exercise (`blend_from_neighbors`, `residual_blend`) and Spearman are unit-tested;
+  the scripts' glue (parsing / neighbour search) is not CI-covered.
 
 ## Next steps
 
-- A second dataset (SimLex-999) and a second embedding (word2vec) to test whether
+- A genuinely different embedding *architecture* (word2vec / fastText) to test whether
   the "reconstruction hurts on clean vectors" result generalises beyond GloVe-50.

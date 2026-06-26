@@ -17,13 +17,7 @@ blending operator + benchmark, infon/situation layer, Proof(walk) trace). These
 next items are pulled from `todo.md`; same rails — tests as logic lands, real
 measured numbers, `FINDINGS.md`/`docs/` kept current.
 
-1. **Generality of the negative result (SimLex-999 + a 2nd embedding).** Repeat
-   raw/additive/blend on **SimLex-999** and/or **word2vec/fastText** vectors:
-   does "reconstruction hurts on clean embeddings" hold beyond GloVe-50 ×
-   WordSim-353? Download to `results/_cache/` (local, like `run_real.py`); write
-   the numbers into `FINDINGS.md` + the page. Reuse `blend_from_neighbors` so the
-   operator under test is unchanged.
-2. **LT-2 · "twirking" reconfigurable blocks.** A `twirk` op that rewires/retypes
+1. **LT-2 · "twirking" reconfigurable blocks.** A `twirk` op that rewires/retypes
    a block, validated against the block category's checks (`preserves_invertibility`,
    etc.) — reject a twirk that breaks invertibility. The category gives the
    substrate; this is bounded and unit-testable (CI-safe).
