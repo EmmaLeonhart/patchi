@@ -38,9 +38,11 @@ Grounded in [`literature/REVIEW.md`](literature/REVIEW.md).
 
 - **BR-1 · The bijective translator `WordClass → NeuralBlock`.** ✦ *Reduced
   version landed* (`block.py`): a registry-backed bijection over the lexicon that
-  grows on demand — the honest resolution of "bijection over an open vocabulary."
-  **Remaining stretch:** richer block internals (polynomial/geometric attributes,
-  not just an affine scale+offset) so the block carries the full WordClass.
+  grows on demand. ✦ *Richer blocks landed*: `NeuralBlock` now carries a `payload`
+  (the WordClass's gloss/params/source-vector), preserved by the translator and
+  through twirks, while the affine map stays the morphism (category/twirk
+  untouched). **Remaining stretch:** actually *use* the polynomial/region payload
+  *in* the computation (not just carry it) — the affine map is still vector-derived.
 - **BR-2 · Classes-as-regions with binding.** ✦ *DONE (probe)* — `regions.py`:
   VSA binding does **not** keep convex regions closed in general (off-origin ball
   counterexample); fixed-key binding preserves convexity, origin unit ball is

@@ -54,7 +54,9 @@ def twirk_block(
     """
     new_scale = block.scale if scale is None else np.asarray(scale, dtype=float)
     new_offset = block.offset if offset is None else np.asarray(offset, dtype=float)
-    candidate = NeuralBlock(label or f"{block.label}~twirk", new_scale, new_offset)
+    # re-implementing a word's circuit keeps its identity -> preserve the payload
+    candidate = NeuralBlock(label or f"{block.label}~twirk", new_scale, new_offset,
+                            payload=block.payload)
     if not candidate.is_invertible:
         raise TwirkRejected(
             f"twirk of {block.label!r} breaks invertibility (zero in scale)"

@@ -53,6 +53,14 @@ def test_twirked_block_still_round_trips():
     assert round_trips(t, [4.0, 4.0])
 
 
+def test_twirk_preserves_the_wordclass_payload():
+    from patchi.wordclass import WordClass
+    b = NeuralBlock.from_wordclass(WordClass("dog", [1.0, 0.5], gloss="a canine"))
+    t = twirk_block(b, scale=[3.0, 3.0])
+    assert t.payload["word"] == "dog"        # identity survives re-implementation
+    assert t.payload["gloss"] == "a canine"
+
+
 # -- rewire (re-compose) -----------------------------------------------------
 
 def test_rewire_of_invertible_blocks_returns_composite():

@@ -24,8 +24,8 @@ See ``literature/REVIEW.md`` §3(1) and ``todo.md`` BR-1.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Dict, List, Optional
+from dataclasses import dataclass, field
+from typing import Any, Dict, List, Mapping, Optional
 
 import numpy as np
 
@@ -39,11 +39,21 @@ class NeuralBlock:
     ``scale`` (d) must be all-nonzero for the block to be invertible; the
     constructor enforces matching dimensions but allows non-invertible blocks to
     exist (so the category checker has something to *reject*).
+
+    ``payload`` carries the originating WordClass's structured attributes
+    (gloss, params, source vector) — the "richer" content the notebook wants the
+    word↔block correspondence to preserve. It is **semantics, not the morphism**:
+    ``apply``/``invert``/``compose`` and the category/twirk invariants depend only
+    on (scale, offset), and ``category.equivalent`` ignores the payload. So a block
+    can carry a word's meaning while still being reasoned about purely as an
+    affine map. (At this stage the affine map is still *derived from* the vector;
+    using the polynomial/region payload *in* the computation is future work.)
     """
 
     label: str
     scale: np.ndarray  # d, shape (n,)
     offset: np.ndarray  # b, shape (n,)
+    payload: Mapping[str, Any] = field(default_factory=dict)  # carried WordClass attributes
 
     def __post_init__(self) -> None:
         d = np.asarray(self.scale, dtype=float)
@@ -93,10 +103,19 @@ class NeuralBlock:
 
         ``scale = 1 + |vector|`` (always >= 1, hence always invertible) and
         ``offset = vector``. Deterministic, so the same WordClass always yields
-        the same block — a prerequisite for the bijection being well-defined.
+        the same block — a prerequisite for the bijection being well-defined. The
+        block also **carries the WordClass's structured attributes** in ``payload``
+        (gloss, params, source vector), so the correspondence preserves the word's
+        semantics, not only the affine map derived from its vector.
         """
         vec = wc.vector
-        return NeuralBlock(wc.word, 1.0 + np.abs(vec), vec.copy())
+        payload = {
+            "word": wc.word,
+            "gloss": wc.gloss,
+            "params": dict(wc.params),
+            "source_vector": vec.copy(),
+        }
+        return NeuralBlock(wc.word, 1.0 + np.abs(vec), vec.copy(), payload=payload)
 
 
 class Translator:

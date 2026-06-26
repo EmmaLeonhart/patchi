@@ -58,6 +58,36 @@ def test_compose_dim_mismatch_raises():
         f.compose(g)
 
 
+# -- BR-1 reach: blocks carry the WordClass payload --------------------------
+
+def test_from_wordclass_carries_structured_payload():
+    wc = WordClass("cat", [1.0, -2.0, 0.0], gloss="a feline",
+                   params={"freq": 0.7})
+    b = NeuralBlock.from_wordclass(wc)
+    assert b.payload["word"] == "cat"
+    assert b.payload["gloss"] == "a feline"
+    assert b.payload["params"] == {"freq": 0.7}
+    assert np.allclose(b.payload["source_vector"], [1.0, -2.0, 0.0])
+
+
+def test_bare_block_has_empty_payload_and_composite_is_not_lexical():
+    bare = NeuralBlock("b", [2.0], [1.0])
+    assert bare.payload == {}
+    a = NeuralBlock.from_wordclass(WordClass("a", [1.0]))
+    composite = a.compose(NeuralBlock("id", [1.0], [0.0]))
+    assert composite.payload == {}        # a composite is not a single word
+
+
+def test_payload_is_not_part_of_the_morphism():
+    # same affine map, different payloads -> equivalent as morphisms
+    from patchi.category import equivalent
+    p = NeuralBlock("p", [2.0, 3.0], [1.0, 0.0], payload={"word": "p"})
+    q = NeuralBlock("q", [2.0, 3.0], [1.0, 0.0], payload={"word": "q"})
+    assert equivalent(p, q)
+    # and apply ignores payload
+    assert np.allclose(p.apply([1.0, 1.0]), q.apply([1.0, 1.0]))
+
+
 # -- Translator (bijective, on-demand) ---------------------------------------
 
 def test_register_mints_block_and_is_idempotent():
