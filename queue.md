@@ -17,13 +17,13 @@ blending operator + benchmark, infon/situation layer, Proof(walk) trace). These
 next items are pulled from `todo.md`; same rails — tests as logic lands, real
 measured numbers, `FINDINGS.md`/`docs/` kept current.
 
-1. **Phrase composition (LT-4 first slice).** A `compose_phrase(lex, words,
-   method)` combining several word-vectors into one phrase representation —
-   `additive` (Σ vec), `multiplicative` (elementwise Π), and similarity-weighted —
-   the first concrete step of the syntax→semantics pipeline and the natural place
-   the additive/tensor *composition* baselines (Mitchell & Lapata; DisCoCat) live.
-   Distinct from the single-word `blend` (reconstruct-from-neighbours). Bounded +
-   unit-testable (CI-safe).
+1. **Phrase-composition benchmark.** Does the project's *weighted* composition
+   beat the `additive`/`multiplicative` baselines? A **synthetic, controlled**
+   benchmark (CI-safe, mirroring the MVC-3 denoising design): build phrases from
+   prototypes + noise with a known ground-truth phrase similarity, score each
+   compose method by Spearman. Reuse `compose_phrase`. Optionally also a *real*
+   phrase-similarity dataset (Mitchell & Lapata) if findable — else name it a
+   blocker, don't fake. Write the result into FINDINGS + page.
 
 (Findings publishing is continuous — each item updates `FINDINGS.md` + `docs/`.)
 

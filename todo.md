@@ -74,8 +74,11 @@ These are no longer "parked." Each now has a buildable core; the item is the
   topos-shadow checker now *gates* reconfiguration. **Reach:** cycle detection +
   interface retyping once blocks live in a real wiring graph (the current
   linear/affine model has no connection graph, so "no cycle introduced" is N/A).
-- **LT-4 · Linguistic pipeline.** Syntax → semantics → pragmatics → world-knowledge
-  as staged subset-extraction over the core.
+- **LT-4 · Linguistic pipeline.** ✦ *First slice landed* (`compose.py`): phrase
+  composition (additive / multiplicative / similarity-weighted) — the
+  syntax→semantics composition step, with the Mitchell & Lapata / DisCoCat
+  baselines. **Remaining (large):** the staged syntax → semantics → pragmatics →
+  world-knowledge extraction pipeline over real text.
 - **LT-5 · The control-system reframing of neural nets.** ✦ *DONE (argued)* —
   `literature/control-reframing.md`: the flow-control *lens* is grounded
   (attention/gating/routing — Vaswani, LSTM/GRU, MoE, Highway), but "controllers
