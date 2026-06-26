@@ -214,9 +214,16 @@
   <li><strong>Proof(walk) trace</strong> — every output records the words/weights that produced it,
     with a single-source-of-truth discipline so the trace cannot diverge from the computation.</li>
   <li><strong>Reduced cores for the hard bridges</strong> — a registry-backed bijective translator,
-    a category of blocks with property checkers (the computable shadow of the topos layer), and
-    "artificial time" as the recursion index of a memory cell. Honest reductions; full versions are future work.</li>
+    a category of blocks with property checkers (the computable shadow of the topos layer),
+    "artificial time" as the recursion index of a memory cell, and constraint-checked block
+    reconfiguration ("twirking"). Honest reductions; full versions are future work.</li>
 </ul>
+<p>
+  The pieces <strong>compose end-to-end</strong> (run <code>python scripts/run.py --demo</code>): one
+  semantic world flows lexicon → signed relations → similarity-weighted blend → bijective block →
+  spatial-gated memory → graded situation support, every output carrying a <code>Proof(walk)</code>
+  trace of what produced it.
+</p>
 
 <h2 id="results">What we found</h2>
 <p>

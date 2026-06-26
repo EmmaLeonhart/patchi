@@ -17,13 +17,7 @@ blending operator + benchmark, infon/situation layer, Proof(walk) trace). These
 next items are pulled from `todo.md`; same rails — tests as logic lands, real
 measured numbers, `FINDINGS.md`/`docs/` kept current.
 
-1. **End-to-end integration demo + test.** Wire the vertical slice into one
-   runnable path — lexicon → signed relation graph → similarity-weighted blend →
-   infon/situation support → Proof(walk) — as a small `demo()` (surfaced via
-   `scripts/run.py --demo` or a `patchi.demo` module) plus a CI-safe integration
-   test asserting the pieces compose and a Proof(walk) is produced. Consolidation:
-   proves the slice works *together*, not just per-module.
-2. **Richer WordClass-carrying blocks (BR-1 reach).** Give `NeuralBlock` an
+1. **Richer WordClass-carrying blocks (BR-1 reach).** Give `NeuralBlock` an
    optional structured payload (the WordClass's polynomial/region attributes) that
    the bijective translator preserves, so word↔block carries more than a bare
    affine map. Bounded + unit-testable; keep `twirk`/category invariants intact.

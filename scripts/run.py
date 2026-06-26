@@ -20,6 +20,22 @@ RESULTS = Path(__file__).resolve().parent.parent / "results"
 
 def main() -> int:
     print(f"Patchi v{patchi.__version__}")
+
+    if "--demo" in sys.argv:
+        from patchi.demo import demo
+        r = demo()
+        print("end-to-end demo (lexicon -> relations -> blend -> block -> memory -> situation):")
+        print(f"  relations: net_effect(fish)={r['relations']['net_effect_fish']}")
+        print(f"  blend('dolphin') neighbours: {r['blend']['neighbours']}")
+        print(f"  translate -> block '{r['translate']['block']}', round-trip {r['translate']['round_trip_ok']}")
+        print(f"  memory: artificial_time={r['memory']['artificial_time']}, gated={r['memory']['gated']}")
+        print(f"  situation: support(swims|dolphin)={r['situation']['support']} (rule={r['situation']['rule']})")
+        print("  -- blend Proof(walk) --")
+        print(r["blend"]["proof"])
+        print("  -- support Proof(walk) --")
+        print(r["situation"]["proof"])
+        return 0
+
     headline = run_benchmark()
     sweep = run_sweep()
     RESULTS.mkdir(exist_ok=True)
