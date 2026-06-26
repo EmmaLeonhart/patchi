@@ -29,10 +29,11 @@ Grounded in [`literature/REVIEW.md`](literature/REVIEW.md).
   "blocked in an offline env" — the machine has network; that earlier claim was
   wrong. The download is a one-time ~65 MB, just not run inside CI.)
   ✦ *Residual blending also done* (`run_residual.py`): best α is 0 (raw), no sweet
-  spot. ✦ *Generality done* (`run_generality.py`): blend beats raw in 0 of 4 over
-  {GloVe-50,GloVe-100}×{WordSim-353,SimLex-999} — the negative result holds across
-  size + dataset. **Remaining reach:** a different embedding *architecture*
-  (word2vec/fastText), the only generality axis still untested.
+  spot. ✦ *Generality done* (`run_generality.py`): blend beats raw in **0 of 6**
+  over {GloVe-50,GloVe-100,fastText-300}×{WordSim-353,SimLex-999} — holds across
+  size, **architecture** (fastText subword), and dataset; penalty shrinks to
+  break-even on the strongest embedding+hardest task but never goes positive. The
+  empirical generality story is complete (English single-word similarity).
 
 ## Mid-term: the bridges
 

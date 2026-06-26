@@ -17,13 +17,7 @@ blending operator + benchmark, infon/situation layer, Proof(walk) trace). These
 next items are pulled from `todo.md`; same rails — tests as logic lands, real
 measured numbers, `FINDINGS.md`/`docs/` kept current.
 
-1. **Architecture generality (word2vec / fastText).** The one untested axis of the
-   negative result: repeat raw/additive/blend on a *non-GloVe* embedding to see if
-   "reconstruction hurts on clean vectors" holds across embedding *architecture*,
-   not just size/dataset. Download to `results/_cache/` (local, large); extend
-   `run_generality.py`; reuse `blend_from_neighbors`. Write the row into FINDINGS
-   Result 5 + page. If the download is infeasible, name it a blocker, don't fake.
-2. **LT-5 · the control-system reframing — argue, don't assert.** Write a short,
+1. **LT-5 · the control-system reframing — argue, don't assert.** Write a short,
    grounded position (FINDINGS section or `docs/`) on Pygmalion's "neural nets are
    information-flow controllers, not learners" claim: present attention-as-gain
    (Vaswani) as the nearest *real* mechanism and state plainly where the claim is

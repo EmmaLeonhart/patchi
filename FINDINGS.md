@@ -129,29 +129,33 @@ negative structural result, exactly what the probe was for.
 
 Does "reconstruction hurts on clean vectors" survive beyond GloVe-50 ×
 WordSim-353? Ran the same operator (`run_generality.py`) across
-{GloVe-50, GloVe-100} × {WordSim-353, SimLex-999} — SimLex-999 scores
-*similarity*, not mere relatedness, a harder/cleaner test.
+{GloVe-50, GloVe-100, **fastText-300**} × {WordSim-353, SimLex-999} — fastText is a
+genuinely different *architecture* (subword) from GloVe (count-based), and
+SimLex-999 scores *similarity*, not mere relatedness (a harder/cleaner test).
 
 | embedding | dataset | raw | additive | blend | blend − raw |
 |-----------|---------|----:|---------:|------:|------------:|
-| GloVe-50  | WordSim-353 | 0.503 | 0.432 | 0.435 | −0.069 |
-| GloVe-50  | SimLex-999  | 0.263 | 0.235 | 0.237 | −0.026 |
-| GloVe-100 | WordSim-353 | 0.533 | 0.445 | 0.451 | −0.081 |
-| GloVe-100 | SimLex-999  | 0.296 | 0.278 | 0.281 | −0.015 |
+| GloVe-50      | WordSim-353 | 0.503 | 0.432 | 0.435 | −0.069 |
+| GloVe-50      | SimLex-999  | 0.263 | 0.235 | 0.237 | −0.026 |
+| GloVe-100     | WordSim-353 | 0.533 | 0.445 | 0.451 | −0.081 |
+| GloVe-100     | SimLex-999  | 0.296 | 0.278 | 0.281 | −0.015 |
+| fastText-300  | WordSim-353 | 0.718 | 0.643 | 0.652 | −0.066 |
+| fastText-300  | SimLex-999  | 0.445 | 0.442 | 0.445 | −0.000 |
 
-**Blend beats raw in 0 of 4 cells.** Reconstruction is negative everywhere; blend
-edges additive by a hair everywhere but neither catches raw. The penalty is
-*smaller* on SimLex (−0.015…−0.026) than WordSim (−0.069…−0.081) — reconstruction
-costs less on the harder similarity task — but stays negative. **Caveat:** both
-embeddings are GloVe-family (different dimensions, *same* architecture); a
-genuinely different architecture (word2vec/fastText) is still untested here (large
-downloads), so the result generalises across embedding *size* and *dataset*, not
-yet across embedding *family*.
+**Blend beats raw in 0 of 6 cells**, now including a different embedding
+*architecture* (fastText) and a much stronger raw baseline (0.718). Reconstruction
+is ≤ raw everywhere; blend edges additive by a hair everywhere but never catches
+raw. The penalty is **regime-dependent**: largest on weaker embeddings /
+relatedness datasets (−0.08), and it shrinks to **break-even (−0.000) on the
+strongest embedding + hardest similarity task** (fastText × SimLex) — but never
+goes positive. So the negative result generalises across embedding *size*,
+*architecture*, and *dataset*: similarity-weighted reconstruction is, at best,
+break-even and usually a loss on clean vectors.
 
 ## Limitations (named, not buried)
 
-- Two embeddings, both **GloVe-family** (50d, 100d), and two datasets (WordSim-353,
-  SimLex-999). A different *architecture* (word2vec/fastText) remains untested.
+- Three embeddings (GloVe-50/100 + fastText-300, two architectures) × two datasets
+  (WordSim-353, SimLex-999). Broad, but still English single-word similarity.
 - `run_real.py` / `run_residual.py` / `run_generality.py` are local scripts (they
   need the embedding downloads); they are **not** part of CI. The operators they
   exercise (`blend_from_neighbors`, `residual_blend`) and Spearman are unit-tested;

@@ -26,7 +26,9 @@ from patchi.benchmark import spearman  # noqa: E402
 CACHE = ROOT / "results" / "_cache"
 POOL, K, POWER = 100_000, 10, 2.0
 
-EMBEDDINGS = [("GloVe-50", CACHE / "glove50.gz"), ("GloVe-100", CACHE / "glove100.gz")]
+EMBEDDINGS = [("GloVe-50", CACHE / "glove50.gz"),
+              ("GloVe-100", CACHE / "glove100.gz"),
+              ("fastText-300", CACHE / "fasttext300.gz")]  # different architecture (subword)
 
 
 def load_glove(path, limit):

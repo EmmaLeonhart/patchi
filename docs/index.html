@@ -273,9 +273,11 @@
 
 <h2>Limitations</h2>
 <p>
-  The negative result now holds across <strong>{GloVe-50, GloVe-100} × {WordSim-353, SimLex-999}</strong>
-  — blend beats raw in 0 of 4 cells — though both embeddings are GloVe-family, so a different
-  architecture (word2vec/fastText) is still untested. A residual form
+  The negative result holds across <strong>{GloVe-50, GloVe-100, fastText-300} × {WordSim-353,
+  SimLex-999}</strong> — blend beats raw in <strong>0 of 6 cells</strong>, including a different
+  embedding architecture (fastText, subword) and a much stronger raw baseline (0.718). The penalty
+  is regime-dependent and shrinks to break-even on the strongest embedding + hardest task, but never
+  goes positive. A residual form
   (<code>(1−α)·raw + α·blend</code>) was tested too — best α is 0 (raw), so a little smoothing
   doesn't rescue it either. The harder bridges — full topos internal logic, richer block internals,
   the control-system reframing of neural nets — are implemented only as reduced cores or named as
