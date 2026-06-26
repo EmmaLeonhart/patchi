@@ -42,9 +42,10 @@ Grounded in [`literature/REVIEW.md`](literature/REVIEW.md).
   not just an affine scale+offset) so the block carries the full WordClass.
 - **BR-2 · Classes-as-regions with binding.** Test whether VSA binding stays
   closed under Gärdenfors-style region membership; report where it breaks.
-- **BR-3 · Memory `<TemporalLogic, SpatialLogic>` — spatial half.** ✦ *Temporal
-  half landed* (`memory.py`: recursion + artificial-time order). **Remaining:**
-  let SpatialLogic (block vector-ops) gate the recurrence, not just accumulate.
+- **BR-3 · Memory `<TemporalLogic, SpatialLogic>`.** ✦ *DONE* — temporal half
+  (recursion + artificial time) and now the spatial half: a `NeuralBlock` gates
+  each input (`m_{t+1} = decay·m_t + gate(input_t)`), with `memory_tuple()`
+  exposing `(time, gate)`. **Reach:** a learned/adaptive gate rather than a fixed block.
 
 ## Stretch: the deeper layers (reduced cores built; full versions are the reach)
 

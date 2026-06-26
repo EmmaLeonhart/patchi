@@ -34,13 +34,16 @@ class Memory:
     ``m_{t+1} = decay · m_t + input_t``; ``time`` is the number of steps taken.
     """
 
-    def __init__(self, dim: int, decay: float = 0.5) -> None:
+    def __init__(self, dim: int, decay: float = 0.5, gate=None) -> None:
         if dim <= 0:
             raise ValueError("dim must be positive")
         if not 0.0 <= decay <= 1.0:
             raise ValueError("decay must be in [0, 1]")
+        if gate is not None and getattr(gate, "dim", dim) != dim:
+            raise ValueError(f"gate dim {gate.dim} must match memory dim {dim}")
         self._dim = dim
         self._decay = float(decay)
+        self._gate = gate
         self._state = np.zeros(dim, dtype=float)
         self._t = 0
 
@@ -53,6 +56,15 @@ class Memory:
         return self._decay
 
     @property
+    def spatial_gate(self):
+        """The SpatialLogic component: the NeuralBlock gating each input (or None)."""
+        return self._gate
+
+    def memory_tuple(self):
+        """Pygmalion's ``<TemporalLogic, SpatialLogic>``: ``(artificial time, gate)``."""
+        return (self._t, self._gate)
+
+    @property
     def time(self) -> int:
         """Artificial time: the number of recursion steps taken so far."""
         return self._t
@@ -62,10 +74,17 @@ class Memory:
         return self._state.copy()
 
     def step(self, input_vec: Iterable[float]) -> np.ndarray:
-        """Advance one tick of artificial time; return the new state."""
+        """Advance one tick of artificial time; return the new state.
+
+        The recurrence is ``m_{t+1} = decay·m_t + gate(input_t)``: SpatialLogic
+        (the gate block) transforms the input via vector algebra before it enters
+        the temporal recursion. With no gate this is plain accumulation.
+        """
         x = np.asarray(list(input_vec), dtype=float)
         if x.shape != (self._dim,):
             raise ValueError(f"input must have shape ({self._dim},), got {x.shape}")
+        if self._gate is not None:
+            x = np.asarray(self._gate.apply(x), dtype=float)
         self._state = self._decay * self._state + x
         self._t += 1
         return self._state.copy()

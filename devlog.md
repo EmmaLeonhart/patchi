@@ -93,3 +93,8 @@ User flagged the live page as broken/useless. Confirmed three real defects and f
 ## 2026-06-25 — Residual blending follow-up: no sweet spot on clean vectors (queue item)
 
 - Added `residual_blend(own, blend, α) = (1-α)·own + α·blend` to `blend.py` (CI-safe unit-tested: α=0→own, α=1→blend, α=0.25→midpoint) and `scripts/run_residual.py` to sweep α on the real GloVe-50 × WordSim-353 benchmark. **Measured curve:** α=0.00→0.5033 (raw, best), 0.05→0.5033 (tie to 4dp), 0.10→0.5026, 0.20→0.4986, 0.50→0.4818, 1.00→0.4347 — monotone decreasing. **Best α is 0.** A little smoothing does NOT beat raw; this closes the rescue hypothesis and strengthens the MVC-3b finding (reconstruction only ever hurts on clean embeddings, neutral at vanishing α). Wrote it into `FINDINGS.md` (new "Result 3") + the live page; updated todo. Full suite **84 passed**. Next: BR-3 spatial-gated memory.
+
+## 2026-06-26 — BR-3: spatial-gated memory (the SpatialLogic half participates) (queue item)
+
+- Wired `block.py` into `memory.py`: `Memory(dim, decay, gate=NeuralBlock)` now runs `m_{t+1} = decay·m_t + gate.apply(input_t)`, so SpatialLogic (block vector-algebra) transforms each input before the temporal recursion — realising Pygmalion's `<TemporalLogic, SpatialLogic>` tuple. Added `spatial_gate` property and `memory_tuple() -> (artificial time, gate)`. Backward-compatible: no gate = plain accumulation (all prior memory tests still pass).
+- Added 5 tests: identity-gate matches ungated; a doubling gate transforms input before accumulation; offset gate shifts; gate/dim mismatch raises; `memory_tuple`/`spatial_gate` accessors. Full suite **89 passed**. Next: BR-2 regions-with-binding probe.
