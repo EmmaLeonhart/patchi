@@ -92,6 +92,10 @@ known to be consistent.** Concretely:
 6. **The control reframing of neural nets.** "NNs are information-flow controllers,
    not learners" has *no* verified support; attention-as-gain (Vaswani) is the
    nearest real mechanism. This is Pygmalion's framing to argue, not a citation.
+   **Argued in full in [`control-reframing.md`](control-reframing.md):** the
+   flow-control *lens* is grounded (attention, gating, routing), but "controllers
+   *not* learners" is a false dichotomy because the controllers are themselves
+   learned.
 
 ## 4. What a defensible first implementation looks like
 

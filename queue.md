@@ -17,16 +17,21 @@ blending operator + benchmark, infon/situation layer, Proof(walk) trace). These
 next items are pulled from `todo.md`; same rails — tests as logic lands, real
 measured numbers, `FINDINGS.md`/`docs/` kept current.
 
-1. **LT-5 · the control-system reframing — argue, don't assert.** Write a short,
-   grounded position (FINDINGS section or `docs/`) on Pygmalion's "neural nets are
-   information-flow controllers, not learners" claim: present attention-as-gain
-   (Vaswani) as the nearest *real* mechanism and state plainly where the claim is
-   the notebook's thesis vs. established. No code; verifiable = written + cited.
+1. **Phrase composition (LT-4 first slice).** A `compose_phrase(lex, words,
+   method)` combining several word-vectors into one phrase representation —
+   `additive` (Σ vec), `multiplicative` (elementwise Π), and similarity-weighted —
+   the first concrete step of the syntax→semantics pipeline and the natural place
+   the additive/tensor *composition* baselines (Mitchell & Lapata; DisCoCat) live.
+   Distinct from the single-word `blend` (reconstruct-from-neighbours). Bounded +
+   unit-testable (CI-safe).
 
 (Findings publishing is continuous — each item updates `FINDINGS.md` + `docs/`.)
 
-When this drains, refill from `todo.md` (the hardest reaches: full topos internal
-logic, a learned/adaptive memory gate, the linguistic pipeline).
+**Note on what's left after this:** the remaining `todo.md` items — full topos
+internal logic, a learned/adaptive memory gate, the *full* linguistic pipeline —
+are large, open-ended research directions, not bounded hourly-tick work. When the
+queue next drains to only those, that is the natural point to **hand back to the
+user for a scope decision** rather than fake-decompose a big item into a thin tick.
 
 ---
 
