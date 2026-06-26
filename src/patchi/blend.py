@@ -99,6 +99,20 @@ def blend_word(
     return blend_from_neighbors(vecs, sims, weighting=weighting, power=power)
 
 
+def residual_blend(own_vector, blended_vector, alpha: float) -> np.ndarray:
+    """Interpolate between a word's own vector and its neighbourhood blend.
+
+    ``(1 - alpha)·own + alpha·blend``. ``alpha=0`` is the raw vector untouched;
+    ``alpha=1`` is the full blend; small ``alpha`` is "a little smoothing". This
+    tests the open question from MVC-3b: on clean embeddings, where full
+    reconstruction *hurts*, does a small residual nudge ever beat raw?
+    """
+    a = float(alpha)
+    own = np.asarray(own_vector, dtype=float)
+    bl = np.asarray(blended_vector, dtype=float)
+    return (1.0 - a) * own + a * bl
+
+
 def blend_word_explained(
     lex: Lexicon,
     word: str,

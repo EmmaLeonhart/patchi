@@ -28,8 +28,10 @@ Grounded in [`literature/REVIEW.md`](literature/REVIEW.md).
   the opposite of the synthetic denoising result. (Correction: this was never
   "blocked in an offline env" — the machine has network; that earlier claim was
   wrong. The download is a one-time ~65 MB, just not run inside CI.)
-  **Remaining reach:** residual blending (`raw + α·blend`), plus SimLex-999 and a
-  second embedding (word2vec/fastText) to test generality.
+  ✦ *Residual blending also done* (`run_residual.py`): swept `(1-α)·own + α·blend`
+  on the real benchmark — best α is 0 (raw), no sweet spot; closes that rescue.
+  **Remaining reach:** SimLex-999 and a second embedding (word2vec/fastText) to
+  test whether "reconstruction hurts on clean vectors" generalises.
 
 ## Mid-term: the bridges
 

@@ -85,19 +85,32 @@ high the neighbourhood itself is unreliable and the gain vanishes / goes negativ
   — and the opposite of what the synthetic run alone would have suggested, which
   is exactly why the real run was worth running rather than declaring "blocked".
 
+## Result 3 — residual blending (does a *little* smoothing help?)
+
+The natural rescue for the negative real result: maybe full reconstruction is too
+aggressive, and a residual nudge `(1-α)·own + α·blend` keeps raw's signal while
+denoising a little. We swept α on GloVe-50 × WordSim-353 (`run_residual.py`):
+
+| α | 0.00 | 0.05 | 0.10 | 0.20 | 0.30 | 0.50 | 0.75 | 1.00 |
+|--:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|
+| Spearman | **0.5033** | 0.5033 | 0.5026 | 0.4986 | 0.4943 | 0.4818 | 0.4623 | 0.4347 |
+
+**The best α is 0** (raw). A vanishing nudge (α=0.05) merely ties raw to four
+decimals; any meaningful smoothing is monotonically worse. So there is no
+"sweet spot" — on clean embeddings, smoothing toward the neighbourhood only ever
+hurts (or, in the limit, does nothing). This closes the rescue hypothesis: the
+negative real result is not an artifact of over-aggressive reconstruction.
+
 ## Limitations (named, not buried)
 
 - One embedding model (GloVe-50) and one dataset (WordSim-353). SimLex-999, larger
   GloVe dims, and word2vec/fastText would strengthen or qualify this.
-- "Reconstruction" here replaces a word entirely by its neighbourhood; a residual
-  form (raw + α·blend) might keep raw's signal while denoising — untested, queued.
-- `run_real.py` is a local script (needs the GloVe download); it is **not** part
-  of CI. The operator it exercises (`blend_from_neighbors`) and Spearman are
-  unit-tested; the script's glue (parsing/neighbour search) is not CI-covered.
+- `run_real.py` / `run_residual.py` are local scripts (they need the GloVe
+  download); they are **not** part of CI. The operators they exercise
+  (`blend_from_neighbors`, `residual_blend`) and Spearman are unit-tested; the
+  scripts' glue (parsing / neighbour search) is not CI-covered.
 
 ## Next steps
 
-- Residual blending (`raw + α·blend`) sweep — does a *little* smoothing ever beat
-  raw on clean vectors?
 - A second dataset (SimLex-999) and a second embedding (word2vec) to test whether
-  the "hurts on clean vectors" result generalises.
+  the "reconstruction hurts on clean vectors" result generalises beyond GloVe-50.

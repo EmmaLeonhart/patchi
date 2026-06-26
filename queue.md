@@ -17,16 +17,10 @@ blending operator + benchmark, infon/situation layer, Proof(walk) trace). These
 next items are pulled from `todo.md`; same rails — tests as logic lands, real
 measured numbers, `FINDINGS.md`/`docs/` kept current.
 
-1. **Residual blending follow-up (answers the open MVC-3b question).** Add a
-   residual operator `raw + α·blend` and sweep α on the real GloVe×WordSim-353
-   benchmark (needs the cached GloVe in `results/_cache/`): does a *little*
-   smoothing ever beat raw on clean vectors? Write the α-curve into `FINDINGS.md`
-   + the live page. Unit-test the residual operator on a fixture (CI-safe);
-   the real sweep is local (named, like `run_real.py`).
-2. **BR-3 · spatial-gated memory.** Let a `NeuralBlock` (spatial logic) gate the
+1. **BR-3 · spatial-gated memory.** Let a `NeuralBlock` (spatial logic) gate the
    `Memory` recurrence — `m_{t+1} = decay·m_t + block.apply(input_t)` — so the
    SpatialLogic half actually participates, not just accumulation. Test it.
-3. **BR-2 · regions-with-binding probe.** Test whether VSA-style binding
+2. **BR-2 · regions-with-binding probe.** Test whether VSA-style binding
    (elementwise/convolution) stays consistent with Gärdenfors-style region
    membership on a small fixture; report plainly where it breaks (this is a
    *probe*, an expected-to-be-partial result, not a guaranteed success).

@@ -3,7 +3,7 @@
 import numpy as np
 import pytest
 
-from patchi.blend import blend_from_neighbors, blend_word
+from patchi.blend import blend_from_neighbors, blend_word, residual_blend
 from patchi.wordclass import Lexicon
 
 CLUSTERS = {
@@ -44,6 +44,14 @@ def test_empty_and_unknown_weighting_raise():
         blend_from_neighbors([], [])
     with pytest.raises(ValueError):
         blend_from_neighbors([np.array([1.0])], [1.0], weighting="bogus")
+
+
+def test_residual_blend_interpolates_own_and_blend():
+    own = np.array([1.0, 0.0])
+    blend = np.array([0.0, 1.0])
+    assert np.allclose(residual_blend(own, blend, 0.0), own)     # raw
+    assert np.allclose(residual_blend(own, blend, 1.0), blend)   # full blend
+    assert np.allclose(residual_blend(own, blend, 0.25), [0.75, 0.25])  # a little smoothing
 
 
 def test_blend_word_reconstructs_within_cluster():
