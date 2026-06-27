@@ -152,10 +152,42 @@ goes positive. So the negative result generalises across embedding *size*,
 *architecture*, and *dataset*: similarity-weighted reconstruction is, at best,
 break-even and usually a loss on clean vectors.
 
+## Result 6 — phrase composition: does the weighting help here either?
+
+The blend operator reconstructs *one* word; phrase composition combines *several*.
+A synthetic benchmark mirroring MVC-3 at the phrase level: phrases are several
+words (noisy samples of concept prototypes) drawn from distinct concepts; the
+ground-truth phrase meaning is the mean of the clean concept prototypes; score =
+Spearman(method pairwise cosine, ground truth). Methods: `additive` (Σ vec),
+`multiplicative` (elementwise Π), `weighted` (similarity-weighted toward the
+centroid — the project's operator).
+
+| noise | additive | multiplicative | weighted | weighted − additive |
+|------:|---------:|---------------:|---------:|--------------------:|
+| 0.3 | **0.954** | 0.032 | 0.866 | −0.088 |
+| 0.6 | **0.827** | 0.027 | 0.744 | −0.082 |
+| 1.0 | **0.584** | 0.023 | 0.533 | −0.051 |
+| 1.5 | **0.339** | 0.023 | 0.312 | −0.027 |
+
+**Additive wins; similarity-weighting hurts; multiplicative fails.** Plain
+additive recovers the ground-truth phrase structure best at every noise level;
+the project's similarity-weighted composition is worse everywhere (−0.03…−0.09);
+multiplicative is near-zero (~0.03) — it cannot recover an additive ground truth
+and amplifies noise. Why: when the true phrase meaning is an *equal-weight*
+combination of its concepts, any non-uniform weighting (toward the centroid)
+deviates from it, and additive is the natural match. **Caveat:** this is
+conditional on an equal-weight "bag of concepts" ground truth; if a head word
+genuinely dominated, weighting *could* help — untested. The through-line stands:
+the similarity weighting that defines Pygmalion's operator does not beat the plain
+baseline — for single-word reconstruction *or* phrase composition.
+
 ## Limitations (named, not buried)
 
 - Three embeddings (GloVe-50/100 + fastText-300, two architectures) × two datasets
   (WordSim-353, SimLex-999). Broad, but still English single-word similarity.
+- The phrase benchmark is synthetic with an equal-weight ground truth; a real
+  phrase-similarity dataset (Mitchell & Lapata) and head-weighted phrases are
+  untested.
 - `run_real.py` / `run_residual.py` / `run_generality.py` are local scripts (they
   need the embedding downloads); they are **not** part of CI. The operators they
   exercise (`blend_from_neighbors`, `residual_blend`) and Spearman are unit-tested;

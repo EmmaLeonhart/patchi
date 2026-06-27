@@ -10,28 +10,29 @@ status-report :42). The `## Always last` tail keeps them alive.
 
 ---
 
-## Active — bridges & follow-ups (MVC-1…5 core complete)
+## Active — (empty) — hand-back point reached
 
-The minimum viable core is done (WordClass lexicon, signed relation graph,
-blending operator + benchmark, infon/situation layer, Proof(walk) trace). These
-next items are pulled from `todo.md`; same rails — tests as logic lands, real
-measured numbers, `FINDINGS.md`/`docs/` kept current.
+**The bounded work is drained.** The MVC core, every bridge, every reduced-core
+reach, the full empirical story (blend ≤ raw across 2 architectures × 2 datasets;
+residual no-sweet-spot; phrase additive > weighted > multiplicative), the
+end-to-end demo, the published paper, and the argued positions are all done. Suite
+green, CI/Pages green, site + paper live.
 
-1. **Phrase-composition benchmark.** Does the project's *weighted* composition
-   beat the `additive`/`multiplicative` baselines? A **synthetic, controlled**
-   benchmark (CI-safe, mirroring the MVC-3 denoising design): build phrases from
-   prototypes + noise with a known ground-truth phrase similarity, score each
-   compose method by Spearman. Reuse `compose_phrase`. Optionally also a *real*
-   phrase-similarity dataset (Mitchell & Lapata) if findable — else name it a
-   blocker, don't fake. Write the result into FINDINGS + page.
+**No item is auto-promoted, by design.** The only things left in `todo.md` are
+large, open-ended *research directions*, each needing a scope/product decision —
+not bounded hourly-tick work, and the hard rails forbid fake-decomposing them:
 
-(Findings publishing is continuous — each item updates `FINDINGS.md` + `docs/`.)
+- **Full topos internal logic** (genuine subobject-classifier / full-image proofs)
+  — hard mathematics, not a tick.
+- **Learned / adaptive memory gate & "use the polynomial/region payload in the
+  computation"** — needs a training setup + a product decision on scope.
+- **The full linguistic pipeline** (syntax → semantics → pragmatics →
+  world-knowledge over real text) — a large multi-stage build.
+- **A real phrase-similarity dataset** (Mitchell & Lapata) — a download-dependent
+  empirical extension, optional.
 
-**Note on what's left after this:** the remaining `todo.md` items — full topos
-internal logic, a learned/adaptive memory gate, the *full* linguistic pipeline —
-are large, open-ended research directions, not bounded hourly-tick work. When the
-queue next drains to only those, that is the natural point to **hand back to the
-user for a scope decision** rather than fake-decompose a big item into a thin tick.
+→ **Work-loop: report `nothing actionable` until the user picks a direction.** The
+auto-flush + status crons keep running; they will not invent work.
 
 ---
 

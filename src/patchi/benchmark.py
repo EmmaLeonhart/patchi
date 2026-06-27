@@ -130,6 +130,52 @@ def run_benchmark(seed: int = 0, **kwargs) -> Dict[str, object]:
     }
 
 
+def run_phrase_benchmark(
+    n_clusters: int = 12,
+    per_cluster: int = 6,
+    dim: int = 24,
+    noise: float = 0.6,
+    n_phrases: int = 40,
+    phrase_len: int = 3,
+    power: float = 2.0,
+    seed: int = 0,
+) -> Dict[str, float]:
+    """Which phrase-composition method best recovers ground-truth phrase meaning?
+
+    Mirrors the MVC-3 denoising design at the *phrase* level. Words are noisy
+    samples of concept prototypes. A phrase is ``phrase_len`` words drawn from
+    distinct concepts; its **clean meaning** is the mean of those concepts'
+    prototypes. Ground-truth phrase similarity = cosine of clean meanings. Each
+    method composes the phrase from the *noisy* word vectors (reusing
+    ``compose.compose_phrase``); score = Spearman(method pairwise cosine, GT).
+    """
+    from .compose import compose_phrase  # local import avoids a cycle at import time
+
+    data = make_synthetic(n_clusters=n_clusters, per_cluster=per_cluster,
+                          dim=dim, noise=noise, seed=seed)
+    lex, clean = data.lexicon, data.clean
+    rng = np.random.default_rng(seed + 1)
+
+    phrases, clean_means = [], []
+    for _ in range(n_phrases):
+        clusters = rng.choice(n_clusters, size=phrase_len, replace=False)
+        words = [f"c{c}_w{int(rng.integers(per_cluster))}" for c in clusters]
+        phrases.append(words)
+        clean_means.append(np.mean([clean[w] for w in words], axis=0))
+
+    pairs = list(combinations(range(n_phrases), 2))
+    gt = np.array([cosine(clean_means[i], clean_means[j]) for i, j in pairs])
+
+    def score(method: str) -> float:
+        comp = [compose_phrase(lex, p, method, power=power) for p in phrases]
+        m = np.array([cosine(comp[i], comp[j]) for i, j in pairs])
+        return round(spearman(m, gt), 4)
+
+    return {"additive": score("additive"),
+            "multiplicative": score("multiplicative"),
+            "weighted": score("weighted")}
+
+
 def run_sweep(
     noises=(0.4, 0.8, 1.2, 1.6, 2.0),
     powers=(1.0, 4.0),

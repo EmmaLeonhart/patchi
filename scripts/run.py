@@ -13,7 +13,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
 import patchi  # noqa: E402
-from patchi.benchmark import run_benchmark, run_sweep  # noqa: E402
+from patchi.benchmark import run_benchmark, run_phrase_benchmark, run_sweep  # noqa: E402
 
 RESULTS = Path(__file__).resolve().parent.parent / "results"
 
@@ -38,9 +38,10 @@ def main() -> int:
 
     headline = run_benchmark()
     sweep = run_sweep()
+    phrase = run_phrase_benchmark()
     RESULTS.mkdir(exist_ok=True)
     (RESULTS / "benchmark.json").write_text(
-        json.dumps({"headline": headline, "sweep": sweep}, indent=2)
+        json.dumps({"headline": headline, "sweep": sweep, "phrase": phrase}, indent=2)
     )
 
     s = headline["scores"]
@@ -53,6 +54,9 @@ def main() -> int:
     for r in sweep:
         print(f"  {r['noise']:.1f} | {r['power']:.1f} | {r['raw']:.3f} | {r['additive']:.4f}"
               f" | {r['blend']:.4f} | {r['blend_minus_additive']:+.4f}")
+    print("phrase composition (synthetic; Spearman vs ground-truth phrase meaning):")
+    print(f"  additive {phrase['additive']:.4f} | multiplicative {phrase['multiplicative']:.4f}"
+          f" | weighted {phrase['weighted']:.4f}")
     print("wrote results/benchmark.json")
     return 0
 

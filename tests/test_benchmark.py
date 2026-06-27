@@ -13,6 +13,7 @@ from patchi.benchmark import (
     evaluate,
     make_synthetic,
     run_benchmark,
+    run_phrase_benchmark,
     run_sweep,
     spearman,
     _rankdata,
@@ -67,6 +68,21 @@ def test_run_sweep_rows_have_expected_fields():
     assert len(rows) == 2
     assert set(rows[0]) >= {"noise", "power", "raw", "additive", "blend",
                             "blend_minus_additive"}
+
+
+def test_phrase_benchmark_additive_wins_weighting_doesnt_help():
+    r = run_phrase_benchmark()  # defaults, seed 0
+    assert set(r) == {"additive", "multiplicative", "weighted"}
+    for v in r.values():
+        assert -1.0 <= v <= 1.0
+    # measured at seed 0: additive best, similarity-weighting does NOT help,
+    # multiplicative fails to recover the additive ground truth
+    assert r["additive"] > r["weighted"]
+    assert r["multiplicative"] < 0.2
+
+
+def test_phrase_benchmark_is_deterministic():
+    assert run_phrase_benchmark() == run_phrase_benchmark()
 
 
 def test_blending_helps_in_favourable_regime():

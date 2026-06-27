@@ -270,6 +270,13 @@
   what the synthetic run alone would have implied, which is exactly why running the real benchmark
   mattered. We report the negative result in full.
 </p>
+<p>
+  The same through-line shows up in <strong>phrase composition</strong>: on a synthetic phrase
+  benchmark, plain <em>additive</em> composition recovers the ground-truth phrase meaning best, the
+  project's similarity-weighted composition is worse at every noise level, and the multiplicative
+  baseline fails outright. So the similarity weighting that defines Pygmalion's operator does not
+  beat the plain baseline — for single-word reconstruction <em>or</em> phrase composition.
+</p>
 
 <h2>Limitations</h2>
 <p>
