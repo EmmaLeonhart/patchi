@@ -142,3 +142,27 @@ User flagged the live page as broken/useless. Confirmed three real defects and f
 
 - Added `run_phrase_benchmark` to `benchmark.py` (synthetic, CI-safe, mirroring MVC-3 at the phrase level: phrases of noisy concept-words, ground-truth = mean of clean prototypes, Spearman vs that). **Measured result:** additive composition wins at every noise level (0.95→0.34), the project's **similarity-weighted composition is worse everywhere** (weighted−additive −0.03…−0.09), and multiplicative fails outright (~0.03 — can't recover an additive ground truth + amplifies noise). Same through-line as the single-word result: the similarity weighting doesn't beat the plain baseline. Caveat named: conditional on an equal-weight "bag of concepts" ground truth; head-weighted phrases + a real M&L dataset untested. Wired into `scripts/run.py` output; +2 deterministic tests (additive > weighted, multiplicative < 0.2). FINDINGS Result 6 + page updated. Suite **116 passed**.
 - **Hand-back point reached.** This was the last bounded item. The queue's `## Active` is now empty by design: the only remaining `todo.md` work is large open research (full topos internal logic, learned/adaptive memory gate + using the payload in computation, full linguistic pipeline, a real phrase dataset) — each needs a scope/product decision, and the hard rails forbid fake-decomposing them into thin ticks. The work-loop should report `nothing actionable` until the user picks a direction; auto-flush + status crons keep running.
+
+## 2026-06-27 — Archived Pygmalion's reorganized notebook (`proto.txt`) as a primary source
+
+- Emma handed over a second Pygmalion notebook dump. Compared it against the
+  existing `data_lake/artificialtime2.txt`: a sorted-line diff leaves only ~13
+  lines unique to the new file (most are section banners), and **every**
+  distinctive construct (rules-as-LP, topos-as-VHDL, expert-system-as-Cartesian-
+  space, verbs-as-functions, words-as-parameters, classes-as-perimeter,
+  model-as-subset, distance-as-common-words, infon-intersection, the
+  abstraction ladder, antonyms-as-inhibitors, the word→circuit translator) is
+  already present in both. So it is the **same intellectual work**, not new
+  theory — a later, *reorganized* pass that sorts the dump into seven labeled
+  phases (commentaries → representation → entropy_destilation → synthesis →
+  storing → source → control). The artificialtime2 dump conversely keeps a few
+  raw "(no answer yet)" prompts the proto dropped.
+- Archived it verbatim as `data_lake/proto.txt` (848 lines) and documented it:
+  a new *Primary sources (Pygmalion's notebooks)* note in `literature/sources.md`
+  (what it is, the ~99% overlap, and the seven-phase breakdown — useful because
+  the phase order represent→distill→synthesize→store→source→control is the author
+  himself confirming the notebook is a single layered stack, matching REVIEW §1),
+  and a cross-reference from `REVIEW.md`. No citations change, because the proto
+  adds no construct the review didn't already ground. Suite **116 passed** (no
+  src change). This is source-archival, not a queue/todo item — the hand-back
+  point still stands; no new bounded work was created.

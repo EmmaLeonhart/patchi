@@ -1,0 +1,848 @@
+-------------commentaries-------------commentaries-------------commentaries-------------commentaries-------------commentaries-------------commentaries-------------commentaries
+
+RULES AS LINEAR PROGRAMMING (no answer yet)
+
+solution is between pure randomness and fair probabilities
+all solutions are order built upon chaos, they are all relation made between orders.
+so the solution is a  combination of the all the possible combination of the words
+
+
+Temporal logic and Spatial logic 
+used as logic engines and edges that connect the ideas nodes
+
+
+
+as much classifiers as possible 
+from properties and attribues infer a label to be the form in which substance(properties and attributes are contained)
+
+
+vector space with coordinates as words (question is is the probability of reaching the word ? or the number of times that words is reachable by other words ?)
+distributional semantics and vector space models (VSMs)
+
+
+
+CREATION OF CLASSES,  LOGIC USING THIS CLASSES AS PREMISES in other other composition of  infons(the pieces of information that contain <relations, arguments, evaluation of arguments when submited to relation>) 
+into a infon class that can be used as atomic premise
+
+
+Bayesian decision theory 
+inference of deduction of new relations based on the existent relations
+
+
+
+Lingustics and after the linguistics base is found , use the skeleton of logic information book
+and after that i can use the special infons
+but thoughts(object, time)->(variation of object ) should come before?
+
+
+
+Level,What it is,How it relates to the level below,Direction of Abstraction
+Infons / Infon Classes,"Most atomic units of information (<relation, arguments, polarity>)",Foundational layer,Most concrete
+WordClass,"Structured representation of a word (<Polynomial, Geometric, Axiomatic>)",Structured infon with explicit attributes,↑
+Neural Blocks (with Polynomial Parameters),Computational engines that process WordClasses,Bijective mapping from WordClass,↑
+Spatial Logic + Temporal Logic,Geometric frame + time/memory context,Operates inside neural blocks and memory tuples,↑
+Objects,Stabilized networks of relations,Emerge from repeated relational patterns in the graph + class perimeters,↑
+Thought,"<Perception, Memory> or (Object, Time) → Variation of Object",Temporal snapshot / transformation of an object,↑
+Idea,Persistent thought,"Stabilized, reusable thought stored as a pattern",↑
+Higher Structures,"Collectives, Totalities, Omniverse + Topos meta-reasoning",Abstracted patterns and meta-structures,Most abstract
+
+function of words derive propositions 
+
+
+propositions get expressed in neural networks
+
+
+-------------commentaries-------------commentaries-------------commentaries-------------commentaries-------------commentaries-------------commentaries-------------commentaries-------------commentaries-------------commentaries
+
+
+
+-------representation----------representation----------representation----------representation----------representation----------representation----------representation---
+
+
+
+
+a class for each word in which is composed by the   polynomial attributes, geomtric attributes and axomatic attributes making it  measureable  in low entropic way
+Infons & Infon Classes: Axiomatic attributes are built from infon classes; Polynomial and Geometric attributes are derived from evaluating infons.
+Memory Tuples <TemporalLogic, SpatialLogic>: Temporal aspects feed Polynomial (sequences as polynomials) and Axiomatic (temporal axioms); Spatial aspects directly populate Geometric attributes.
+Graph-Based Meta-Structure (N, E, L): Each node (experiential state) can carry or reference WordClasses. Edges use attributes for labeling (e.g., polynomial mapping strength).
+Parallel Graph Structure (Memory-Knowledge || Knowledge-Idea): Transformations (input set → output set with Proof(walk)) operate on WordClasses. The walk can be justified by attribute matching.
+Modal Logic (W, R, V): Worlds can be indexed or valued using WordClass attributes. Accessibility relations (R) can be defined via geometric similarity or axiomatic consistency.
+Bipolar Polarity: Encoded across all three attribute types (e.g., positive coefficients in polynomials, attractive geometric forces, stimulatory axioms).
+Neural Blocks & Twirking: Blocks learn or refine WordClass attributes (e.g., fit polynomials, regress planes, extract axioms). Twirking updates specific attribute components.
+Situations: A situation can constrain which attributes are active or how they are evaluated (context-specific WordClasses).
+Hierarchical Levels (Repositories, Collectives, etc.): Higher levels aggregate WordClasses (e.g., a Collective is a set of WordClasses with shared geometric planes or axiomatic invariants).
+Lexical Bootstrapping: Dictionaries provide axiomatic and polynomial seeds; encyclopedias enrich geometric and situational attributes.
+word_class(Word, polynomial(Expr), geometric(Planes, Coords), axiomatic(Infons, Axioms)).
+similarity(Class1, Class2, Score) :-
+    polynomial_similarity(Class1, Class2, PScore),
+    geometric_overlap(Class1, Class2, GScore),
+    axiomatic_match(Class1, Class2, AScore),
+    Score is weighted_average([PScore, GScore, AScore]).
+
+
+
+SPATIAL LOGIC IS THE GATWAY TO VECTOR ALGEBRA
+Spatial Logic provides the structured context and constraints that make raw vector algebra semantically meaningful and computationally tractable within the system.
+Spatial Logic (part of the memory tuple <TemporalLogic, SpatialLogic>) handles geometry, topology, location, containment, distance, orientation, and configuration.
+Vector Algebra is the underlying mathematical engine: matrix operations, linear transformations, projections, tensor products, etc., that neural blocks perform.
+apply_spatial_gateway(WordSet, Situation, Subspace) :-
+    relevant_plane(WordSet, Situation, Subspace).
+vector_algebra_in_block(Input, Subspace, Output) :-
+    project_to_subspace(Input, Subspace, Projected),
+    apply_matrix_transform(Projected, Output).
+
+has a property means has the whole image of set property in the CODOMAIN , codomain of the type of relations we already discussed
+
+WordClass (Polynomial + Geometric + Axiomatic)
+Polynomial Attributes: The polynomial expression for w evaluates to cover the full range of P in the codomain.
+Geometric Attributes: The word lies on or spans the geometric subspace that fully contains the property’s representation (e.g., the word covers the entire “leadership” plane if it has the property “ruler”).
+Axiomatic Attributes: The axioms include surjectivity constraints or full-image statements for key properties.
+Function Sets & Relations
+Each function in the word’s set has a defined codomain (type of relation: temporal, spatial, causal, etc.).
+“Has property P” means at least one (or the relevant) function is surjective onto P’s codomain slice.
+Spatial Logic as Gateway to Vector Algebra
+Spatial Logic defines the geometric codomain (planes, subspaces).
+Vector algebra (in neural blocks) computes the mapping; Spatial Logic ensures the image covers the full property region in that space.
+Graph Structures & Parallel Graphs
+In the main meta-graph or parallel graphs, an edge or walk “has a property” if it fully traverses the subgraph corresponding to P.
+Proof(walk) can include verification that the final set covers the property’s image.
+Memory Tuples & Situations
+A memory tuple in a situation supports the property if its SpatialLogic component fully images P’s codomain in that context.
+Situations restrict the relevant codomain.
+Bipolar Polarity
+Stimulatory relations tend to fully cover positive properties.
+Inhibitory relations may fully cover the negated property (e.g., “has the property of not being X” by covering the entire non-X codomain).
+Modal Logic & Hierarchical Levels
+In possible worlds, a proposition “w has property P” holds if in the accessible worlds the mapping covers P’s codomain.
+Higher levels (Collectives, Totalities) aggregate full-image properties across many words.
+
+
+
+
+
+TOPOS THEORY AS "VHDL" CATEGORY reasoning , this will permit meta reasoning of the neural networks blocks
+Neural network blocks become objects (or morphisms) inside a topos.
+The entire semantic architecture (graphs, memory tuples, WordClasses, situations, modal worlds, parallel transformational graphs, etc.) can be internalized as structures within the topos.
+Meta-reasoning becomes possible: the system can prove properties about blocks (e.g., “this composition of blocks preserves bijectivity”, “this twirk maintains full-image coverage of property P”, “these two modules are equivalent up to natural isomorphism”).
+Internal Logic — You can reason inside the topos almost as if it were a universe of sets, but with richer structure (intuitionistic logic, subobject classifiers for “properties”).
+Higher-Order and Dependent Types — Natural home for WordClasses (which have polynomial, geometric, and axiomatic attributes) and infon classes.
+Sheaf Semantics and Local-to-Global — Aligns beautifully with situations (local contexts) and how properties or mappings hold locally but can be glued globally.
+Categorical Logic — Allows meta-reasoning about the neural blocks themselves (composition, equivalence, preservation of properties like surjectivity onto codomains, polarity behavior, etc.).
+Geometry + Logic — Topoi naturally combine geometric intuition (your spatial logic, regression planes, subspaces) with logical structure.
+
+
+
+
+
+intersections  of infons  in Cartesian probabilites  meaning how close are them 
+based on what information they encapsulated and the relations they established between the information 
+For two infons (or infon classes) σ₁ and σ₂:
+Closeness(σ₁, σ₂) = Probabilistic measure of their intersection in the Cartesian product of their components.
+Formally:
+
+Each infon is <relation, arguments, polarity, context> (or more structured in a WordClass).
+Consider the Cartesian product of their key components (relations × arguments × polarity × situational support).
+The intersection captures shared information and shared relational structure.
+The probability reflects how much overlap exists relative to the union (Jaccard-style, but probabilistic and weighted).
+
+Closeness Score can be computed as:
+$$\text{Closeness}(\sigma_1, \sigma_2) = P(\text{shared information} \cap \text{shared relations}) \times w(\text{encapsulated content}) \times w(\text{established relations})$$
+
+
+Expert System as cartesian space 
+neural networks as the logical blocks as previous mentionated, these inferences will be represented with the vectors methods already mentionated
+Expert System ≜ A Cartesian space in which:
+Dimensions represent features, relations, properties, situations, or attributes from WordClasses/infons.
+Points / Vectors represent infons, WordClasses, memories, or states of knowledge.
+Neural Network Blocks act as logical operators / inference engines that perform vector transformations, projections, and mappings within this space.
+Inferences = Vector operations that move, combine, or transform points/vectors according to logical rules, geometric constraints, and polynomial parameters.
+Traditional Expert System Operation,Vector / Geometric Representation
+Rule firing / inference,Vector transformation or projection onto a subspace/plane
+Forward chaining,Sequential application of mappings along a path (Proof(walk))
+Backward chaining,Reverse mapping or inverse projection
+Pattern matching,Geometric closeness / intersection in Cartesian space
+Conflict resolution,Polarity-weighted selection or distance minimization
+Uncertainty handling,Probabilistic closeness of infons (Cartesian probability intersection)
+Explanation / Trace,Proof(walk) recorded as sequence of vector operations
+
+
+
+
+
+Encode words input as "vhdl", reason and find the relation between the neural blocks, decode output from "vhdl" and save the relations between words
+Encode Input Words as "VHDL" (Circuit Description)
+Input: Set of words (or WordClasses).
+Process: Use the bijective translator to map each word/WordClass to its corresponding neural circuit block.
+Output: A "VHDL-like" circuit description — a modular network of blocks with their polynomial parameters, geometric constraints (spatial logic), and axiomatic properties.
+Each block is instantiated with its current polynomial structure (decided by the neural network itself).
+Reason and Find Relations Between Neural Blocks
+The activated blocks form a temporary circuit.
+Reasoning happens via:
+Vector algebra operations (guided by Spatial Logic gateway).
+Polynomial evaluations and compositions (weighted by similarities).
+Graph traversals in the parallel graphs (Memory-Knowledge || Knowledge-Idea).
+Set operations on class perimeters.
+Topos meta-reasoning for higher-order properties (equivalence, preservation of full-image coverage, etc.).
+Discover new or strengthened relations between blocks (temporal, resonance, ecological growth, polarity links, etc.).
+Decode Output from "VHDL" Back to Words
+The resulting circuit state (after reasoning) is decoded using the inverse of the translator.
+Output: New set of words, updated WordClasses, or inferred concepts, plus a Proof(walk) recording the block relations and transformations.
+Save the Relations Between Words
+Persist the discovered relations into the dedicated similarity database and the graph meta-structure.
+Update similarity proportions, common-word counts, polarity links, geometric overlaps, etc.
+Optionally update higher hierarchical levels (Repositories, Collectives, etc.).
+
+
+VERBS AS FUNCTIONS, DATABASES OF NOUNS WHICH WILL BE INTERSECTED WITH THE NOUNS are natureally derived from this system
+since verbes are the relations between nons , adverbs etc .
+Your Statement,Refined Version in Our System,Why the Refinement Matters
+Verbs as Functions,Verbs are specialized neural blocks whose internal parameters are polynomials that define transformations between noun representations,"Keeps the ""function"" idea while grounding it in our polynomial + neural block model"
+Databases of Nouns,Classes of nouns (perimeters delimited by parameters) stored and operated on in the database,We don’t just store raw nouns — we store structured classes with geometric and axiomatic boundaries
+Intersection of Nouns,"Verbs perform set operations (intersection, union, etc.) + polynomial transformations on noun classes",Intersection alone is too limited; verbs also transform and modulate
+Verbs as relations between nouns,"Verbs are relational functions that take noun representations as inputs and produce new or modified representations (semantic roles, state changes, etc.)",Captures both the relational and transformational nature of verbs
+
+
+object as a network of relations
+
+thoughts(object, time)->(variation of object )
+
+database of thouhgts 
+
+
+
+
+
+
+Extract mathematical "functions"(function as "vhdl blocks we have been talking about) from Brain Theory (attention as example)
+Our Architecture Component,How Attention Block Integrates
+Bijective Translator,Maps input word → Attention block (and competing words → normalization pool)
+Polynomial Parameters,Gain and normalization weights are polynomials; block can decide their structure
+Spatial Logic Gateway,Constrains normalization to relevant geometric planes/subspaces
+WordClass,Input and output are structured WordClasses; attention modifies their polynomial/geometric attributes
+Class Perimeters (Set Theory),The normalization pool can be treated as a set; attention performs a form of set-weighted selection
+Parallel Graphs + Proof(walk),The attention operation becomes a step in the walk; relations discovered during normalization are saved
+Topos Meta-Reasoning,"The topos can reason about properties of this block (e.g., “does this normalization preserve full-image coverage?”)"
+Similarity Database,Stores updated similarity proportions after attention has boosted or suppressed certain relations
+
+
+
+distance between words corresponds to the number of words they have in common
+Common(w₁, w₂) = the set of words that appear in both:
+Neighborhoods in the graph meta-structure (shared neighbors via degree similarity)
+Encapsulated information (shared arguments in infons, common terms in polynomials)
+Geometric attributes (shared planes/subspaces)
+Axiomatic attributes (shared properties or full-image coverage)
+Relations established (common temporal, spatial, or polarity links)
+
+
+since we already establish a way of defining a word as a neural network block , WORDS AS PARAMETERS (WHAT WORDS AS THAT WORD AS SYNOMIMY )
+Since each word is already mapped to a specific neural circuit block, we can now define the parameters of that block (i.e., the polynomial for the word) using the words that are its synonyms or close similars.
+For a word w with corresponding neural block B_w:
+Polynomial_of(w) = ∑ [ Similarity(w, s_i) × Encapsulated_Polynomial(s_i) ]
+Where:
+s_i = synonyms or similar words to w (from the similarity database or graph neighborhood).
+Similarity(w, s_i) = the closeness score (Cartesian probability intersection, number of common words, geometric overlap, polarity alignment, etc.).
+Encapsulated_Polynomial(s_i) = the polynomial parameters of the similar word s_i.
+
+This makes words themselves act as parameters — the meaning and behavior of w is built from the collective contribution of its synonyms/similars.
+
+
+CLASSES AS PERIMETER DELEMITATED BY THE PARAMETERS 
+I CAN USE CLASSES AS SETS AND APPLY SET THEORY ON THEM 
+Core Definition
+A Class (e.g., WordClass or infon class) is a region in the Cartesian space whose perimeter is defined by the parameters of its members:
+Polynomial parameters → algebraic boundaries (level sets of the polynomial).
+Geometric parameters → explicit planes, subspaces, or manifolds that form the boundary.
+Axiomatic parameters → logical constraints (e.g., full-image coverage of certain properties) that act as hard or soft boundaries.
+Other delimiters → polarity thresholds, situational support, similarity proportions, etc.
+The class is the set of all points (words, infons, states) that lie inside or on this perimeter.
+
+
+
+A MODEL IS A SUBSET OF THE SET OF ATOMS IN OUR LANGUAGE (COMBINATION OF WORDS)
+
+Atoms refer to the primitive elements of the language: individual words, lexical items, or basic syntactic units (e.g., atomic propositions or morphemes). The full set of atoms, together with their permissible combinations under syntactic rules, constitutes the complete inventory of potential expressions in the language.
+A model, in the context of semantics (particularly model-theoretic semantics), is an interpretive structure that assigns meaning to these expressions. According to your formulation, any given model is realized as a subset of the possible combinations of these atoms — specifically, the subset that satisfies the semantic conditions and yields coherent literal meaning.
+
+
+
+-------representation----------representation----------representation----------representation----------representation----------representation----------representation---
+
+
+
+
+
+
+
+
+------entropy_destilation-----------entropy_destilation-----------entropy_destilation-----------entropy_destilation-----------entropy_destilation-----------entropy_destilation-----
+
+destilation int orderous forms
+
+like separation of syntax , pragmatics
+
+ordering into situations , infons networks etc 
+
+
+
+
+the neural networks will twirk functions that changes like vhdl circuits 
+In the context of distributional vector spaces, NNs learn better composition operators (beyond simple addition) that respect linguistic structure, which can then be hardened into efficient circuits for real-time NLP, search, or generation.
+basically consider the "vhdl circuits"  as block networks and twirk functions would be implemention of other blocks or alter the connections to each block 
+
+
+
+
+GEOMETRIC MEANING FOR A COMBINATION OF TYPES OF DEDUCTIONS
+since meaning is created by relations between sets of words and this relations is processed by neural networks that are in essence linear algebra
+a geometric can be obtained by applying constraints on the linear algebra, constraints those that symbolize meaning of the relation of words
+Constraints impose geometry:
+Metric constraints (e.g., cosine similarity, Euclidean distance) define proximity as semantic relatedness. Similar words cluster; relations appear as consistent vector offsets (e.g., "king - man + woman ≈ queen").
+Algebraic constraints (e.g., linear dependence, orthogonality, subspace projections) encode types of relations. Orthogonal directions might separate distinct semantic features (size vs. danger).
+Higher-order constraints (bilinear maps, tensors, geometric products) capture compositionality and typed relations.
+Manifold/subspace constraints: Embeddings lie on lower-dimensional curved surfaces or subspaces that reflect real-world structure (e.g., hierarchical taxonomies as nested subspaces).
+These constraints turn the vector space into a semantic geometry where distances, angles, volumes, and intersections carry meaning. Neural training learns parameters that satisfy these constraints implicitly from data.
+
+
+
+structure of similarity of words by Graph Degree 
+the similiraty between two words can be found by the relations each words has with other words
+Model the semantic space as a multi-relational graph (or weighted graph):
+Nodes: Words (or word senses).
+Edges: Relations — co-occurrences, functional mappings (bijective or partial), syntactic dependencies, deductive links, etc.
+Degree: Number of distinct relations (or weighted strength) a word has. High-degree words are hubs (common, polysemous, or central concepts); low-degree words are more specialized/rare.
+Similarity Measure: Two words are similar if their neighborhood structures overlap significantly — not just shared direct neighbors, but similar patterns of connectivity (degree distribution, common neighbors, structural equivalence).
+ex:house-animal-mamal-cat, house-animal-mamal-dog
+
+
+
+
+ANTONIMES AS INHIBITORS 
+SYNONIMES AS STIMULATORS  words and relations of words in spectrum of those two opposites
+Core Concept: Bipolar Spectrum of Relations
+Stimulators (Synonyms & Related Positive Relations): Strengthen activation, reinforce similarity, and facilitate positive composition or reachability. They act like excitatory synapses or amplifying operators in the functional graph.
+Inhibitors (Antonyms & Opposing Relations): Suppress, negate, or create contrast. They act as inhibitory signals that reduce activation along certain paths or create separation in geometric space.
+Spectrum: Every relation (co-occurrence, hypernym, functional mapping, etc.) receives a polarity score or valence ∈ [-1, +1]:
++1.0: Strong synonym/stimulator (near-perfect equivalence, bijective reinforcement).
+-1.0: Strong antonym/inhibitor (direct opposition, bijective negation or inversion).
+Intermediate values: Graded relations (e.g., “related but contrasting” = -0.4; “partial synonym” = +0.7).
+This turns the semantic graph into a signed, weighted graph where edge signs and magnitudes modulate flow, similarity, and deduction.
+stimulation_score(W1, W2, Score) :-
+    relation(W1, W2, Pol, Str, _),
+    Score is Pol * Str.
+net_effect(Input, Output, Net) :-
+    findall(S, stimulation_score(Input, Mid, S), Scores),
+    sum_list(Scores, Net).  % Aggregate stimulators minus inhibitors
+valid_deduction(Input, RelationPolarity, Output) :-
+    bijective_relation(Input, Output, RelationPolarity),
+    consistent_polarity_chain(RelationPolarity).
+
+
+
+Creation of situations
+situations based on the situation of the book logic and information by Delvin
+ situations are context base for the infons(the pieces of information that contain <relations, arguments, evaluation of arguments when submited to relation>),situations are the base relations in which infons can deduct relations
+supports(Sid, Infon) :- infon(Sid, Rel, Args, Pol), consistent_with_context(Sid, Rel, Args).
+deduce_new_infon(Sid1, Sid2, NewInfon) :-
+    supports(Sid1, Infon1),
+    compatible_situations(Sid1, Sid2),
+    infer_from_polarity(Infon1, NewInfon).  % Using stimulator/inhibitor spectrum
+report_contextual_deduction(InputWord, Situation, Output) :-
+    find_situation_for(InputWord, Situation),
+    apply_function_set_in_situation(InputWord, Situation, Output).
+
+
+Regression of the plane of two or more words 
+It provides a method for modeling linear (or affine) relationships among multiple words in the vector space, enabling structured deduction, composition, and constraint enforcement across situations, function sets, graph neighborhoods, and bipolar polarity (stimulators/inhibitors).
+
+
+individual Memories (specific ideas or experiences) form a Repository of Ideas.
+Repositories of Ideas form a Collective of Experiential Knowledge. (ideas as persistent thoughts)
+Collectives of Experiential Knowledge form a Totality of Experiential Collectives.
+The Omniverse of Experiential Totalities is the set containing all Totalities of Experiential Collectives, with each totality as an atomic unit.
+regress_plane(Words, PlaneBasis, Residuals) :-
+    vectors_of(Words, Vectors),
+    fit_least_squares(Vectors, PlaneBasis, Residuals),
+    check_polarity_consistent(PlaneBasis).
+deduce_via_plane(InputWords, TargetWord) :-
+    regress_plane(InputWords, Plane, _),
+    project(TargetWord, Plane, ProjectionError),
+    acceptable_error(ProjectionError).
+
+
+
+
+
+
+
+TRANSLATOR FROM WORD TO CIRCUIT INPUT 
+in other words making a bijection relation that for each word relate/maps a neural circuit block 
+Translator ≜ A bijective function (or family of bijections)
+Translator: WordClass → NeuralCircuitBlock
+Domain: WordClasses (each carrying Polynomial + Geometric + Axiomatic attributes, plus full-image property coverage in the relevant codomain).
+Codomain: Neural Circuit Blocks (the modular, twirkable components of the neural network, modeled after VHDL-style entities).
+Property: The mapping is bijective — one-to-one and onto (within a given situation or context). This preserves the invertible, functional character you emphasized earlier.
+Intuitive Meaning:
+When the system “encounters” or activates a word (via input, deduction, or memory retrieval), the translator immediately routes it to its corresponding neural circuit block.
+Conversely, the output or activation pattern of a neural block can be translated back into its corresponding word/WordClass.
+This creates a direct semantic-to-hardware bridge.
+How the Translator Works
+Input Side (Semantic)
+A word or set of words arrives (from user input, lexical sources, internal deduction, or parallel graph walk).
+Each word is represented by its WordClass (polynomial expression, geometric attributes on planes/subspaces, axiomatic properties, and full-image coverage of its properties in the codomain).
+Translation Step
+The bijection looks up (or computes) the unique neural circuit block that corresponds to that WordClass.
+The block is selected or activated. Its internal parameters (weights, transformations, spatial projections) are initialized or modulated according to the WordClass attributes (especially geometric and polynomial parts).
+Circuit / Neural Execution
+The selected block performs vector-algebra operations (via the Spatial Logic gateway) within the relevant subspace.
+It can interact with other blocks through the parallel graph structure or main meta-graph.
+Output Side
+The result of the block(s) is translated back into a new set of words/WordClasses, together with a Proof(walk) that records the path taken (including which blocks were used and why).
+Integration with the Full Architecture
+WordClass Layer: The bijection is defined primarily on WordClasses. The three attribute types (Polynomial, Geometric, Axiomatic) directly influence which block is chosen and how it is configured.
+Spatial Logic Gateway: The geometric attributes of the WordClass determine the subspace in which the corresponding neural block operates. The translator ensures the block is “tuned” to the correct geometric frame.
+Neural Blocks & Twirking: Each block is now explicitly paired with a word/WordClass. Twirking a block can be reflected back as a change in the corresponding WordClass (or vice versa). The bijection itself can be updated dynamically.
+Parallel Graph Structure (Memory-Knowledge || Knowledge-Idea): The translator can be used inside mapping functions. A walk in the parallel graphs can include translation steps: word → block activation → new word.
+Graph Meta-Structure (N, E, L): Nodes (experiential states) can carry or reference the translator mapping. Edges can represent translation events or block-to-block interactions.
+Modal Logic (W, R, V): Different worlds can have different translator bijections (context-dependent mappings). Accessibility relations can include “translation-compatible” transitions.
+Situations & Infons: A situation can activate a specific translator instance. Infons can trigger translation (e.g., an infon that “activates” a word also activates its circuit block).
+Topos Theory Meta-Layer: The bijection itself becomes a morphism (or natural transformation) in the topos. Meta-reasoning can prove properties such as:
+“This translator preserves full-image property coverage.”
+“Twirking the block corresponds to a specific transformation on the WordClass.”
+“The composition of two translators is again a bijection (under certain conditions).”
+Benefits of the Bijective Translator
+Direct & Efficient Routing: Words no longer need complex lookup or embedding lookup tables — there is a clean, one-to-one correspondence to circuit blocks.
+Explainability: The Proof(walk) can explicitly list which blocks were activated via the translator, making reasoning traceable at both semantic and circuit levels.
+Modularity & Twirking: Because the mapping is bijective, changes to a block or to a WordClass can be cleanly reflected on the other side without side effects on unrelated components.
+Low-Entropy & Measurability: The translator enforces a structured correspondence, reducing ambiguity between semantic and computational representations.
+Meta-Reasoning Support: In the topos, you can reason about the translator itself (e.g., when it preserves certain properties, when two translators are equivalent, how it interacts with spatial logic).
+Hardware-Like Realization: Strengthens the original VHDL analogy — words become direct “pins” or “ports” that connect to specific circuit blocks.
+Example
+Input word set: {“king”, “power”} in a political situation.
+Translator looks up:
+“king” → Neural Block “Leadership_Royalty_Block” (configured with geometric attributes on the royalty-gender plane and axiomatic leadership properties).
+“power” → Neural Block “Authority_Dynamics_Block”.
+The blocks execute (possibly interacting via the parallel graph or main meta-graph).
+Output: New word set + Proof(walk) that includes the translation steps and block activations.
+Prolog Sketch:
+translator(WordClass, NeuralBlock) :- bijective_mapping(WordClass, NeuralBlock).
+activate_word(Word, Situation, ActivatedBlock, Output) :-
+    word_class(Word, Class),
+    translator(Class, ActivatedBlock),
+    run_neural_block(ActivatedBlock, Situation, Result),
+    translate_back(Result, Output).
+
+
+
+
+addition of a method to get the  RESULTING of an WORD using  A POLYNOMIAL OF PARAMETERS EACH PARAMETER AN ENCAPSULATED POLYNOMIAL --SIMILIRATY*(WORD_THAT_BEING_COMPARAED)+SIMILIRATY*(WORD_THAT_BEING_COMPARAED)
+Context-Aware Blending: The resulting representation of a word is dynamically constructed from similar concepts, weighted by relevance.
+Compositional Power: Combines the strengths of multiple similar words in a mathematically clean way.
+Explainability: The Proof(walk) can detail which similar words contributed and with what weight.
+Low Entropy: Reuses existing encapsulated polynomials instead of learning everything from scratch.
+Flexibility: The neural blocks can learn when to use this method and how to adjust the similarity weights or polynomial structures.
+
+
+
+generation of combination of words intersected with synthantic axioms, semantic axioms and pragmatic axioms 
+semantics as a subset of synthatic , pragmatics as a subset of semantic 
+each block will validate a phrase in order to obtain pragmatic phrases
+
+
+
+NEURAL NETWORKS TO DETECT EACH {NP , VP, }
+Extract input phrase-> Noun Layer , Verb Layber , Adverb layber->Extract output phrase
+this will permit syntax subset retrieval from a the set of combinations of words
+from the subset of syntax the subset of semantis will be extracted 
+from the subset of semantics the subset of pragmatics will be extracted 
+from the subset of pragmatics the subset of world knowledge  will be extracted 
+
+Stage,Existing Component(s),How It Maps
+"Syntactic Detection (NP, VP, ...)",Neural Blocks + Attention (Gain + Normalization),Neural blocks detect constituents using attention-style gain modulation over word representations
+"Specialized Layers (Noun, Verb, Adverb...)",WordClass + Class Perimeters + Set Operations,Each layer is a class (perimeter) in the Cartesian space. Set intersection/union extracts relevant subsets
+Syntax Subset,Patterns table + Parallel Graphs + Proof(walk),Stored patterns capture common syntactic combinations. Graph walks trace syntactic derivations
+Semantics Subset,Polynomial Composition + Similarity-weighted blending + Function Mappings,Meaning is composed via similarity-weighted polynomials. Semantic classes are extracted via set operations on perimeters
+Pragmatics Subset,"Situations + Modal Logic (W, R, V) + Attention Blocks",Context and speaker intent modulate which semantic interpretations are selected (via attention/gain)
+World Knowledge Subset,Hierarchical Levels + Topos Meta-Reasoning + Database Patterns,"Higher-level knowledge (Collectives, Totalities) and topos reasoning extract world-knowledge implications from pragmatic interpretations"
+
+Stage 1: Syntactic Parsing Layer (Neural Detection)
+
+Neural blocks (framed as attention/gain + normalization) scan the input phrase.
+They detect and label constituents (NP, VP, PP, ADVP, etc.).
+Output: A structured representation (can be stored as a pattern or as a temporary graph of nodes/edges).
+
+Stage 2: Layered Extraction
+
+Noun Layer: Extracts and enriches all noun-related elements using their WordClasses.
+Verb Layer: Extracts and enriches verb-related elements (including argument structure).
+Adverb / Adjective Layers, etc.
+Each layer operates as a class (perimeter) and can apply set operations.
+
+
+Level,Input,Operation,Output,Key Mechanisms
+Syntax,Raw word combinations,Constituent detection + pattern matching,Syntactic structure,Neural blocks + Attention + Patterns table
+Semantics,Syntactic structure,Polynomial composition + similarity weighting,Meaning representations,WordClass polynomials + Set operations on classes
+Pragmatics,Semantic representations,Context modulation + attention/gain,Intended meaning,Situations + Modal worlds + Attention blocks
+World Knowledge,Pragmatic interpretation,Higher-level inference + topos reasoning,Inferred world knowledge,Hierarchical levels + Topos meta-reasoning + Database patterns
+
+
+this neural networks will work in conjuction with the neural blocks we already defined of course 
+Component,Role,Primary Responsibility,Relationship to the Other
+Existing Neural Circuit Blocks (VHDL-style),Core computational engines,"Execute polynomial transformations, vector algebra (via Spatial Logic), gain modulation, normalization, and general reasoning",Provide the foundational computation
+New Linguistic Neural Networks,Specialized linguistic processors,"Detect syntactic constituents (NP, VP, etc.), manage layered extraction, and perform progressive subset refinement",Use the existing blocks as sub-components and orchestrate them for linguistic tasks
+Input Phrase enters the system.
+Linguistic Neural Networks (the new layer) take the lead for syntactic analysis:
+They detect and segment constituents (NP, VP, ADVP, etc.).
+They activate and route relevant existing neural blocks via the bijective translator.
+
+Existing Neural Blocks perform the actual computation:
+Apply polynomial transformations.
+Execute attention/gain modulation + normalization.
+Handle geometric operations in the Cartesian space.
+Compute similarity-weighted compositions.
+
+Linguistic Neural Networks then manage the cascading subset extraction:
+Use the outputs from the blocks to build the Syntax subset.
+Apply set operations on class perimeters to extract the Semantics subset.
+Modulate with attention blocks and modal logic for the Pragmatics subset.
+Leverage higher hierarchical levels and topos reasoning for the World Knowledge subset.
+
+
+
+
+Syntax → Semantics → Pragmatics → World Knowledge → Objects → Thought → Ideas
+
+
+
+
+------entropy_destilation-----------entropy_destilation-----------entropy_destilation-----------entropy_destilation-----------entropy_destilation-----------entropy_destilation-----
+
+
+
+
+
+
+
+------synthesis------------------synthesis------------------synthesis------------------synthesis------------------synthesis------------------synthesis------------------synthesis------------
+
+creation of relation both in words and relations
+
+context
+is it the idea of the labels “swimming” and “water” are agreements of
+the theing they are labeling and from that agreement contexts are born
+ words itselves are aggreements on a label given to an experience.
+"generated by the words and depends on the reader’s knowledge" one influences the other
+context is the base relation from which all the other relations on which are built receive meaning 
+
+
+memory is a recursion function
+flip flop analogy 
+input alters the values of memory and the combination of values input and memory values generate an output that becames when 
+adding to the new input(input +memory output)
+
+
+
+
+words as function sets 
+functions are subsets of relations with bijective properties therefore we can use words as function sets relations 
+in the way that for an input word , the relation between that input word and the subset of word with bijective property deducts an output word
+% Bijective relation
+bijective_relation(Word1, Word2) :-
+    relation(Word1, Word2, Mapping),
+    injective(Mapping),
+    surjective(Mapping).
+% Deduction
+deduce(InputWord, OutputWord) :-
+    word_function_set(InputWord, FuncSet),
+    member(Rel, FuncSet),
+    bijective_relation(Rel, TargetSet),
+    select_output(Rel, TargetSet, OutputWord).
+% Twirk: alter connection
+valid_twirk_rewire(Block1, Block2) :-
+    output_function(Block1, F),
+    input_interface(Block2, G),
+    composable_bijective(F, G).
+
+
+from the world knowledge  subset objects are born 
+creation of thought as tuple <perception, memory > 
+ideas as persistent thoughts 
+
+Substance of Ideas
+    Content (substance that fills a form)
+    Intentionality (intention)
+    Qualitative Properties:    
+
+
+
+
+------synthesis------------------synthesis------------------synthesis------------------synthesis------------------synthesis------------------synthesis------------------synthesis------------
+
+
+
+
+------storing---------storing---------storing---------storing---------storing---------storing---------storing---------storing---------storing---------storing---------storing---
+
+
+
+
+
+
+STORE ALL WORDS WITH THE SIMILARITIES PROPORTIONS IN A dedicated DATABASE 
+Purpose: Store every word (or WordClass) along with its similarity proportions to other words, enabling fast retrieval, ranking, clustering, and reasoning.
+Core Schema (relational or hybrid with graph elements):
+Words Table (or WordClasses Table)
+word_id (primary key)
+word (string)
+word_class (structured data: polynomial_expr, geometric_planes, axiomatic_infons, full_image_properties)
+last_updated (timestamp)
+Similarity_Proportions Table (core of the dedicated store)
+word1_id
+word2_id
+proportion_score (float ∈ [0,1] — overall similarity proportion)
+breakdown (structured JSON or separate columns):
+graph_degree_similarity (based on neighborhood overlap)
+geometric_similarity (plane overlap, subspace distance, regression residual)
+axiomatic_similarity (shared infon classes or axioms)
+polarity_alignment (stimulator/inhibitor compatibility)
+functional_bijectivity (full-image coverage overlap)
+contextual_relevance (situation-dependent score)
+last_computed (timestamp)
+evidence_walk (optional reference to Proof(walk) in the parallel graph)
+Indexes & Views:
+Fast lookup by word.
+Top-k similar words for any given word.
+Similarity by specific dimension (geometric, polarity, etc.).
+Materialized views for high-degree hubs or frequently queried words.
+
+
+graph data structure
+
+{
+function();
+structure();
+connections();
+links();
+network();
+}node
+
+measure distance of words 
+{
+function();
+structure();
+connections();--passing value 1 or 0 on link
+links();
+}edge
+layers{set of networks , each network a layer  }
+
+database structure to store <node, edges, function_mapping()>
+meaning for each neural network block there will be a function of words already discribed so the 
+bijection is strengthed 
+
+
+
+creation of a paralel neural network with neural blocks already discussed
+Extract mathematical functions from Brain Theory (attention as example)
+as in brain there is components that work a specific task
+
+
+
+
+database structure to store
+Pattern =<combination of words in a certain, derivation of meaning >
+AI BRAIN AS THE MAPPING/NETWORKS OF SETS AND FUNCTIONS 
+the input will come from knowledge graphs 
+
+
+
+
+
+
+define memory with temporal and spatial logic as tuple <temporal logic, spatial logic>
+both the temporal and spatial logic atomic premises are infons and neural networks blocks as we previous discussed 
+temporal_precede(E1, E2, S) :-
+    infon_class(temporal_sequence, _, Members),
+    member(infon(S, before, [E1, E2], +), Members).
+derive_temporal_memory(Situation, NewTemporalClass) :-
+    supported_infons(Situation, Infons),
+    extract_temporal(Infons, TemporalInfons),
+    compose_temporal_class(TemporalInfons, NewTemporalClass).
+
+
+Database & Graphs:
+New patterns and relations discovered during this process are stored in the patterns and function_mappings tables.
+The entire process is recorded as a Proof(walk).
+
+
+
+------storing---------storing---------storing---------storing---------storing---------storing---------storing---------storing---------storing---------storing---------storing---
+
+
+source------source------source------source------source------source------source------source------source------source------source------source------source------source------
+
+creation of definitions using encyclopedias 
+    expansion of definitions using dictionaries 
+from encyclopeadias and dictionaries i get the starting definition and equivalents that i will as input in my reasoning engine 
+Practical Pipeline for Definitions → Reasoning Engine
+Acquisition:
+Encyclopedias: Scrape/parse Wikipedia pages, DBpedia/Wikidata extracts, or OpenGloss-like synthetic resources for full articles.
+Dictionaries: Use WordNet, Wiktionary RDF, or API-accessible lexicons for glosses + relations.
+Extraction & Structuring:
+Definitions: Parse into core gloss + examples + context.
+Equivalents: Extract synonyms, related terms for bijective/partial function sets.
+Relations: Hypernyms ("is-a"), meronyms ("part-of"), etc., become graph edges with degrees.
+Tools/Methods: Rule-based patterns on definitions, ML classifiers for semantic roles, or LLM-assisted extraction constrained to your ontology.
+Integration:
+Graph Layer: Nodes = words/concepts; edges = relations from dict/encyc + degree-weighted similarity. Neighborhood overlap now includes dictionary synonyms and encyclopedic co-mentions.
+Vector Space: Initialize embeddings from definition text (e.g., average word vectors of gloss) or fine-tune with dictionary constraints.
+Function Sets: Dictionary synonyms suggest bijective mappings (e.g., "king" ↔ "monarch" as invertible equivalents); encyclopedias expand to contextual functions (e.g., "king" in chess vs. history).
+Geometric Layer: Constraints learned from definitional patterns (e.g., "X is a type of Y" enforces subspace inclusion).
+Neural Twirking: Blocks learn to expand/compress definitions; rewire based on new lexical relations.
+Prolog + DB: Store raw sources as design files, parsed facts (definition(Word, Gloss), synonym(Word1, Word2, Confidence)), and generated reports. Rules validate consistency (e.g., bijectivity of synonyms) and generate deduction traces.
+% Load from sources
+load_definition(Word, Source) :-
+    encyclopedia_or_dict(Source, Text),
+    parse_definition(Text, Gloss, Equivalents),
+    assert(definition(Word, Gloss)),
+    maplist(assert_synonym(Word), Equivalents).
+% Expand & reason
+expanded_definition(Word, FullDef) :-
+    definition(Word, Base),
+    findall(Syn, synonym(Word, Syn, _), Syns),
+    aggregate_neighbors(Syns, Context),  % Graph degree expansion
+    compose_definition(Base, Syns, Context, FullDef).
+
+
+source------source------source------source------source------source------source------source------source------source------source------source------source------source------
+
+
+
+--------control---------------------control---------------------control---------------------control---------------------control---------------------control---------------------control-------------
+MESSAGE_SWITCHER(STRUCTURE_EDITOR, BEHAVIOR_EDITOR, USER_ADVISORY) dependent of DESIGN_ANALYSER             ----control
+behavior example: digging in the sand , it encapsulates inputs detection of sand plus extra perceptions
+and an actuator , the act of digging.
+it depends on the structures in this case sand and hands
+user_advisory is a comment o the structures , the behaviour itself and relations between structure and behaviour
+
+
+
+
+complement it with a qualitative reasoning engine 
+use an hypothetical reasoning engine to evaluate the quality of the relations
+
+
+Input - output + generation = Accumulation - depletion (of data and words)
+the input relations minus the output relations plus the generation of relations equals the accumulation of relations 
+minus the depletition of relations 
+
+actions <-Agent(priorKnowledge, pastExperiences, goalsValues, observations)
+the relations made will depend on the priorKnowledge(relations already made),
+pastExperiences what cause relations are responsible for consequence relations,
+goalsvalues- relations that we want to obtain, observations-though spent on phemenom 
+of the process of obtaining a certain relation
+
+data= model(Input - output + generation = Accumulation - depletion ) + error
+through the model process we obtain an approximation of the flow of data
+
+
+A model M = ⟨W, R, V⟩ consists of: -------SPATIAL LOGIC
+
+    W: Non-empty set of possible worlds.
+    R: Binary accessibility relation on W.
+    V: Valuation function assigning truth values to propositional variables at each world.
+
+A Kripke model (or Kripke structure) is formally defined as the triple:
+$   M = \langle W, R, V \rangle   $
+where:
+$  W  $ is a non-empty set of possible worlds (states or points of evaluation).
+$  R \subseteq W \times W  $ is a binary accessibility relation on $  W  $. For worlds $  w, w' \in W  $, $  w R w'  $ means that $  w'  $ is accessible (or possible) from $  w  $.
+$  V: \Phi \to \mathcal{P}(W)  $ is a valuation function, where $  \Phi  $ is the set of propositional variables. It assigns to each propositional variable $  p  $ the set of worlds $  V(p) \subseteq W  $ at which $  p  $ is true.⁠Umsu
+Truth Conditions (Satisfaction Relation)
+Truth in a model is evaluated relative to a world $  w \in W  $, denoted $  M, w \models \varphi  $:
+For atomic propositions: $  M, w \models p  $ iff $  w \in V(p)  $.
+Boolean connectives follow classical rules.
+Modal operators:
+$  M, w \models \Box \varphi  $ ("necessarily $  \varphi  $") iff for all $  w'  $ such that $  w R w'  $, $  M, w' \models \varphi  $.
+$  M, w \models \Diamond \varphi  $ ("possibly $  \varphi  $") iff there exists $  w'  $ with $  w R w'  $ such that $  M, w' \models \varphi  $
+
+
+
+
+neural networks seems like more like a control system regulation the flow of information than a learning machine
+Neural networks learn by configuring incredibly high-dimensional, adaptive controllers that regulate information flow.
+"from each neuron should the network pay attention to, from which neuron should pay more attention than which neuron"
+thats why it ties so well with control systems
+
+the learning is implementd paralel with the control unit 
+the learning neural network that learns will be develop separetily from the control one permitting the blooming of an abstract 
+network concerned only to create abstract reasoning structures that will handle the learning in abstract way(abstraction provived via api in between control unit and learning one)
+submit_experience(state, action, outcome, context)
+request_abstract_reasoning(query, context) → returns structured reasoning trace or new module
+register_new_reasoning_structure(structure_id, interface)
+get_updated_policy_suggestions()
+
+
+
+W (Possible Worlds): Each world represents a state of experiential knowledge, e.g., a specific memory context, a repository’s organization, or a collective’s shared wisdom. Worlds are indexed by time or experiential context.
+R (Accessibility Relation): Defines transitions between worlds, e.g., temporal progression (^Ĥād to NĒkst), experiential resonance (rēzōnāten), or ecological growth (ēkōlōğīzēn).
+V (Valuation Function): Assigns truth values to propositions like Mēmōrīā rēzōnāten (memory resonates) or Kōlektīv blūmānt (collective blooms) at each world.
+ALL LAYERS ARE MODULES 
+
+
+Graph-Based Semantic Meta-Structure 
+N: A set of nodes representing experiential states (memories, repositories, collectives, or the omniverse).
+E: A set of directed edges representing relationships (temporal, experiential, or ecological) between states.
+L: A labeling function assigning semantic properties (e.g., truth, resonance, ecological growth) to nodes and edges.
+
+
+
+paralel graph structure , this graph network of graphs that follows will serve as complement the already meantioned data structures
+GRAPH OF MEMORY- KNOWLEDGE || GRAPH OF KNOWLEDGE - IDEA 
+Input==Set of words
+Output== tuple< Final Set of words, Proof(walk)>
+Fuction library(subrelation, MAPPINg of words set to other word set)
+
+
+
+
+NEURAL NETWORKS DECIDES HOW MANY PARAMETERS A POLYNOMIAL HAS, in other words paremeters that define parmeters making network blocks
+block_polynomial_structure(BlockID, Degree, Terms, Variables).
+decide_polynomial_structure(BlockID, Situation, NewStructure) :-
+    current_structure(BlockID, OldStructure),
+    neural_decision(BlockID, Situation, OldStructure, NewStructure),  % meta-level decision
+    update_block(BlockID, NewStructure).
+
+
+
+Knowledge representation using nodes as states(set of words or other stuff ) and edges as logic deduction
+nodes are sets of words and the edges are relations which are logic deductions that create an order between the  two sets of words
+
+
+
+
+api between prolog interpreter and database, prolog serves as analyser which receives design files and retrieves report files
+parse_design(File, Blocks, Connections, Vectors) — Asserts hierarchical facts (word vectors → phrase blocks → paragraph circuits).
+reachability(SourceWord, TargetWord, Path, Prob) — Graph traversal on co-occurrence/vector similarity (ties back to your original question: probability vs. count-based reachability).
+validate_twirk(Block, NewImpl, Connections, Result) — Checks if new block implementation or rewiring preserves semantics/compositionality.
+generate_report(DesignId, Type, ReportContent) — Builds structured output (e.g., violations, suggested twirks, vector similarity matrices).
+% Twirk validation: altering connection
+valid_twirk(Block1, Block2, NewConnection) :-
+    block_interface(Block1, OutType),
+    block_interface(Block2, InType),
+    compatible(OutType, InType),
+    no_cycle_introduced(Block1, Block2).  % Constraint solving
+
+
+
+
+ERROR BASED ACTION FEEDBACK engine that auxiliates the main network engine 
+PARAMETERS AS POLYNOMIALS,parameters will be polynomials , defined by the neural blocks already discussed 
+Parameters as Polynomials (Defined by Neural Blocks)
+This is a natural and powerful refinement that aligns perfectly with the PolynomialAttributes in the WordClass layer and the vector algebra foundation of the neural blocks. By representing parameters as polynomials, you turn the adjustable weights, coefficients, and transformations inside the neural circuit blocks into explicit, structured, algebraic expressions that can be learned, composed, inspected, and reasoned about.
+Core Idea
+Neural Block Parameters = Polynomials (or polynomial expressions) over relevant variables (other words, features, geometric coordinates, polarity scores, etc.).
+These polynomials are defined, learned, or modulated by the neural blocks themselves (via twirking, training, or meta-reasoning in the topos layer).
+
+
+--------control---------------------control---------------------control---------------------control---------------------control---------------------control---------------------control-------------
+

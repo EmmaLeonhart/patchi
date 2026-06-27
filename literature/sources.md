@@ -13,6 +13,58 @@ must do new work.
 
 ---
 
+## Primary sources (Pygmalion's notebooks)
+
+The evidentiary base of the project is Pygmalion's own writing. There are two
+overlapping notebook dumps; they are the *same intellectual work*, captured at
+two stages of organization.
+
+- **[`../data_lake/artificialtime2.txt`](../data_lake/artificialtime2.txt)** (800 lines) —
+  the raw notebook. Free-flowing, unsorted; the constructs (infons, WordClasses,
+  the bijective translator, spatial/temporal logic, topos meta-reasoning, the
+  control reframing) appear in the order they were thought. Also carries a handful
+  of still-open "(no answer yet)" prompts that the later pass dropped — *BIG DATA +
+  CONNECTIVITY + AI*, *a COMPILER FOR THE AI*, bridging ML/knowledge-experts
+  (clusters, decision trees, causal inference) into the linguistic engine, the
+  neural-net-as-learning-engine on a separate server.
+- **[`../data_lake/proto.txt`](../data_lake/proto.txt)** (848 lines) — a **later,
+  reorganized pass** of the same material. Line-for-line it is ~99% identical to
+  `artificialtime2.txt` (a sorted-line diff leaves only ~13 lines unique to it,
+  most of them section banners); it adds **no new construct**. What it adds is
+  *structure*: the dump is partitioned into seven labeled phases that expose
+  Pygmalion's own intended pipeline ordering —
+  1. **commentaries** — the motivating intuitions (rules-as-LP, classifiers,
+     VSMs, the infon→WordClass→block→spatial/temporal→object→thought→idea→topos
+     abstraction ladder);
+  2. **representation** — the representation layer proper (the
+     polynomial+geometric+axiomatic WordClass, spatial-logic-as-gateway-to-vector-
+     algebra, topos-as-VHDL-category, classes-as-perimeters, verbs-as-functions,
+     "a model is a subset of the atoms");
+  3. **entropy_destilation** — distillation into ordered forms: the
+     syntax → semantics → pragmatics → world-knowledge cascade, NN constituent
+     detection, geometric meaning from linear-algebra constraints;
+  4. **synthesis** — the binding ideas: context-as-base-relation,
+     words-as-agreements, memory-as-recursion, words-as-function-sets,
+     thought = ⟨perception, memory⟩, ideas-as-persistent-thoughts;
+  5. **storing** — the persistence layer: the similarity database schema, the
+     node/edge/function-mapping graph structures, the `<temporal, spatial>` memory
+     tuple;
+  6. **source** — lexical bootstrapping from encyclopedias + dictionaries
+     (WordNet/Wiktionary/DBpedia) into the reasoning engine;
+  7. **control** — the control view: `MESSAGE_SWITCHER`, the Kripke `M=⟨W,R,V⟩`
+     spatial logic, error-based feedback, parameters-as-polynomials, and the
+     "neural nets are information-flow controllers" reframing.
+
+  This phase partition is itself useful evidence: it is the author confirming,
+  in his own hand, that the notebook is a single layered stack rather than a
+  grab-bag — and the phase order (represent → distill → synthesize → store →
+  source → control) lines up with the layered reading in
+  [`REVIEW.md`](REVIEW.md) §1. Because `proto.txt` adds no new theory, it changes
+  none of the citations below; it is archived as the cleaner entry point into the
+  same corpus.
+
+---
+
 ## Situation semantics & information
 
 Grounds: **infons**, **situations**, **context-as-base-relation**, **words-as-agreements**.

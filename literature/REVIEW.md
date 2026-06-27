@@ -5,7 +5,10 @@ of cognition in the established literature: for each major construct, the prior
 work it descends from, and the gap Patchi must actually close. Full source notes
 (with verified identifiers) are in [`sources.md`](sources.md). Pygmalion's
 original framework is in [`../data_lake/artificialtime2.txt`](../data_lake/artificialtime2.txt)
-and is his intellectual work; this review is analysis built on top of it.
+— with a later, seven-phase reorganization of the same notebook in
+[`../data_lake/proto.txt`](../data_lake/proto.txt) (same constructs, sorted into
+his own pipeline order; see the *Primary sources* note in `sources.md`) — and is
+his intellectual work; this review is analysis built on top of it.
 
 > **Research question.** Can Pygmalion's framework — *words as agreements on
 > labels; context as the base relation; infons & situations; meaning as relations
