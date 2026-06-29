@@ -235,3 +235,12 @@ Folded Result 7 into the legibility layer, stating numbers flatly:
 - `literature/sources.md`: WordNet (Miller 1995) added as the independent relation
   source, with the nltk dependency documented as local-only / non-CI.
 Suite still 129 green.
+
+## 2026-06-29 — GD-4: reconciled todo.md; GD thread closed
+
+`todo.md` MVC-2 marked: graph-degree structural similarity DONE (first positive
+result), remaining reach recorded — (a) a learned/weighted combiner (the flat
+rank-average's +0.087 is not the ceiling), (b) a dense/signed relation graph
+(ConceptNet, co-occurrence) to test the stimulator/inhibitor polarity half WordNet
+left at noise, (c) does the complementarity hold on fastText-300. Queue returned to
+the hand-back state. GD thread (GD-1..GD-4) complete; suite 129 green.

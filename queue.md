@@ -10,22 +10,25 @@ status-report :42). The `## Always last` tail keeps them alive.
 
 ---
 
-## Active — GD: graph-degree structural similarity (Pygmalion's "shared-neighbor distance")
+## Active — (empty) — GD thread drained; hand-back point reached again
 
-**Why now.** Emma re-supplied Pygmalion's full notebook (`data_lake/proto.txt`).
-Its most-repeated *untested* empirical claim is **"distance between words = the
-number of words they have in common"** / "similarity by graph degree"
-(proto.txt L229–235, L308–316). Every empirical result so far is about *vector
-reconstruction* (blend ≤ raw, 0 of 6) — a geometric signal. Structural /
-relational similarity from an **independent** relation source (WordNet) is a
-genuinely different signal the negative results never touched. Falsifiable
-question in two parts: (1) does neighbourhood-overlap similarity correlate with
-human similarity at all? (2) does combining it with cosine beat cosine alone —
-i.e. does Pygmalion's relational signal add what reconstruction could not?
+**The GD (graph-degree structural similarity) thread is complete.** Emma's
+re-supplied notebook (`data_lake/proto.txt`) foregrounded Pygmalion's "distance =
+number of shared words" claim; it is now tested and written up — the project's
+**first positive result** (`FINDINGS.md` Result 7: WordNet shared-ancestor
+structure complements GloVe cosine on SimLex-999, combined 0.383 > cosine 0.296).
+`structural.py` + 13 tests (suite 129 green), `run_structural.py`, FINDINGS / docs
+/ REVIEW / sources updated, `todo.md` MVC-2 reconciled with the remaining reach.
 
-- **GD-4 · Reconcile `todo.md`.** Mark the graph-degree similarity thread's status
-  (done / remaining reach, e.g. learned edge weights or a real multi-relational
-  graph beyond WordNet). Keep `todo.md` items abstract.
+**No item is auto-promoted, by design.** What remains in `todo.md` is large,
+open-ended research directions that each need a scope/product decision (full topos
+internal logic; learned/adaptive memory gate; the full linguistic pipeline; the GD
+reach — a *learned* combiner and a *dense signed* relation graph for the polarity
+half). The hard rails forbid fake-decomposing these.
+
+→ **Work-loop: report `nothing actionable` until the user picks a direction.** The
+GD reach (learned combiner / signed graph) is the most bounded next candidate if
+the user wants the loop to continue.
 
 ---
 

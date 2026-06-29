@@ -11,7 +11,17 @@ Grounded in [`literature/REVIEW.md`](literature/REVIEW.md).
   whole stack stands on.
 - **MVC-2 · Signed relation graph.** Synonyms (+) / antonyms (−) as TransE-style
   offsets — Pygmalion's stimulator/inhibitor spectrum. Source from WordNet /
-  Wiktionary.
+  Wiktionary. ✦ *Graph offset/spectrum core landed* (`relations.py`).
+  ✦ *Graph-degree structural similarity DONE — the GD thread, the project's first
+  positive result* (`structural.py`, `run_structural.py`; `FINDINGS.md` Result 7):
+  Pygmalion's "distance = number of shared words" claim, tested over a WordNet
+  shared-ancestor graph, **complements** GloVe cosine on SimLex-999 (combined
+  0.383 > cosine 0.296). **Remaining reach:** (a) a *learned/weighted* combiner
+  instead of the flat rank-average (0.087 is not the ceiling); (b) a denser /
+  genuinely *signed* relation graph (ConceptNet, co-occurrence) so the
+  stimulator/inhibitor *polarity* half — which WordNet's sparse antonyms left at
+  noise (`signed_overlap` ≈ 0) — can actually be tested; (c) does the
+  complementarity survive on the strongest embedding (fastText-300)?
 - **MVC-3 · Similarity-weighted blending operator.** Formalize and implement
   `Poly(w)=Σ sim(w,sᵢ)·Poly(sᵢ)`; this is the framework's distinctive composition
   primitive. **Benchmark it head-to-head** against additive and tensor/DisCoCat
