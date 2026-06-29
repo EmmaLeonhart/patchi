@@ -16,12 +16,15 @@ Grounded in [`literature/REVIEW.md`](literature/REVIEW.md).
   positive result* (`structural.py`, `run_structural.py`; `FINDINGS.md` Result 7):
   Pygmalion's "distance = number of shared words" claim, tested over a WordNet
   shared-ancestor graph, **complements** GloVe cosine on SimLex-999 (combined
-  0.383 > cosine 0.296). **Remaining reach:** (a) a *learned/weighted* combiner
-  instead of the flat rank-average (0.087 is not the ceiling); (b) a denser /
-  genuinely *signed* relation graph (ConceptNet, co-occurrence) so the
-  stimulator/inhibitor *polarity* half — which WordNet's sparse antonyms left at
-  noise (`signed_overlap` ≈ 0) — can actually be tested; (c) does the
-  complementarity survive on the strongest embedding (fastText-300)?
+  0.383 > cosine 0.296). **Remaining reach:** (a) ✦ *learned/weighted combiner DONE*
+  (`run_structural_weighted.py`): λ tuned on a train split, scored on held-out
+  test — beats cosine on SimLex for all 3 embeddings (+.075/.063/.029) and folds
+  the one flat-combine loss (fastText × WordSim) back to break-even; (b)
+  **remaining:** a denser / genuinely *signed* relation graph (ConceptNet,
+  co-occurrence) so the stimulator/inhibitor *polarity* half — which WordNet's
+  sparse antonyms left at noise (`signed_overlap` ≈ 0) — can actually be tested
+  (needs an external download → scope decision); (c) ✦ *generality DONE* —
+  complementarity survives the strongest embedding (fastText-300) on SimLex.
 - **MVC-3 · Similarity-weighted blending operator.** Formalize and implement
   `Poly(w)=Σ sim(w,sᵢ)·Poly(sᵢ)`; this is the framework's distinctive composition
   primitive. **Benchmark it head-to-head** against additive and tensor/DisCoCat

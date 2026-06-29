@@ -10,38 +10,28 @@ status-report :42). The `## Always last` tail keeps them alive.
 
 ---
 
-## Active — GD-R2: learned/weighted cosine+structural combiner
+## Active — (empty) — GD thread + learned combiner fully drained
 
-**Context.** GD-1..R1 are done and pushed (suite 129 green, CI green): Pygmalion's
-"distance = number of shared words" claim, tested over a WordNet shared-ancestor
-graph, gives the project's **first positive result** — structural similarity
-*complements* cosine on SimLex-999 across all three embeddings (+0.100 / +0.086 /
-+0.034). The one place a **flat equal-weight** rank-average *hurts* is
-fastText × WordSim (−0.104, cosine dominates). That negative cell is a property of
-the unweighted combiner — the obvious, bounded next step is to learn the weight.
+**The whole GD arc is done and pushed** (GD-1..R3; suite 129 green, CI + pages
+green): Pygmalion's "distance = number of shared words" claim, tested over a
+WordNet shared-ancestor graph, is the project's **first positive result** —
+structural similarity *complements* cosine on SimLex-999 across all three
+embeddings, and a **learned (held-out-validated) mixing weight** keeps that gain
+(+.075/.063/.029 on SimLex) while folding the one flat-combine loss (fastText ×
+WordSim) back to break-even. Written up in `FINDINGS.md` Result 7, the docs,
+`REVIEW.md`, `sources.md`; `todo.md` MVC-2 reconciled.
 
-Emma asked to barrel through with the research loop, so this is promoted to active
-(not parked). It is bounded, verifiable, and uses only cached data + WordNet.
+**No item is auto-promoted — the remaining work needs a scope decision.** The one
+untested part of Pygmalion's spectrum claim is the stimulator/inhibitor *polarity*
+half, which WordNet's sparse antonyms left at noise (`signed_overlap` ≈ 0). Testing
+it needs a **dense/signed relation graph** (ConceptNet or a co-occurrence graph) —
+an external download, i.e. a scope decision, not an unblocked autonomous step. The
+other `todo.md` directions (full topos internal logic; learned/adaptive memory
+gate; full linguistic pipeline) are large and open-ended.
 
-- **GD-R2 · `scripts/run_structural_weighted.py` (or extend `run_structural.py`).**
-  `combined(λ) = (1−λ)·rank(cosine) + λ·rank(adamic_adar)`. For each embedding ×
-  dataset, pick λ on a **train split** (maximise Spearman) and report Spearman on a
-  held-out **test split** — a proper split so the lift is not overfit (HARD RAIL:
-  do not tune on the test set, do not report the train-optimal as if it were the
-  result). Sweep λ ∈ {0,0.1,…,1}. Compare test-set: cosine alone vs flat-0.5 vs
-  learned-λ. Expect learned-λ ≥ cosine everywhere (λ→0 collapses to cosine, so it
-  can fold the fastText × WordSim loss back to ~break-even) and ≥ flat-0.5 on
-  SimLex. Write `results/structural_weighted_benchmark.json`; RUN it; record real
-  numbers, whichever way they go.
-- **GD-R3 · Write up + reconcile.** Fold the learned-combiner numbers into
-  `FINDINGS.md` Result 7 (does a tuned weight remove the one negative cell and lift
-  the SimLex gains?) and the docs; mark the MVC-2 "learned combiner" reach in
-  `todo.md` done/remaining. State numbers flatly.
-
-When GD-R2/R3 drain, the next bounded reach is a **dense/signed relation graph**
-(ConceptNet / co-occurrence) to test the stimulator-inhibitor *polarity* half that
-WordNet's sparse antonyms left at noise — but that needs an external download
-(scope decision), so park it for the user unless explicitly told to fetch it.
+→ **Work-loop: report `nothing actionable` until the user picks a direction.** The
+most bounded next candidate is the signed-graph polarity test (ConceptNet), but it
+should not be started autonomously because it pulls an external dependency.
 
 ---
 

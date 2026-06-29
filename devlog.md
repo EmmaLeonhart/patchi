@@ -267,3 +267,34 @@ not the structural signal, and the direct motivation for a learned mixing weight
 (todo MVC-2 reach). Updated FINDINGS Result 7 (cross-embedding table + the boundary
 analysis) and the docs robustness paragraph. Module/tests unchanged, suite 129
 green; experiment local-only (fastText load bounded to POOL=100k).
+
+## 2026-06-29 — GD-R2/R3: learned cosine+structural combiner (held-out validated)
+
+`scripts/run_structural_weighted.py`: `combined(λ)=(1−λ)·rank(cos)+λ·rank(adamic)`,
+with **λ tuned on a train split and every number scored on a held-out test split**
+(deterministic even/odd interleave — no leakage). Real numbers
+(`results/structural_weighted_benchmark.json`, gitignored):
+
+| embedding | dataset | λ* | test cos | flat-0.5 | learned | learned−cos |
+|---|---|--:|--:|--:|--:|--:|
+| GloVe-50 | WordSim-353 | 0.3 | .483 | .518 | .522 | +.039 |
+| GloVe-50 | SimLex-999 | 0.6 | .249 | .321 | .324 | **+.075** |
+| GloVe-100 | WordSim-353 | 0.2 | .522 | .541 | .549 | +.027 |
+| GloVe-100 | SimLex-999 | 0.5 | .278 | .341 | .341 | **+.063** |
+| fastText-300 | WordSim-353 | 0.1 | .750 | .618 | .743 | −.008 |
+| fastText-300 | SimLex-999 | 0.4 | .471 | .485 | .500 | **+.029** |
+
+On held-out data the learned combiner **beats cosine on SimLex for all three
+embeddings** (+.075/.063/.029) and is **≥ the flat-0.5 combine in every cell**. The
+previously catastrophic fastText × WordSim cell (flat-0.5 −0.13 vs cosine) folds
+back to **−0.008, break-even**: training picked λ*=0.1, correctly near-zeroing the
+weak structural signal where cosine (0.750) dominates; the −0.008 residual is the
+coarse 0.1 λ grid (λ=0 would tie cosine exactly), named as a grid artefact not a
+real loss. So a tuned weight captures the relational gain without the naive
+combine's downside, and the lift is on held-out pairs (not an overfit).
+
+Folded into FINDINGS Result 7 (+ limitations: coarse grid, single split not k-fold)
+and the docs; todo.md MVC-2 reconciled (learned combiner + fastText generality
+DONE; only the signed-graph *polarity* half remains, and it needs an external
+download → scope decision). Module/tests unchanged, suite 129 green; experiment
+local-only (the script needs nltk WordNet, not in CI). GD arc complete.

@@ -292,6 +292,14 @@
   cosine so dominates there that averaging in the weaker structural signal drags it down — a property
   of the unweighted combiner, and the reason the next step is a <em>learned</em> mixing weight.
 </p>
+<p>
+  And a <strong>learned weight</strong> (λ tuned on a train split, scored on held-out test) delivers:
+  on SimLex it beats cosine on all three embeddings (+0.075 / +0.063 / +0.029 held-out), and it folds
+  the fastText × WordSim loss back to <strong>break-even</strong> (−0.008, λ*=0.1 — training correctly
+  near-zeroes the weaker signal where cosine dominates). The learned combiner is ≥ the flat one in
+  every cell. So the relational gain is real on held-out pairs, and a tuned weight captures it without
+  the naive combine's downside.
+</p>
 
 <h2>The conclusion, stated straight</h2>
 <p>

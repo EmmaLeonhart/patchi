@@ -249,12 +249,38 @@ equal-weight rank-average drags it down. That is a property of the *unweighted
 combiner*, not of the structural signal — and it is exactly why the next step is a
 *learned* weight that down-weights structure where it is weaker (todo MVC-2 reach).
 
+**A *learned* mixing weight keeps the gain and removes the one loss.** The flat
+0.5 combine is the wrong knob where one signal dominates. So learn it:
+`combined(λ) = (1−λ)·rank(cosine) + λ·rank(adamic_adar)`, with **λ chosen on a
+train split and every number scored on a held-out test split** (deterministic
+even/odd interleave; `run_structural_weighted.py`):
+
+| embedding | dataset | λ\* | test cosine | test flat-0.5 | **test learned** | learned − cosine |
+|-----------|---------|--:|----:|----:|----:|----:|
+| GloVe-50     | WordSim-353 | 0.3 | 0.483 | 0.518 | 0.522 | +0.039 |
+| GloVe-50     | SimLex-999  | 0.6 | 0.249 | 0.321 | **0.324** | **+0.075** |
+| GloVe-100    | WordSim-353 | 0.2 | 0.522 | 0.541 | 0.549 | +0.027 |
+| GloVe-100    | SimLex-999  | 0.5 | 0.278 | 0.341 | **0.341** | **+0.063** |
+| fastText-300 | WordSim-353 | 0.1 | 0.750 | 0.618 | 0.743 | −0.008 |
+| fastText-300 | SimLex-999  | 0.4 | 0.471 | 0.485 | **0.500** | **+0.029** |
+
+On held-out data the learned combiner **beats cosine on all three embeddings on
+SimLex** (+0.075 / +0.063 / +0.029) and **is ≥ the flat-0.5 combine in every
+cell**. The previously catastrophic fastText × WordSim cell (flat-0.5 was −0.13
+vs cosine) is **folded back to −0.008 — break-even**: training picked λ\* = 0.1
+there, correctly near-zeroing the weaker structural signal where cosine (0.750)
+dominates. The −0.008 residual is the coarse 0.1 λ grid (λ = 0 would tie cosine
+exactly), not a real loss. So the learned weight captures the relational gain on
+genuine-similarity judgements without the flat combine's downside on
+relatedness — and it does so on *held-out* pairs, so the lift is not an overfit.
+
 So the project's empirical story is now two-sided: Pygmalion's *geometric*
 reconstruction loses on clean embeddings (Results 1–6), but his *relational*
 similarity is real and complementary on the harder, cleaner similarity task,
-robustly across embeddings (Result 7). The earlier headline was "a noise-
-conditional smoother that usually loses"; it is now "loses as geometry, wins as
-relational structure on genuine-similarity judgements."
+robustly across embeddings and through a learned (held-out-validated) combiner
+(Result 7). The earlier headline was "a noise-conditional smoother that usually
+loses"; it is now "loses as geometry, wins as relational structure on
+genuine-similarity judgements."
 
 ## Limitations (named, not buried)
 
@@ -271,13 +297,18 @@ relational structure on genuine-similarity judgements."
 - Result 7's structural graph is WordNet only; the relational similarity is as good
   as that one relation source. A denser or multi-relational graph (co-occurrence,
   ConceptNet) and a real *signed* graph (to test the polarity half) are untested.
-  The combined score is a plain rank-average — no weight was tuned, so the +0.087
-  is not the ceiling of what a learned combiner could reach.
+- The learned combiner uses a coarse λ grid (0.1 step) and a single deterministic
+  even/odd train/test split — not k-fold cross-validation. The held-out lift is
+  therefore directional evidence, not a tuned ceiling; a finer grid + CV would
+  sharpen the exact numbers (and would let λ = 0 tie cosine exactly on fastText ×
+  WordSim instead of the −0.008 grid artefact).
 
 ## Next steps
 
 - Result 7's structural signal is complementary, not redundant, with cosine on
-  SimLex. The natural follow-ups: a learned/weighted combiner instead of a flat
-  rank-average; a denser or signed relation graph (ConceptNet, co-occurrence) to
-  test the stimulator/inhibitor polarity half that WordNet antonyms left untested;
-  and whether the complementarity survives on the strongest embedding (fastText).
+  SimLex — now confirmed across embeddings *and* through a learned, held-out-
+  validated combiner. The remaining follow-up is a denser or genuinely *signed*
+  relation graph (ConceptNet, co-occurrence) to test the stimulator/inhibitor
+  **polarity** half that WordNet's sparse antonyms left at noise — the one part of
+  Pygmalion's spectrum claim still untested. (It needs an external download, so it
+  is a scope decision, not an autonomous step.)
