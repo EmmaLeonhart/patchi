@@ -203,7 +203,7 @@ two words' feature sets overlap. Spearman vs human similarity, GloVe-100 cosine 
 the same covered pairs as the baseline, and a rank-average **combined** score
 (`run_structural.py`):
 
-| dataset | common-nbr | jaccard | adamic-adar | signed | cosine | **combined** |
+| dataset (GloVe-100) | common-nbr | jaccard | adamic-adar | signed | cosine | **combined** |
 |---------|----:|----:|----:|----:|----:|----:|
 | WordSim-353 (relatedness) | 0.253 | 0.371 | 0.323 | −0.031 | **0.536** | 0.541 |
 | SimLex-999 (similarity)   | 0.167 | 0.276 | **0.298** | 0.093 | 0.296 | **0.383** |
@@ -228,11 +228,33 @@ stimulator/inhibitor variant — is weak both ways (−0.031, +0.093): WordNet's
 antonym links are too sparse to move it. Stated flatly: the *polarity* half of the
 claim is untested here for lack of a dense signed graph.
 
+**Does it generalise across embeddings? On SimLex, yes; and the boundary is
+informative.** Re-running the head-to-head across {GloVe-50, GloVe-100,
+fastText-300} (combined = rank-average of cosine + adamic-adar):
+
+| embedding | adamic-adar | WordSim cos→comb | SimLex cos→comb |
+|-----------|----:|----:|----:|
+| GloVe-50     | 0.323 | 0.506 → 0.517 (**+0.011**) | 0.263 → 0.363 (**+0.100**) |
+| GloVe-100    | 0.323 | 0.536 → 0.541 (**+0.006**) | 0.296 → 0.383 (**+0.086**) |
+| fastText-300 | 0.343 | 0.718 → 0.614 (**−0.104**) | 0.445 → 0.479 (**+0.034**) |
+
+The relational signal **complements cosine on SimLex for all three embeddings** —
+across two architectures (GloVe count-based, fastText subword) and a 0.263→0.445
+range of baseline strength. The gain *shrinks as the embedding gets stronger*
+(+0.100 → +0.034): a better embedding already captures more of the similarity, so
+there is less left for structure to add — a regular, explicable trend, not a
+fluke. The one place combining **hurts** is fastText × WordSim (−0.104): there
+cosine (0.718) so dominates the weaker structural signal (0.343) that a flat
+equal-weight rank-average drags it down. That is a property of the *unweighted
+combiner*, not of the structural signal — and it is exactly why the next step is a
+*learned* weight that down-weights structure where it is weaker (todo MVC-2 reach).
+
 So the project's empirical story is now two-sided: Pygmalion's *geometric*
 reconstruction loses on clean embeddings (Results 1–6), but his *relational*
-similarity is real and complementary on the harder, cleaner similarity task
-(Result 7). The earlier headline was "a noise-conditional smoother that usually
-loses"; it is now "loses as geometry, wins as relational structure."
+similarity is real and complementary on the harder, cleaner similarity task,
+robustly across embeddings (Result 7). The earlier headline was "a noise-
+conditional smoother that usually loses"; it is now "loses as geometry, wins as
+relational structure on genuine-similarity judgements."
 
 ## Limitations (named, not buried)
 

@@ -284,6 +284,14 @@
   measures is-a-kind-of directly, where distributional cosine conflates similarity with relatedness.
   On WordSim-353 (relatedness) cosine already wins and structure adds almost nothing.
 </p>
+<p>
+  The complementarity <strong>holds across all three embeddings on SimLex</strong> (GloVe-50 +0.100,
+  GloVe-100 +0.086, fastText-300 +0.034) — two architectures, a wide span of baseline strength — and
+  shrinks as the embedding gets stronger, exactly as expected. The one place a flat equal-weight
+  combination <em>hurts</em> is the strongest embedding on relatedness (fastText × WordSim, −0.104):
+  cosine so dominates there that averaging in the weaker structural signal drags it down — a property
+  of the unweighted combiner, and the reason the next step is a <em>learned</em> mixing weight.
+</p>
 
 <h2>The conclusion, stated straight</h2>
 <p>

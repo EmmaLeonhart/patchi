@@ -244,3 +244,26 @@ rank-average's +0.087 is not the ceiling), (b) a dense/signed relation graph
 (ConceptNet, co-occurrence) to test the stimulator/inhibitor polarity half WordNet
 left at noise, (c) does the complementarity hold on fastText-300. Queue returned to
 the hand-back state. GD thread (GD-1..GD-4) complete; suite 129 green.
+
+## 2026-06-29 — GD-R1: cross-embedding robustness of the structural result
+
+Generalized `run_structural.py` to run the head-to-head across {GloVe-50,
+GloVe-100, fastText-300} × {WordSim-353, SimLex-999}. The SimLex complementarity
+is robust:
+
+| embedding | SimLex cos→comb | WordSim cos→comb |
+|---|---|---|
+| GloVe-50 | 0.263 → 0.363 (**+0.100**) | 0.506 → 0.517 (+0.011) |
+| GloVe-100 | 0.296 → 0.383 (**+0.086**) | 0.536 → 0.541 (+0.006) |
+| fastText-300 | 0.445 → 0.479 (**+0.034**) | 0.718 → 0.614 (**−0.104**) |
+
+Combined beats cosine on SimLex for **all three embeddings** (two architectures, a
+0.263→0.445 span of baseline strength); the gain shrinks as the embedding
+strengthens (+0.100→+0.034 — a stronger embedding already captures more, so less is
+left for structure to add). The one negative cell is fastText × WordSim (−0.104):
+cosine (0.718) so dominates the weaker structural signal (0.343) that a flat
+equal-weight rank-average drags it down — a property of the *unweighted combiner*,
+not the structural signal, and the direct motivation for a learned mixing weight
+(todo MVC-2 reach). Updated FINDINGS Result 7 (cross-embedding table + the boundary
+analysis) and the docs robustness paragraph. Module/tests unchanged, suite 129
+green; experiment local-only (fastText load bounded to POOL=100k).

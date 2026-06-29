@@ -46,8 +46,10 @@ from patchi.structural import adamic_adar, common_neighbors, jaccard, signed_ove
 from patchi.benchmark import spearman  # noqa: E402
 
 CACHE = ROOT / "results" / "_cache"
-GLOVE = ("GloVe-100", CACHE / "glove100.gz")
-POOL = 200_000  # cover the dataset vocab generously
+EMBEDDINGS = [("GloVe-50", CACHE / "glove50.gz"),
+              ("GloVe-100", CACHE / "glove100.gz"),
+              ("fastText-300", CACHE / "fasttext300.gz")]
+POOL = 100_000  # covers the (common-word) dataset vocab; bounds fastText memory
 
 
 # -- datasets (same loaders as run_generality) -------------------------------
@@ -174,42 +176,45 @@ def main() -> int:
     print(f"  {len(covered)}/{len(vocab)} words had a WordNet sense; "
           f"{len(adj)} graph nodes total")
 
-    words, gM = load_glove(GLOVE[1], POOL)
-    gidx = {w: i for i, w in enumerate(words)}
-
     rows = []
-    for name, pairs in datasets:
-        res = evaluate(pairs, adj, signed, gM, gidx)
-        res["dataset"] = name
-        sp = res["spearman"]
-        res["combined_beats_cosine"] = sp["combined_cos+aa"] > sp["cosine_baseline"]
-        res["structural_best"] = max(sp["common_neighbors"], sp["jaccard"],
-                                     sp["adamic_adar"])
-        rows.append(res)
+    for emb_name, emb_path in EMBEDDINGS:
+        words, gM = load_glove(emb_path, POOL)
+        gidx = {w: i for i, w in enumerate(words)}
+        for name, pairs in datasets:
+            res = evaluate(pairs, adj, signed, gM, gidx)
+            res["embedding"] = emb_name
+            res["dataset"] = name
+            sp = res["spearman"]
+            res["combined_beats_cosine"] = sp["combined_cos+aa"] > sp["cosine_baseline"]
+            res["combined_minus_cosine"] = round(
+                sp["combined_cos+aa"] - sp["cosine_baseline"], 4)
+            rows.append(res)
+        del words, gM, gidx  # free fastText before the next load
 
     result = {
         "task": "structural (WordNet shared-ancestor) similarity vs human, "
-                "+ cosine baseline + combined",
-        "embedding": GLOVE[0],
+                "+ cosine baseline + combined, across embeddings",
         "rows": rows,
-        "combined_beats_cosine_anywhere": any(r["combined_beats_cosine"] for r in rows),
+        "combined_beats_cosine_everywhere": all(r["combined_beats_cosine"] for r in rows),
+        "combined_beats_cosine_on_simlex": all(
+            r["combined_beats_cosine"] for r in rows if r["dataset"] == "SimLex-999"),
     }
     (ROOT / "results").mkdir(exist_ok=True)
     (ROOT / "results" / "structural_benchmark.json").write_text(json.dumps(result, indent=2))
 
-    print(f"\n{result['task']} [{GLOVE[0]}]")
-    hdr = ("dataset      cover(wn/h2h)   c.nbr  jacc   adamic  signed  cosine  comb"
-           "   comb>cos")
-    print(hdr)
+    print(f"\n{result['task']}")
+    print("embedding     dataset       h2h   adamic  cosine  comb   comb-cos  win")
     for r in rows:
         sp = r["spearman"]
-        print(f"{r['dataset']:<12} "
-              f"{r['pairs_in_wordnet']:>4}/{r['pairs_usable_head2head']:<4}     "
-              f"{sp['common_neighbors']:+.3f} {sp['jaccard']:+.3f} "
-              f"{sp['adamic_adar']:+.3f} {sp['signed_overlap']:+.3f} "
-              f"{sp['cosine_baseline']:+.3f} {sp['combined_cos+aa']:+.3f}  "
+        print(f"{r['embedding']:<13} {r['dataset']:<12} "
+              f"{r['pairs_usable_head2head']:>4}  "
+              f"{sp['adamic_adar']:+.3f} {sp['cosine_baseline']:+.3f} "
+              f"{sp['combined_cos+aa']:+.3f}  {r['combined_minus_cosine']:+.4f}  "
               f"{r['combined_beats_cosine']}")
-    print(f"\ncombined beats cosine anywhere? {result['combined_beats_cosine_anywhere']}")
+    print(f"\ncombined beats cosine on SimLex everywhere? "
+          f"{result['combined_beats_cosine_on_simlex']}")
+    print(f"combined beats cosine on ALL cells? "
+          f"{result['combined_beats_cosine_everywhere']}")
     return 0
 
 

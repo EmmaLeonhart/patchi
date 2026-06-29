@@ -26,9 +26,16 @@ internal logic; learned/adaptive memory gate; the full linguistic pipeline; the 
 reach — a *learned* combiner and a *dense signed* relation graph for the polarity
 half). The hard rails forbid fake-decomposing these.
 
+**GD-R1 also done (cross-embedding robustness).** The SimLex complementarity holds
+on all three embeddings (GloVe-50 +0.100, GloVe-100 +0.086, fastText-300 +0.034);
+the only place a flat equal-weight combine *hurts* is fastText × WordSim (−0.104,
+where cosine dominates) — which motivates the learned-combiner reach directly.
+
 → **Work-loop: report `nothing actionable` until the user picks a direction.** The
-GD reach (learned combiner / signed graph) is the most bounded next candidate if
-the user wants the loop to continue.
+single most bounded next candidate, surfaced by GD-R1, is a **learned/weighted
+combiner** (tune the cos+structural mixing weight with a proper train/test split;
+it should both lift the SimLex gains and remove the fastText × WordSim loss). If
+the user wants the loop to keep barrelling, the work-loop may promote that.
 
 ---
 
