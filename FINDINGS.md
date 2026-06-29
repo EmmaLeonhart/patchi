@@ -6,6 +6,14 @@
 > point in *opposite* directions, and that contrast is the finding. Reproduce:
 > `python scripts/run.py` (synthetic) and `python scripts/run_real.py` (real;
 > needs a one-time ~65 MB GloVe download — see that script's docstring).
+>
+> **Update (Result 7): the first *positive* result.** The blending/reconstruction
+> thread above is uniformly negative on clean vectors. A different Pygmalion claim
+> — that similarity is a *relational* property, "the number of words two words
+> have in common" — does carry signal: WordNet shared-ancestor structure
+> **complements** GloVe cosine on genuine-similarity judgements (SimLex-999),
+> combined .383 vs cosine .296. See Result 7. Reproduce: `python
+> scripts/run_structural.py` (needs nltk WordNet).
 
 ## Question
 
@@ -181,6 +189,51 @@ genuinely dominated, weighting *could* help — untested. The through-line stand
 the similarity weighting that defines Pygmalion's operator does not beat the plain
 baseline — for single-word reconstruction *or* phrase composition.
 
+## Result 7 — structural (relational) similarity: the first positive result
+
+Every result above tests one Pygmalion idea: *reconstruct* a word from its
+neighbourhood in vector space (a geometric signal). It loses. But the notebook's
+most-repeated claim is a *different*, relational one (`data_lake/proto.txt`
+L229–235, L308–316): **"distance between words corresponds to the number of words
+they have in common"** — similarity as overlap of relational neighbourhoods, not
+vector geometry. We tested it with an *independent* relation source so the test is
+fair: **WordNet**. Each word's features are the synsets on its senses' hypernym
+paths (the concepts it *is a kind of*); `patchi.structural` then scores how much
+two words' feature sets overlap. Spearman vs human similarity, GloVe-100 cosine on
+the same covered pairs as the baseline, and a rank-average **combined** score
+(`run_structural.py`):
+
+| dataset | common-nbr | jaccard | adamic-adar | signed | cosine | **combined** |
+|---------|----:|----:|----:|----:|----:|----:|
+| WordSim-353 (relatedness) | 0.253 | 0.371 | 0.323 | −0.031 | **0.536** | 0.541 |
+| SimLex-999 (similarity)   | 0.167 | 0.276 | **0.298** | 0.093 | 0.296 | **0.383** |
+
+**On SimLex-999 the relational signal stands on its own and then adds to cosine.**
+Adamic-adar alone (0.298) *matches* GloVe cosine (0.296); the combined score
+(0.383) beats cosine by **+0.087** (~29% relative) — the first time anything in
+this project beats the embedding baseline rather than losing to it. The mechanism
+is not mysterious: SimLex scores genuine *similarity* and deliberately penalises
+mere *relatedness* (coffee/cup are related, not similar), which distributional
+cosine conflates; WordNet's taxonomic shared-ancestor structure measures
+is-a-kind-of directly, so the two signals are **complementary** rather than
+redundant — exactly Pygmalion's claim that relational structure carries similarity
+information the geometry misses. Adamic-adar's inverse-log-degree weighting is what
+makes the raw "shared words" idea work: a specific shared ancestor (carnivore)
+counts for more than a generic one (entity).
+
+**On WordSim-353 (relatedness) the structural signal is weaker and adds almost
+nothing** (cosine 0.536, combined +0.005): taxonomy does not capture relatedness
+(computer/keyboard share no useful ancestor). And `signed_overlap` — the sign-aware
+stimulator/inhibitor variant — is weak both ways (−0.031, +0.093): WordNet's
+antonym links are too sparse to move it. Stated flatly: the *polarity* half of the
+claim is untested here for lack of a dense signed graph.
+
+So the project's empirical story is now two-sided: Pygmalion's *geometric*
+reconstruction loses on clean embeddings (Results 1–6), but his *relational*
+similarity is real and complementary on the harder, cleaner similarity task
+(Result 7). The earlier headline was "a noise-conditional smoother that usually
+loses"; it is now "loses as geometry, wins as relational structure."
+
 ## Limitations (named, not buried)
 
 - Three embeddings (GloVe-50/100 + fastText-300, two architectures) × two datasets
@@ -188,12 +241,21 @@ baseline — for single-word reconstruction *or* phrase composition.
 - The phrase benchmark is synthetic with an equal-weight ground truth; a real
   phrase-similarity dataset (Mitchell & Lapata) and head-weighted phrases are
   untested.
-- `run_real.py` / `run_residual.py` / `run_generality.py` are local scripts (they
-  need the embedding downloads); they are **not** part of CI. The operators they
-  exercise (`blend_from_neighbors`, `residual_blend`) and Spearman are unit-tested;
-  the scripts' glue (parsing / neighbour search) is not CI-covered.
+- `run_real.py` / `run_residual.py` / `run_generality.py` / `run_structural.py` are
+  local scripts (they need the embedding downloads / nltk WordNet); they are **not**
+  part of CI. The operators they exercise (`blend_from_neighbors`, `residual_blend`,
+  `patchi.structural`) and Spearman are unit-tested; the scripts' glue (parsing /
+  neighbour search / graph construction) is not CI-covered.
+- Result 7's structural graph is WordNet only; the relational similarity is as good
+  as that one relation source. A denser or multi-relational graph (co-occurrence,
+  ConceptNet) and a real *signed* graph (to test the polarity half) are untested.
+  The combined score is a plain rank-average — no weight was tuned, so the +0.087
+  is not the ceiling of what a learned combiner could reach.
 
 ## Next steps
 
-- A genuinely different embedding *architecture* (word2vec / fastText) to test whether
-  the "reconstruction hurts on clean vectors" result generalises beyond GloVe-50.
+- Result 7's structural signal is complementary, not redundant, with cosine on
+  SimLex. The natural follow-ups: a learned/weighted combiner instead of a flat
+  rank-average; a denser or signed relation graph (ConceptNet, co-occurrence) to
+  test the stimulator/inhibitor polarity half that WordNet antonyms left untested;
+  and whether the complementarity survives on the strongest embedding (fastText).

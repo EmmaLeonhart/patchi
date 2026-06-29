@@ -260,7 +260,37 @@
   <tr><td>1.6</td><td>4.0</td><td>0.363</td><td>0.352</td><td>0.349</td></tr>
 </table>
 
+<h3>Relational similarity — the first positive result (WordNet × SimLex-999)</h3>
+<p>
+  Every result above tests one Pygmalion idea: <em>reconstruct</em> a word from its neighbourhood in
+  vector space — a geometric signal. It loses. But the notebook's most-repeated claim is a
+  <em>different</em>, relational one: <strong>"distance between words = the number of words they have
+  in common."</strong> We tested it with an independent relation source — <strong>WordNet</strong>
+  (each word's features = the concepts on its hypernym paths) — and scored how much two words'
+  feature sets overlap, against the human judgements, with GloVe cosine as the baseline and a
+  rank-average <strong>combined</strong> score.
+</p>
+<table>
+  <tr><th>dataset</th><th>adamic-adar</th><th>cosine</th><th>combined</th><th>combined − cosine</th></tr>
+  <tr><td>WordSim-353 (relatedness)</td><td>0.323</td><td><strong>0.536</strong></td><td>0.541</td><td>+0.005</td></tr>
+  <tr><td>SimLex-999 (similarity)</td><td>0.298</td><td>0.296</td><td><strong>0.383</strong></td><td><strong>+0.087</strong></td></tr>
+</table>
+<p>
+  On <strong>SimLex-999</strong> — which scores genuine <em>similarity</em> and deliberately
+  penalises mere relatedness (coffee/cup) — the relational signal alone (adamic-adar 0.298)
+  <em>matches</em> GloVe cosine (0.296), and the combined score (0.383) <strong>beats cosine by
+  +0.087</strong> (~29% relative): the first time anything in this project beats the embedding
+  baseline rather than losing to it. The two signals are <strong>complementary</strong> — taxonomy
+  measures is-a-kind-of directly, where distributional cosine conflates similarity with relatedness.
+  On WordSim-353 (relatedness) cosine already wins and structure adds almost nothing.
+</p>
+
 <h2>The conclusion, stated straight</h2>
+<p>
+  The empirical story is two-sided. Pygmalion's <em>geometric</em> reconstruction loses on clean
+  embeddings; his <em>relational</em> similarity is real and complementary on the harder, cleaner
+  task. "Loses as geometry, wins as relational structure."
+</p>
 <p>
   Pygmalion's blending operator's value is <strong>entirely conditional on input noise</strong>. It
   is a denoiser: it wins when averaging over trustworthy neighbours recovers signal (noisy vectors)

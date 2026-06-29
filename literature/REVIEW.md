@@ -81,7 +81,17 @@ known to be consistent.** Concretely:
    — `Poly(w) = Σ Similarity(w, sᵢ)·Poly(sᵢ)` — is *not* the bilinear/tensor
    composition of DisCoCat/Smolensky. It is a similarity-gated interpolation over
    the lexicon. Formalizing it and comparing it to known operators is a crisp,
-   testable contribution.
+   testable contribution. *(Tested — `FINDINGS.md` Results 1–6: on clean
+   embeddings this geometric reconstruction loses to raw vectors in 0 of 6
+   cells.)*
+   2b. **Similarity as *relational* overlap.** A distinct Pygmalion claim
+   (`../data_lake/proto.txt` L229–235, L308–316): "distance between words = the
+   number of words they have in common" — structural neighbourhood overlap, not
+   vector geometry. *(Tested — `FINDINGS.md` Result 7, the project's first
+   positive result: WordNet shared-ancestor structure **complements** GloVe
+   cosine on genuine-similarity judgements, combined 0.383 vs cosine 0.296 on
+   SimLex-999. This is graph-degree similarity, the structural-equivalence line
+   from network science, applied to Pygmalion's signed relation graph.)*
 3. **Classes-as-regions *with* a binding algebra.** Conceptual Spaces gives
    regions but no composition; VSA gives composition but no region boundary.
    Unifying them — set theory over class perimeters *and* binding on the same

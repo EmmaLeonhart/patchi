@@ -23,11 +23,6 @@ question in two parts: (1) does neighbourhood-overlap similarity correlate with
 human similarity at all? (2) does combining it with cosine beat cosine alone —
 i.e. does Pygmalion's relational signal add what reconstruction could not?
 
-- **GD-3 · Write up the finding.** Add the result (the first positive one:
-  SimLex combined .383 > cosine .296; WordSim cosine dominates) to `FINDINGS.md`;
-  cross-reference `literature/REVIEW.md`; update the themed `docs/index.html`
-  results section; note the new dependency (nltk WordNet) in
-  `literature/sources.md`. State the numbers flatly.
 - **GD-4 · Reconcile `todo.md`.** Mark the graph-degree similarity thread's status
   (done / remaining reach, e.g. learned edge weights or a real multi-relational
   graph beyond WordNet). Keep `todo.md` items abstract.

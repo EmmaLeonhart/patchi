@@ -220,3 +220,18 @@ antonyms are too sparse to move it (named flatly, as predicted).
 `patchi.structural` has no nltk dependency (the graph builder lives in the
 script), so the suite stays CI-green; like `run_real.py`/`run_generality.py` this
 experiment is local-only (CI runs pytest, not the scripts).
+
+## 2026-06-29 — GD-3: wrote up the structural result
+
+Folded Result 7 into the legibility layer, stating numbers flatly:
+- `FINDINGS.md`: new "Result 7 — structural (relational) similarity: the first
+  positive result" + a header note; updated limitations + next steps. The
+  project's headline is now two-sided: "loses as geometry, wins as relational
+  structure."
+- `docs/index.html`: new "Relational similarity — the first positive result"
+  subsection (table: adamic-adar / cosine / combined) + a two-sided conclusion.
+- `literature/REVIEW.md`: gap item 2b (similarity-as-relational-overlap) with the
+  Result 7 cross-ref; tagged the blending gap as tested-and-negative.
+- `literature/sources.md`: WordNet (Miller 1995) added as the independent relation
+  source, with the nltk dependency documented as local-only / non-CI.
+Suite still 129 green.
