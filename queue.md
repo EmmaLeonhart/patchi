@@ -10,18 +10,40 @@ status-report :42). The `## Always last` tail keeps them alive.
 
 ---
 
-## Active — (empty) — GD arc complete through baseline contextualization
+## Active — GD-R8: bring the published paper (PAPER.md) current with Results 5–8
 
-**GD-1..R7 done and pushed.** The relational-similarity thread is the project's
-first positive result and is now fully scoped: structural/taxonomic WordNet
-similarity **significantly complements** distributional cosine on genuine
-similarity (SimLex) across all three embeddings — `FINDINGS.md` Result 7
-(adamic-adar) + Result 8 (the skeptic's question: textbook **path/Wu-Palmer beat**
-Pygmalion's shared-neighbour count, and cos+path is significant on all 3 incl.
-fastText, +.168/.151/.080, all CIs > 0). Direction right, specific metric not.
-Suite 129 green, CI + pages green; FINDINGS/docs/REVIEW/sources/todo all updated.
+**Why.** `PAPER.md` (the standalone clawRxiv paper, distinct from `FINDINGS.md`
+which builds the report PDF) **predates the entire GD arc**. Its abstract,
+results, discussion, and conclusion present only the all-negative blending story
+("on real data, negative… a noise-conditional smoother") and omit the generality
+result (Result 5), phrase composition (6), and the whole **positive
+relational-similarity finding** (Results 7–8) that is now the project's actual
+headline. That is a correctness gap in a published artifact — the paper currently
+states the *opposite* of the project's main conclusion. Bounded, unblocked (prose
+only, verified against the measured numbers already in `FINDINGS.md`), no new
+dependency.
 
-**No item is auto-promoted — the remaining work needs a scope decision.** The one
+- **GD-R8 · Update `PAPER.md` to the two-sided story.** Revise the **abstract**
+  (geometric reconstruction loses *but* relational/taxonomic structure
+  significantly complements cosine on genuine similarity); add a **results**
+  subsection condensing Results 5–8 (generality 0/6; phrase additive>weighted;
+  structural first-positive; the Wu-Palmer/path baseline that beats Pygmalion's
+  count while the phenomenon is real, bigger, and significant on all 3 embeddings);
+  update **Methods** (3 embeddings × 2 datasets, bootstrap + 5-fold CV, WordNet
+  structural measures); rewrite **Discussion/Conclusion** to "loses as geometry,
+  wins (significantly, with path similarity) as relational structure on
+  genuine-similarity judgements"; refresh **Limitations** (resolve the
+  one-embedding/one-dataset caveat; keep the ConceptNet polarity gap). Add
+  references (Miller 1995 WordNet; Wu & Palmer 1994; Leacock-Chodorow 1998). Every
+  number must match `FINDINGS.md` — cross-check, do not invent. HARD RAIL: keep the
+  Result-8 demotion of Pygmalion's specific metric in the paper, stated plainly.
+  **Do NOT re-publish to clawRxiv** — that needs an API key + `--confirm`, a user
+  action; note that in `devlog.md`.
+
+**After GD-R8,** the only remaining reach is the ConceptNet signed-graph *polarity*
+test (external download → scope decision, not auto-promoted).
+
+**No item is auto-promoted after that — the remaining work needs a scope decision.** The one
 untested part of Pygmalion's spectrum claim is the stimulator/inhibitor *polarity*
 half, which WordNet's sparse antonyms left at noise (`signed_overlap` ≈ 0). Testing
 it needs a **dense/signed relation graph** (ConceptNet or a co-occurrence graph) —
