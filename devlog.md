@@ -188,3 +188,35 @@ reconstruction) signal every Patchi result so far has measured (blend ≤ raw, 0
 - Next (GD-2): build a WordNet-derived signed graph and Spearman-correlate these
   measures with WordSim-353 / SimLex-999, vs the GloVe-cosine baseline and a
   combined score.
+
+## 2026-06-29 — GD-2: structural-similarity experiment — the FIRST positive result
+
+`scripts/run_structural.py`: built a WordNet shared-ancestor graph (each word's
+features = all synsets on its senses' hypernym paths — the concepts it *is a kind
+of*) over the 1341-word union vocab of WordSim-353 + SimLex-999 (1340 covered),
+and Spearman-correlated `patchi.structural` measures against human similarity, vs
+a GloVe-100 cosine baseline on the same covered pairs, plus a rank-average
+combined score. Real numbers (`results/structural_benchmark.json`, gitignored):
+
+| dataset | c.nbr | jaccard | adamic-adar | signed | **cosine** | **combined** |
+|---|---|---|---|---|---|---|
+| WordSim-353 (relatedness) | .253 | .371 | .323 | −.031 | **.536** | **.541** |
+| SimLex-999 (similarity)   | .167 | .276 | **.298** | .093 | **.296** | **.383** |
+
+The point: on **SimLex-999** — which scores genuine *similarity*, not mere
+relatedness — the purely relational adamic-adar signal (.298) **matches** GloVe
+cosine (.296) on its own, and the **combined** score (.383) **beats cosine by
++.087** (~29% relative). This is the first positive empirical result in the
+project: every prior result was the negative reconstruction story (blend ≤ raw, 0
+of 6). It is also explicable, not a fluke — SimLex penalises relatedness-not-
+similarity (coffee/cup), which distributional cosine conflates and WordNet
+taxonomic shared-ancestor structure does not; the two signals are complementary,
+exactly Pygmalion's claim that relational structure carries similarity
+information distinct from vector geometry. On **WordSim-353** (relatedness) cosine
+already wins and structure adds almost nothing (+.005) — taxonomy misses
+relatedness (computer/keyboard). `signed_overlap` is weak both ways: WordNet
+antonyms are too sparse to move it (named flatly, as predicted).
+
+`patchi.structural` has no nltk dependency (the graph builder lives in the
+script), so the suite stays CI-green; like `run_real.py`/`run_generality.py` this
+experiment is local-only (CI runs pytest, not the scripts).

@@ -23,21 +23,11 @@ question in two parts: (1) does neighbourhood-overlap similarity correlate with
 human similarity at all? (2) does combining it with cosine beat cosine alone —
 i.e. does Pygmalion's relational signal add what reconstruction could not?
 
-- **GD-2 · `scripts/run_structural.py` — the experiment.** Build a WordNet-derived
-  signed graph over the union vocab of the dataset pairs (synonym/hypernym/hyponym
-  lemmas as `+` neighbours, antonym lemmas as `−`). For each WordSim-353 and
-  SimLex-999 pair compute jaccard / adamic-adar / signed structural similarity;
-  Spearman vs human scores. Baseline = GloVe cosine; also a **combined** score
-  (rank-average of cosine + structural). Report coverage (both words in WordNet),
-  per-measure Spearman, and `combined_beats_cosine`. Write
-  `results/structural_benchmark.json`. RUN it; record the real numbers — do not
-  assert any direction before measuring. (WordNet via nltk is downloaded;
-  datasets/embeddings are cached in `results/_cache/`.)
-- **GD-3 · Write up the finding.** Add the result (numbers, whichever way it
-  goes) to `FINDINGS.md`; cross-reference `literature/REVIEW.md`; update the
-  themed `docs/index.html` results section; note the new dependency (nltk WordNet)
-  in `literature/sources.md`. If structural similarity is a real signal, say so
-  with the numbers; if it's null/negative, name it flatly.
+- **GD-3 · Write up the finding.** Add the result (the first positive one:
+  SimLex combined .383 > cosine .296; WordSim cosine dominates) to `FINDINGS.md`;
+  cross-reference `literature/REVIEW.md`; update the themed `docs/index.html`
+  results section; note the new dependency (nltk WordNet) in
+  `literature/sources.md`. State the numbers flatly.
 - **GD-4 · Reconcile `todo.md`.** Mark the graph-degree similarity thread's status
   (done / remaining reach, e.g. learned edge weights or a real multi-relational
   graph beyond WordNet). Keep `todo.md` items abstract.
