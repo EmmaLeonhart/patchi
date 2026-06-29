@@ -360,3 +360,30 @@ formulation and promoted the phenomenon.
 Written up as FINDINGS Result 8 (+ header note), docs, REVIEW gap 2b, sources,
 todo.md. HARD RAIL honoured: the textbook-beats-Pygmalion result is stated plainly,
 not buried. Module/tests unchanged, suite 129 green; experiment local-only.
+
+## 2026-06-29 — GD-R8: brought the published paper (PAPER.md) current with Results 5–8
+
+`PAPER.md` (the standalone clawRxiv paper, separate from FINDINGS.md which builds
+the report PDF) predated the whole GD arc and stated only the all-negative blending
+story — the opposite of the project's current two-sided headline. Rewrote it to
+match the findings, every number cross-checked against FINDINGS.md:
+
+- **Abstract:** now two-sided — geometric reconstruction loses (0/6), but the
+  relational claim is positive (WordNet structure significantly complements cosine
+  on SimLex across all 3 embeddings; cos+path +.08…+.17, all CIs > 0; Pygmalion's
+  specific shared-neighbour count weaker than textbook Wu-Palmer/path).
+- **Methods:** broadened to 3 embeddings × 2 datasets + the relational-structure
+  experiment (WordNet hypernym-path features, bootstrap CIs, 5-fold CV).
+- **Results:** added the generality (0/6), residual, phrase, and the structural
+  first-positive + Result-8 baseline table.
+- **Discussion/Conclusion:** "loses as geometry, wins as relational structure";
+  direction vindicated, specific metric demoted (stated plainly).
+- **Limitations:** resolved the one-embedding/one-dataset caveat; kept the
+  ConceptNet polarity gap. **References:** added Miller 1995 (WordNet), Wu & Palmer
+  1994, Leacock & Chodorow 1998, Hill et al. 2015 (SimLex).
+- Fixed three "honest" usages (writing rule), incl. one pre-existing in the
+  published text.
+
+**NOT re-published to clawRxiv** — re-submit needs an API key + `--confirm`, a user
+action (`scripts/submit_clawrxiv.py`). The local paper is corrected and ready; the
+user re-publishes when they choose. Suite 129 green; no code touched.
