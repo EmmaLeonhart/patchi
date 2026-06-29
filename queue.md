@@ -10,29 +10,37 @@ status-report :42). The `## Always last` tail keeps them alive.
 
 ---
 
-## Active — (empty) — hand-back point reached
+## Active — GD: graph-degree structural similarity (Pygmalion's "shared-neighbor distance")
 
-**The bounded work is drained.** The MVC core, every bridge, every reduced-core
-reach, the full empirical story (blend ≤ raw across 2 architectures × 2 datasets;
-residual no-sweet-spot; phrase additive > weighted > multiplicative), the
-end-to-end demo, the published paper, and the argued positions are all done. Suite
-green, CI/Pages green, site + paper live.
+**Why now.** Emma re-supplied Pygmalion's full notebook (`data_lake/proto.txt`).
+Its most-repeated *untested* empirical claim is **"distance between words = the
+number of words they have in common"** / "similarity by graph degree"
+(proto.txt L229–235, L308–316). Every empirical result so far is about *vector
+reconstruction* (blend ≤ raw, 0 of 6) — a geometric signal. Structural /
+relational similarity from an **independent** relation source (WordNet) is a
+genuinely different signal the negative results never touched. Falsifiable
+question in two parts: (1) does neighbourhood-overlap similarity correlate with
+human similarity at all? (2) does combining it with cosine beat cosine alone —
+i.e. does Pygmalion's relational signal add what reconstruction could not?
 
-**No item is auto-promoted, by design.** The only things left in `todo.md` are
-large, open-ended *research directions*, each needing a scope/product decision —
-not bounded hourly-tick work, and the hard rails forbid fake-decomposing them:
-
-- **Full topos internal logic** (genuine subobject-classifier / full-image proofs)
-  — hard mathematics, not a tick.
-- **Learned / adaptive memory gate & "use the polynomial/region payload in the
-  computation"** — needs a training setup + a product decision on scope.
-- **The full linguistic pipeline** (syntax → semantics → pragmatics →
-  world-knowledge over real text) — a large multi-stage build.
-- **A real phrase-similarity dataset** (Mitchell & Lapata) — a download-dependent
-  empirical extension, optional.
-
-→ **Work-loop: report `nothing actionable` until the user picks a direction.** The
-auto-flush + status crons keep running; they will not invent work.
+- **GD-2 · `scripts/run_structural.py` — the experiment.** Build a WordNet-derived
+  signed graph over the union vocab of the dataset pairs (synonym/hypernym/hyponym
+  lemmas as `+` neighbours, antonym lemmas as `−`). For each WordSim-353 and
+  SimLex-999 pair compute jaccard / adamic-adar / signed structural similarity;
+  Spearman vs human scores. Baseline = GloVe cosine; also a **combined** score
+  (rank-average of cosine + structural). Report coverage (both words in WordNet),
+  per-measure Spearman, and `combined_beats_cosine`. Write
+  `results/structural_benchmark.json`. RUN it; record the real numbers — do not
+  assert any direction before measuring. (WordNet via nltk is downloaded;
+  datasets/embeddings are cached in `results/_cache/`.)
+- **GD-3 · Write up the finding.** Add the result (numbers, whichever way it
+  goes) to `FINDINGS.md`; cross-reference `literature/REVIEW.md`; update the
+  themed `docs/index.html` results section; note the new dependency (nltk WordNet)
+  in `literature/sources.md`. If structural similarity is a real signal, say so
+  with the numbers; if it's null/negative, name it flatly.
+- **GD-4 · Reconcile `todo.md`.** Mark the graph-degree similarity thread's status
+  (done / remaining reach, e.g. learned edge weights or a real multi-relational
+  graph beyond WordNet). Keep `todo.md` items abstract.
 
 ---
 

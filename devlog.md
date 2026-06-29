@@ -166,3 +166,25 @@ User flagged the live page as broken/useless. Confirmed three real defects and f
   adds no construct the review didn't already ground. Suite **116 passed** (no
   src change). This is source-archival, not a queue/todo item — the hand-back
   point still stands; no new bounded work was created.
+
+## 2026-06-29 — GD-1: graph-degree structural similarity module (Pygmalion's "shared-neighbour distance")
+
+Emma re-supplied Pygmalion's full notebook (`data_lake/proto.txt`). Its
+most-repeated *untested* empirical claim is that word similarity is a *relational*
+property — "distance between words = the number of words they have in common"
+(proto.txt L229–235, L308–316) — as opposed to the *geometric* (vector
+reconstruction) signal every Patchi result so far has measured (blend ≤ raw, 0 of
+6). Started the GD thread to test it.
+
+- `src/patchi/structural.py`: graph-degree structural similarity over a generic
+  adjacency (decoupled from `Lexicon`, so the experiment can feed it an
+  *independent* relation source). `common_neighbors`, `jaccard`, `adamic_adar`,
+  and a sign-aware `signed_overlap` honouring the stimulator/inhibitor spectrum
+  (shared `+` neighbours concord, shared `−` neighbours contrast).
+- `tests/test_structural.py`: 13 tests on hand-computable toy graphs + the
+  promised edge cases (isolated nodes → 0 not NaN, full overlap → jaccard 1,
+  degree-1 neighbours skipped in adamic-adar, sign concord/discord). Suite 116 →
+  129 green.
+- Next (GD-2): build a WordNet-derived signed graph and Spearman-correlate these
+  measures with WordSim-353 / SimLex-999, vs the GloVe-cosine baseline and a
+  combined score.
