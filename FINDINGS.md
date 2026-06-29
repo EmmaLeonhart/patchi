@@ -238,12 +238,14 @@ fastText-300} (combined = rank-average of cosine + adamic-adar):
 | GloVe-100    | 0.323 | 0.536 → 0.541 (**+0.006**) | 0.296 → 0.383 (**+0.086**) |
 | fastText-300 | 0.343 | 0.718 → 0.614 (**−0.104**) | 0.445 → 0.479 (**+0.034**) |
 
-The relational signal **complements cosine on SimLex for all three embeddings** —
+The relational signal **adds to cosine on SimLex for all three embeddings** —
 across two architectures (GloVe count-based, fastText subword) and a 0.263→0.445
 range of baseline strength. The gain *shrinks as the embedding gets stronger*
 (+0.100 → +0.034): a better embedding already captures more of the similarity, so
 there is less left for structure to add — a regular, explicable trend, not a
-fluke. The one place combining **hurts** is fastText × WordSim (−0.104): there
+fluke. *(How much of that shrinking gain is statistically real is the subject of
+the significance test below: it is significant on the GloVe embeddings and fades to
+non-significant on fastText.)* The one place combining **hurts** is fastText × WordSim (−0.104): there
 cosine (0.718) so dominates the weaker structural signal (0.343) that a flat
 equal-weight rank-average drags it down. That is a property of the *unweighted
 combiner*, not of the structural signal — and it is exactly why the next step is a
@@ -274,12 +276,42 @@ exactly), not a real loss. So the learned weight captures the relational gain on
 genuine-similarity judgements without the flat combine's downside on
 relatedness — and it does so on *held-out* pairs, so the lift is not an overfit.
 
-So the project's empirical story is now two-sided: Pygmalion's *geometric*
-reconstruction loses on clean embeddings (Results 1–6), but his *relational*
-similarity is real and complementary on the harder, cleaner similarity task,
-robustly across embeddings and through a learned (held-out-validated) combiner
-(Result 7). The earlier headline was "a noise-conditional smoother that usually
-loses"; it is now "loses as geometry, wins as relational structure on
+**Is the gain statistically real? Significant on GloVe, not on fastText.** The
+gains are small, so a paired bootstrap (B = 2000, resampling the usable pairs with
+replacement; `run_structural_significance.py`) puts a confidence interval on the
+SimLex delta `spearman(flat-0.5 combine) − spearman(cosine)`:
+
+| embedding | SimLex delta | 95% CI | P(Δ>0) | significant? |
+|-----------|----:|:--:|----:|:--:|
+| GloVe-50     | +0.100 | [+0.057, +0.142] | 1.000 | **yes** |
+| GloVe-100    | +0.086 | [+0.043, +0.127] | 1.000 | **yes** |
+| fastText-300 | +0.034 | [−0.008, +0.075] | 0.938 | **no** (CI crosses 0) |
+
+So the SimLex complementarity is **significant on the two GloVe embeddings** but
+**not significant on fastText-300** — its CI just includes zero (94% one-sided).
+That is the boundary stated straight: the relational signal demonstrably helps on
+count-based embeddings, and on the strongest subword embedding its small residual
+gain is not distinguishable from noise at n≈995. (On WordSim the GloVe deltas
+straddle 0 — no effect — and the fastText flat-combine delta is *significantly
+negative*, −0.104, CI [−0.155, −0.053]: the flat combine genuinely hurts there.)
+
+**5-fold cross-validation confirms the learned combiner without the single-split
+caveat.** Replacing the one even/odd split with 5-fold CV (finer 0.05 λ grid),
+mean held-out Spearman: cosine vs learned — GloVe-50 SimLex 0.264 → **0.356**
+(+0.093); GloVe-100 SimLex 0.296 → **0.373** (+0.077); fastText SimLex 0.442 →
+**0.483** (+0.042); and crucially fastText × WordSim 0.721 → **0.720** (−0.001):
+the learned λ collapses to ≈cosine exactly where cosine dominates, so the flat
+combine's −0.104 loss is gone and the earlier −0.008 grid artefact shrinks to
+−0.001. The learned combiner is **≥ cosine on every cell** under proper CV.
+
+So the project's empirical story is now two-sided *and* statistically scoped:
+Pygmalion's *geometric* reconstruction loses on clean embeddings (Results 1–6), but
+his *relational* similarity genuinely complements distributional cosine on the
+harder similarity task — significantly so on GloVe embeddings, directionally (not
+significantly) on the strongest subword embedding — and a learned, cross-validated
+combiner captures that gain without ever losing to cosine (Result 7). The earlier
+headline "a noise-conditional smoother that usually loses" is now "loses as
+geometry, wins (significantly, on GloVe) as relational structure on
 genuine-similarity judgements."
 
 ## Limitations (named, not buried)
@@ -297,11 +329,13 @@ genuine-similarity judgements."
 - Result 7's structural graph is WordNet only; the relational similarity is as good
   as that one relation source. A denser or multi-relational graph (co-occurrence,
   ConceptNet) and a real *signed* graph (to test the polarity half) are untested.
-- The learned combiner uses a coarse λ grid (0.1 step) and a single deterministic
-  even/odd train/test split — not k-fold cross-validation. The held-out lift is
-  therefore directional evidence, not a tuned ceiling; a finer grid + CV would
-  sharpen the exact numbers (and would let λ = 0 tie cosine exactly on fastText ×
-  WordSim instead of the −0.008 grid artefact).
+- *(Resolved by the significance test above.)* The learned combiner now uses a
+  finer λ grid (0.05) and **5-fold cross-validation**, not the single even/odd
+  split; the SimLex gains carry **bootstrap 95% CIs** (significant on GloVe,
+  CI-crosses-0 on fastText). What remains open: the bootstrap resamples *pairs*,
+  which slightly understates the dependence between pairs that share a word — a
+  word-level block bootstrap would be stricter, though with 995 pairs the CIs are
+  wide of zero on GloVe regardless.
 
 ## Next steps
 

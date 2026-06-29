@@ -298,3 +298,34 @@ and the docs; todo.md MVC-2 reconciled (learned combiner + fastText generality
 DONE; only the signed-graph *polarity* half remains, and it needs an external
 download → scope decision). Module/tests unchanged, suite 129 green; experiment
 local-only (the script needs nltk WordNet, not in CI). GD arc complete.
+
+## 2026-06-29 — GD-R4/R5: significance + 5-fold CV — the gain is real on GloVe, not on fastText
+
+`scripts/run_structural_significance.py`: paired bootstrap (B=2000, seeded) on the
+SimLex delta `spearman(flat-0.5 combine) − spearman(cosine)`, plus 5-fold CV of the
+learned λ (0.05 grid). Real numbers (`results/structural_significance_benchmark.json`,
+gitignored):
+
+| embedding | SimLex delta | 95% CI | P(Δ>0) | sig? | CV cos→learn |
+|---|---|---|---|---|---|
+| GloVe-50 | +0.100 | [+0.057,+0.142] | 1.000 | **yes** | 0.264→0.356 |
+| GloVe-100 | +0.086 | [+0.043,+0.127] | 1.000 | **yes** | 0.296→0.373 |
+| fastText-300 | +0.034 | [−0.008,+0.075] | 0.938 | **no** | 0.442→0.483 |
+
+The SimLex complementarity is **bootstrap-significant on the two GloVe embeddings**
+but **not significant on fastText-300** — its CI just includes zero (94% one-sided).
+Stated straight: the relational signal demonstrably helps count-based embeddings,
+and on the strongest subword embedding its small residual gain is not
+distinguishable from noise at n≈995. (WordSim: GloVe deltas straddle 0; fastText
+flat-combine delta is significantly negative, −0.104 CI [−0.155,−0.053].) 5-fold CV
+confirms the learned combiner is ≥ cosine on every cell and kills the fastText ×
+WordSim flat loss (0.721→0.720, −0.001 — the −0.008 grid artefact gone with the
+finer 0.05 grid).
+
+Folded into FINDINGS Result 7 (qualified the "all three embeddings" claim to
+"significant on GloVe, directional on fastText"), resolved the two limitations
+(no-significance-test; single-split), updated docs + REVIEW + sources + todo.md.
+HARD RAIL honoured: the non-significant fastText cell is reported as non-
+significant, and the over-strong earlier wording was corrected. Module/tests
+unchanged, suite 129 green; experiment local-only. GD arc complete through
+significance.

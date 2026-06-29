@@ -300,6 +300,15 @@
   every cell. So the relational gain is real on held-out pairs, and a tuned weight captures it without
   the naive combine's downside.
 </p>
+<p>
+  <strong>Is it statistically significant?</strong> A paired bootstrap (2000 resamples) on the SimLex
+  gain says <strong>yes on the GloVe embeddings</strong> (GloVe-50 +0.100, 95% CI [+0.057, +0.142];
+  GloVe-100 +0.086, CI [+0.043, +0.127]) and <strong>no on fastText-300</strong> (+0.034, CI
+  [−0.008, +0.075] — just crosses zero): the relational signal demonstrably helps count-based
+  embeddings, and on the strongest subword embedding its small residual gain is not distinguishable
+  from noise. Under 5-fold cross-validation the learned combiner is ≥ cosine on every cell, and the
+  fastText × WordSim loss vanishes entirely (0.721 → 0.720). We report the boundary, not just the win.
+</p>
 
 <h2>The conclusion, stated straight</h2>
 <p>

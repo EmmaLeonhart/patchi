@@ -10,39 +10,19 @@ status-report :42). The `## Always last` tail keeps them alive.
 
 ---
 
-## Active — GD-R4: is the structural gain statistically real? (significance + k-fold)
+## Active — (empty) — GD arc complete through significance testing
 
-**Why.** The whole positive result (Result 7) rests on small Spearman gains
-(+0.03…+0.10) measured once. Two named limitations make it attackable: no
-significance test (is +0.087 just noise?) and a single deterministic train/test
-split (not k-fold). Both are fixable with **only cached data + the already-
-downloaded WordNet** — no external dependency, no scope decision. This is the
-unblocked, bounded "keep persisting" task.
+**GD-1..R5 done and pushed.** Pygmalion's "distance = number of shared words"
+claim, tested over a WordNet shared-ancestor graph, is the project's **first
+positive result**, now statistically scoped: structural similarity complements
+cosine on SimLex, **bootstrap-significant on GloVe-50/100** (95% CI [+.057,+.142] /
+[+.043,+.127]) but **not significant on fastText-300** (CI [−.008,+.075] crosses 0
+— reported as non-significant, not spun). A 5-fold-CV learned combiner is ≥ cosine
+on every cell and removes the flat-combine's fastText × WordSim loss. Suite 129
+green, CI + pages green. Written up in `FINDINGS.md` Result 7 (+ two limitations
+resolved), the docs, `REVIEW.md`, `sources.md`, `todo.md`.
 
-- **GD-R4 · `scripts/run_structural_significance.py`.**
-  1. **Paired bootstrap CI** on the headline deltas. For each embedding × dataset,
-     resample the usable pairs with replacement (B = 2000, seeded RNG for
-     reproducibility); on each resample recompute `spearman(combined_flat0.5)` and
-     `spearman(cosine)` and their difference. Report the observed delta, the 95%
-     percentile CI, and `P(delta > 0)`. Headline question: on SimLex, is
-     `combined − cosine` CI strictly above 0 for the GloVe embeddings?
-  2. **5-fold cross-validation** of the learned λ (finer grid, 0.05 step) replacing
-     the single even/odd split: per fold, learn λ on the other 4, score the
-     held-out fold; report mean test Spearman (cosine vs learned) ± std across
-     folds. This removes the "single split / coarse grid" limitation and should let
-     λ→0 tie cosine exactly on fastText × WordSim (killing the −0.008 artefact).
-  Write `results/structural_significance_benchmark.json`. RUN it; record the real
-  numbers. HARD RAIL: if a gain's CI includes 0, say so plainly — a non-significant
-  gain is reported as non-significant, not spun.
-- **GD-R5 · Write up + reconcile.** Fold the CIs and CV numbers into `FINDINGS.md`
-  Result 7 (and update the two limitations they resolve); update the docs if the
-  significance claim changes the headline; mark the limitation closed in `todo.md`.
-
-**After GD-R4/R5,** the only remaining reach is the ConceptNet signed-graph
-*polarity* test, which needs an external download → still a scope decision for the
-user, not auto-promoted.
-
-**No item is auto-promoted after that — the remaining work needs a scope decision.** The one
+**No item is auto-promoted — the remaining work needs a scope decision.** The one
 untested part of Pygmalion's spectrum claim is the stimulator/inhibitor *polarity*
 half, which WordNet's sparse antonyms left at noise (`signed_overlap` ≈ 0). Testing
 it needs a **dense/signed relation graph** (ConceptNet or a co-occurrence graph) —

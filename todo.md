@@ -19,7 +19,11 @@ Grounded in [`literature/REVIEW.md`](literature/REVIEW.md).
   0.383 > cosine 0.296). **Remaining reach:** (a) ✦ *learned/weighted combiner DONE*
   (`run_structural_weighted.py`): λ tuned on a train split, scored on held-out
   test — beats cosine on SimLex for all 3 embeddings (+.075/.063/.029) and folds
-  the one flat-combine loss (fastText × WordSim) back to break-even; (b)
+  the one flat-combine loss (fastText × WordSim) back to break-even.
+  ✦ *Significance + 5-fold CV DONE* (`run_structural_significance.py`): the SimLex
+  gain is bootstrap-significant on GloVe-50/100 (95% CI [+.057,+.142] / [+.043,
+  +.127]) but **not** on fastText-300 (CI [−.008,+.075] crosses 0); 5-fold CV
+  confirms the learned combiner is ≥ cosine on every cell. (b)
   **remaining:** a denser / genuinely *signed* relation graph (ConceptNet,
   co-occurrence) so the stimulator/inhibitor *polarity* half — which WordNet's
   sparse antonyms left at noise (`signed_overlap` ≈ 0) — can actually be tested
