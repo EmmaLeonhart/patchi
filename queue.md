@@ -10,32 +10,38 @@ status-report :42). The `## Always last` tail keeps them alive.
 
 ---
 
-## Active — (empty) — GD thread drained; hand-back point reached again
+## Active — GD-R2: learned/weighted cosine+structural combiner
 
-**The GD (graph-degree structural similarity) thread is complete.** Emma's
-re-supplied notebook (`data_lake/proto.txt`) foregrounded Pygmalion's "distance =
-number of shared words" claim; it is now tested and written up — the project's
-**first positive result** (`FINDINGS.md` Result 7: WordNet shared-ancestor
-structure complements GloVe cosine on SimLex-999, combined 0.383 > cosine 0.296).
-`structural.py` + 13 tests (suite 129 green), `run_structural.py`, FINDINGS / docs
-/ REVIEW / sources updated, `todo.md` MVC-2 reconciled with the remaining reach.
+**Context.** GD-1..R1 are done and pushed (suite 129 green, CI green): Pygmalion's
+"distance = number of shared words" claim, tested over a WordNet shared-ancestor
+graph, gives the project's **first positive result** — structural similarity
+*complements* cosine on SimLex-999 across all three embeddings (+0.100 / +0.086 /
++0.034). The one place a **flat equal-weight** rank-average *hurts* is
+fastText × WordSim (−0.104, cosine dominates). That negative cell is a property of
+the unweighted combiner — the obvious, bounded next step is to learn the weight.
 
-**No item is auto-promoted, by design.** What remains in `todo.md` is large,
-open-ended research directions that each need a scope/product decision (full topos
-internal logic; learned/adaptive memory gate; the full linguistic pipeline; the GD
-reach — a *learned* combiner and a *dense signed* relation graph for the polarity
-half). The hard rails forbid fake-decomposing these.
+Emma asked to barrel through with the research loop, so this is promoted to active
+(not parked). It is bounded, verifiable, and uses only cached data + WordNet.
 
-**GD-R1 also done (cross-embedding robustness).** The SimLex complementarity holds
-on all three embeddings (GloVe-50 +0.100, GloVe-100 +0.086, fastText-300 +0.034);
-the only place a flat equal-weight combine *hurts* is fastText × WordSim (−0.104,
-where cosine dominates) — which motivates the learned-combiner reach directly.
+- **GD-R2 · `scripts/run_structural_weighted.py` (or extend `run_structural.py`).**
+  `combined(λ) = (1−λ)·rank(cosine) + λ·rank(adamic_adar)`. For each embedding ×
+  dataset, pick λ on a **train split** (maximise Spearman) and report Spearman on a
+  held-out **test split** — a proper split so the lift is not overfit (HARD RAIL:
+  do not tune on the test set, do not report the train-optimal as if it were the
+  result). Sweep λ ∈ {0,0.1,…,1}. Compare test-set: cosine alone vs flat-0.5 vs
+  learned-λ. Expect learned-λ ≥ cosine everywhere (λ→0 collapses to cosine, so it
+  can fold the fastText × WordSim loss back to ~break-even) and ≥ flat-0.5 on
+  SimLex. Write `results/structural_weighted_benchmark.json`; RUN it; record real
+  numbers, whichever way they go.
+- **GD-R3 · Write up + reconcile.** Fold the learned-combiner numbers into
+  `FINDINGS.md` Result 7 (does a tuned weight remove the one negative cell and lift
+  the SimLex gains?) and the docs; mark the MVC-2 "learned combiner" reach in
+  `todo.md` done/remaining. State numbers flatly.
 
-→ **Work-loop: report `nothing actionable` until the user picks a direction.** The
-single most bounded next candidate, surfaced by GD-R1, is a **learned/weighted
-combiner** (tune the cos+structural mixing weight with a proper train/test split;
-it should both lift the SimLex gains and remove the fastText × WordSim loss). If
-the user wants the loop to keep barrelling, the work-loop may promote that.
+When GD-R2/R3 drain, the next bounded reach is a **dense/signed relation graph**
+(ConceptNet / co-occurrence) to test the stimulator-inhibitor *polarity* half that
+WordNet's sparse antonyms left at noise — but that needs an external download
+(scope decision), so park it for the user unless explicitly told to fetch it.
 
 ---
 
