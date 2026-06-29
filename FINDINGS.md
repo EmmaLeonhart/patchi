@@ -14,6 +14,13 @@
 > **complements** GloVe cosine on genuine-similarity judgements (SimLex-999),
 > combined .383 vs cosine .296. See Result 7. Reproduce: `python
 > scripts/run_structural.py` (needs nltk WordNet).
+>
+> **Update (Result 8): direction right, metric not.** Pygmalion's specific
+> shared-neighbour count is *beaten* by textbook WordNet similarity (path 0.476 >
+> his 0.298 on SimLex), but that stronger measure complements cosine *more*:
+> cosine + path significantly beats cosine on **all three** embeddings, including
+> fastText where his metric failed. The phenomenon is real and bigger than his
+> formulation. Reproduce: `python scripts/run_structural_baselines.py`.
 
 ## Question
 
@@ -313,6 +320,48 @@ combiner captures that gain without ever losing to cosine (Result 7). The earlie
 headline "a noise-conditional smoother that usually loses" is now "loses as
 geometry, wins (significantly, on GloVe) as relational structure on
 genuine-similarity judgements."
+
+## Result 8 — is Pygmalion's shared-neighbour metric special? No — and the effect is bigger than his version
+
+The fair challenge to Result 7: adamic-adar over hypernym-path ancestors is itself
+a WordNet-graph similarity, and the field already has standard ones. So we put it
+head-to-head with **Wu-Palmer** and **path** similarity (max over synset pairs, the
+usual convention; `run_structural_baselines.py`), on the same sets:
+
+| measure (alone, SimLex-999, GloVe-100 set) | Spearman |
+|---|---:|
+| cosine (GloVe-100) | 0.296 |
+| adamic-adar (Pygmalion's shared-ancestor count) | 0.298 |
+| Wu-Palmer | **0.438** |
+| path | **0.476** |
+
+**The textbook WordNet measures beat Pygmalion's shared-neighbour formulation
+decisively** (path 0.476 vs adamic-adar 0.298 on SimLex). His specific "number of
+words in common" is a *weaker* instantiation of a relational similarity the field
+already has in stronger form — it counts shared ancestors but does not exploit
+taxonomy *depth* / shortest-path the way Wu-Palmer and path do.
+
+But the same comparison **strengthens the underlying claim of Result 7**, because
+the better measure complements cosine more, not less. Combining cosine + path (flat
+rank-average) vs cosine alone, with a paired bootstrap (B = 2000):
+
+| embedding | SimLex cos→cos+path | bootstrap Δ | 95% CI | significant? |
+|-----------|----:|----:|:--:|:--:|
+| GloVe-50     | 0.263 → 0.431 | +0.168 | [+0.133, +0.202] | **yes** |
+| GloVe-100    | 0.296 → 0.448 | +0.151 | [+0.118, +0.184] | **yes** |
+| fastText-300 | 0.445 → 0.524 | +0.080 | [+0.050, +0.111] | **yes** |
+
+With the proper measure the relational complement is **significant on all three
+embeddings — including fastText**, where adamic-adar's smaller gain (+0.034) had a
+CI that crossed zero. So the corrected, stronger conclusion: **Pygmalion's
+*direction* is right and the effect is real, sizable, and significant across
+architectures — taxonomic structure complements distributional geometry on genuine
+similarity — but his *specific* shared-neighbour count is not the right tool; the
+established WordNet path/Wu-Palmer measures capture the same signal better.** (On
+WordSim relatedness, cos+path is null/negative everywhere — −0.001, −0.009, −0.111
+— the same regime pattern: taxonomy does not help relatedness and hurts the strong
+fastText baseline.) The skeptic's question was worth asking: it demoted the
+specific formulation and promoted the phenomenon.
 
 ## Limitations (named, not buried)
 

@@ -91,7 +91,13 @@ known to be consistent.** Concretely:
    positive result: WordNet shared-ancestor structure **complements** GloVe
    cosine on genuine-similarity judgements, combined 0.383 vs cosine 0.296 on
    SimLex-999. This is graph-degree similarity, the structural-equivalence line
-   from network science, applied to Pygmalion's signed relation graph.)*
+   from network science, applied to Pygmalion's signed relation graph.
+   **Result 8 contextualises it:** Pygmalion's specific shared-neighbour count is
+   *beaten* by the textbook WordNet measures (path 0.476, Wu-Palmer 0.438 vs his
+   0.298 on SimLex) — but the stronger measure complements cosine *more*: cos+path
+   significantly beats cosine on all three embeddings incl. fastText. Direction
+   right, metric not — the established Wu-Palmer/path similarities capture the
+   phenomenon better than the raw shared-word count.)*
 3. **Classes-as-regions *with* a binding algebra.** Conceptual Spaces gives
    regions but no composition; VSA gives composition but no region boundary.
    Unifying them — set theory over class perimeters *and* binding on the same

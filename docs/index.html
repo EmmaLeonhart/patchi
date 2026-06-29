@@ -309,6 +309,18 @@
   from noise. Under 5-fold cross-validation the learned combiner is ≥ cosine on every cell, and the
   fastText × WordSim loss vanishes entirely (0.721 → 0.720). We report the boundary, not just the win.
 </p>
+<p>
+  <strong>Is Pygmalion's shared-neighbour metric special? No — and the effect is bigger than his
+  version.</strong> Put head-to-head with textbook WordNet similarity, his shared-ancestor count
+  (adamic-adar, 0.298 on SimLex) is <em>beaten</em> by Wu-Palmer (0.438) and path (0.476). His
+  specific "number of words in common" is a weaker instantiation of a relational similarity the field
+  already has. But the stronger measure complements cosine <em>more</em>: cosine + path beats cosine
+  on SimLex for <strong>all three embeddings, significantly</strong> (+0.168 / +0.151 / +0.080, every
+  95% CI above zero — including fastText, where his metric's gain was not significant). So the
+  corrected conclusion: Pygmalion's <em>direction</em> is right and the effect is real, sizable, and
+  significant across architectures — but his specific metric is not the right tool. The skeptic's
+  question demoted the formulation and promoted the phenomenon.
+</p>
 
 <h2>The conclusion, stated straight</h2>
 <p>

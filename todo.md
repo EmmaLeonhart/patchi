@@ -23,7 +23,12 @@ Grounded in [`literature/REVIEW.md`](literature/REVIEW.md).
   ✦ *Significance + 5-fold CV DONE* (`run_structural_significance.py`): the SimLex
   gain is bootstrap-significant on GloVe-50/100 (95% CI [+.057,+.142] / [+.043,
   +.127]) but **not** on fastText-300 (CI [−.008,+.075] crosses 0); 5-fold CV
-  confirms the learned combiner is ≥ cosine on every cell. (b)
+  confirms the learned combiner is ≥ cosine on every cell.
+  ✦ *Baseline contextualisation DONE* (`run_structural_baselines.py`, `FINDINGS.md`
+  Result 8): Pygmalion's shared-neighbour count is *beaten* by textbook WordNet
+  similarity (path 0.476, Wu-Palmer 0.438 vs his 0.298 on SimLex), but cos+path
+  significantly beats cosine on **all three** embeddings incl. fastText (+.168/.151
+  /.080, all CIs > 0) — direction right, metric not. (b)
   **remaining:** a denser / genuinely *signed* relation graph (ConceptNet,
   co-occurrence) so the stimulator/inhibitor *polarity* half — which WordNet's
   sparse antonyms left at noise (`signed_overlap` ≈ 0) — can actually be tested

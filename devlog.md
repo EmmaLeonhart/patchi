@@ -329,3 +329,34 @@ HARD RAIL honoured: the non-significant fastText cell is reported as non-
 significant, and the over-strong earlier wording was corrected. Module/tests
 unchanged, suite 129 green; experiment local-only. GD arc complete through
 significance.
+
+## 2026-06-29 — GD-R6/R7: structural vs textbook WordNet similarity — direction right, metric not
+
+The skeptic's question on Result 7: is Pygmalion's shared-ancestor adamic-adar
+distinct from standard WordNet similarity, or does it just reproduce one?
+`scripts/run_structural_baselines.py` puts it head-to-head with Wu-Palmer + path
+(max over synset pairs), same head-to-head sets, + a paired bootstrap on cos+path
+vs cosine. Real numbers (`results/structural_baselines_benchmark.json`):
+
+SimLex-999 alone (GloVe-100 set): cosine .296 · adamic-adar .298 · **Wu-Palmer .438
+· path .476**. The textbook measures **beat** Pygmalion's shared-neighbour count
+decisively — his "number of words in common" does not exploit taxonomy depth /
+shortest path the way Wu-Palmer/path do.
+
+But the better measure complements cosine *more*. cos+path vs cosine on SimLex
+(paired bootstrap B=2000):
+- GloVe-50: +.168, CI [+.133,+.202], sig
+- GloVe-100: +.151, CI [+.118,+.184], sig
+- fastText-300: +.080, CI [+.050,+.111], **sig** (where adamic-adar's +.034 was NOT)
+
+So the corrected, stronger conclusion: Pygmalion's *direction* (similarity is
+relational/taxonomic, complementary to distributional geometry) is real, sizable,
+and **significant on all three embeddings** with the proper measure — but his
+*specific* shared-neighbour count is not the right tool; established Wu-Palmer/path
+capture the signal better. On WordSim (relatedness) cos+path is null/negative
+(−.001/−.009/−.111), same regime pattern. The skeptic's question demoted the
+formulation and promoted the phenomenon.
+
+Written up as FINDINGS Result 8 (+ header note), docs, REVIEW gap 2b, sources,
+todo.md. HARD RAIL honoured: the textbook-beats-Pygmalion result is stated plainly,
+not buried. Module/tests unchanged, suite 129 green; experiment local-only.

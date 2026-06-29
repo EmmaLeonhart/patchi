@@ -10,38 +10,18 @@ status-report :42). The `## Always last` tail keeps them alive.
 
 ---
 
-## Active — GD-R6: contextualize the structural measure vs textbook WordNet similarity
+## Active — (empty) — GD arc complete through baseline contextualization
 
-**Why (the skeptic's question).** Result 7 says Pygmalion's *shared-ancestor*
-adamic-adar carries similarity signal complementary to cosine. The obvious
-challenge: "that is just a WordNet similarity, and Wu-Palmer / path similarity are
-the standard ones — does your formulation actually differ, or does it merely
-reproduce a textbook measure?" Answering it is fully unblocked: nltk's
-`wup_similarity` / `path_similarity` ship with the **already-downloaded** WordNet,
-no external dependency. Bounded, verifiable (Spearman vs human), and it sharpens
-the contribution either way (distinct → a real formulation; same → "Pygmalion's
-shared-neighbour idea reconstructs known WordNet similarity, itself complementary
-to distributional cosine" — a clearer, still-valid story).
+**GD-1..R7 done and pushed.** The relational-similarity thread is the project's
+first positive result and is now fully scoped: structural/taxonomic WordNet
+similarity **significantly complements** distributional cosine on genuine
+similarity (SimLex) across all three embeddings — `FINDINGS.md` Result 7
+(adamic-adar) + Result 8 (the skeptic's question: textbook **path/Wu-Palmer beat**
+Pygmalion's shared-neighbour count, and cos+path is significant on all 3 incl.
+fastText, +.168/.151/.080, all CIs > 0). Direction right, specific metric not.
+Suite 129 green, CI + pages green; FINDINGS/docs/REVIEW/sources/todo all updated.
 
-- **GD-R6 · `scripts/run_structural_baselines.py`.** For each WordSim-353 /
-  SimLex-999 pair compute the standard WordNet measures (max over synset pairs, the
-  usual convention): **Wu-Palmer**, **path**, and (same-POS) **Leacock-Chodorow**.
-  Spearman vs human on the *same* head-to-head sets as Result 7; tabulate alongside
-  adamic-adar (the project's structural measure) and GloVe cosine. Then ask the
-  combine question: does `cosine + wup` do as well as / better than
-  `cosine + adamic_adar` (flat rank-average) on SimLex? Write
-  `results/structural_baselines_benchmark.json`. RUN it; record the real numbers.
-  HARD RAIL: if a textbook measure matches or beats adamic-adar, say so plainly —
-  that reframes the contribution, it does not get buried.
-- **GD-R7 · Write up + reconcile.** Fold the comparison into `FINDINGS.md` Result 7
-  (is the structural signal distinct from textbook WordNet similarity?), update the
-  docs framing if it changes, cross-ref `REVIEW.md`, note the measures in
-  `sources.md`, reconcile `todo.md`. State numbers flatly.
-
-**After GD-R6/R7,** the only remaining reach is the ConceptNet signed-graph
-*polarity* test (external download → scope decision, not auto-promoted).
-
-**No item is auto-promoted after that — the remaining work needs a scope decision.** The one
+**No item is auto-promoted — the remaining work needs a scope decision.** The one
 untested part of Pygmalion's spectrum claim is the stimulator/inhibitor *polarity*
 half, which WordNet's sparse antonyms left at noise (`signed_overlap` ≈ 0). Testing
 it needs a **dense/signed relation graph** (ConceptNet or a co-occurrence graph) —
